@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1B4332"/>
+      <stop offset="60%" style="stop-color:#2D6A4F"/>
+      <stop offset="100%" style="stop-color:#40916C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="600" y="200" text-anchor="middle" font-size="120" fill="white">🐌</text>
+  <text x="600" y="320" text-anchor="middle" font-family="sans-serif" font-size="72" font-weight="bold" fill="white">달팽이 멤버십 스터디</text>
+  <text x="600" y="400" text-anchor="middle" font-family="sans-serif" font-size="32" fill="#B7E4C7">AI 자동화 수익 스터디 모임</text>
+  <text x="600" y="480" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#95D5B2">120평 CNC 공방 · 60평 펜션을 AI로 자동화하는 대표의 실전 노하우</text>
+  <text x="600" y="560" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#6B9E82">무료 뉴스레터 → 온라인 → 오프라인 → 파트너</text>
+</svg>
