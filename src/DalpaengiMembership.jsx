@@ -835,10 +835,91 @@ export default function DalpaengiMembership() {
             display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
             gap: "20px", alignItems: "start",
           }}>
-            {TIERS.map((tier, i) => (
+            {TIERS.filter(t => !t.soldOut).map((tier, i) => (
               <TierCard key={tier.id} tier={tier} index={i} onCTAClick={handleCTAClick} />
             ))}
           </div>
+
+          {/* Lv.5 커스텀 — 가로 풀 배너 */}
+          {TIERS.filter(t => t.soldOut).map((tier) => (
+            <FadeIn key={tier.id} delay={0.5}>
+              <div style={{
+                marginTop: "32px",
+                background: "linear-gradient(135deg, #0D1F17 0%, #1B4332 50%, #2D6A4F 100%)",
+                borderRadius: "20px", padding: "36px 40px",
+                display: "flex", alignItems: "center", gap: "32px",
+                flexWrap: "wrap", position: "relative", overflow: "hidden",
+              }}>
+                {/* SOLD OUT 리본 */}
+                <div style={{
+                  position: "absolute", top: "18px", right: "24px",
+                  background: "#D32F2F", color: "#fff",
+                  fontSize: "11px", fontWeight: 800, letterSpacing: "0.1em",
+                  padding: "6px 16px", borderRadius: "6px",
+                }}>
+                  SOLD OUT
+                </div>
+
+                {/* 아이콘 + 레벨 */}
+                <div style={{
+                  fontSize: "48px", flexShrink: 0,
+                  width: "80px", height: "80px", borderRadius: "20px",
+                  background: "rgba(183,228,199,0.1)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  {tier.emoji}
+                </div>
+
+                {/* 정보 */}
+                <div style={{ flex: 1, minWidth: "240px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "6px", flexWrap: "wrap" }}>
+                    <span style={{
+                      fontSize: "12px", fontWeight: 800, color: "#B7E4C7",
+                      background: "rgba(183,228,199,0.15)", padding: "4px 12px",
+                      borderRadius: "6px", letterSpacing: "0.05em",
+                    }}>
+                      {tier.level}
+                    </span>
+                    <h3 style={{
+                      fontFamily: "'Noto Serif KR', serif",
+                      fontSize: "24px", fontWeight: 700, color: "#E8E5DC", margin: 0,
+                    }}>
+                      {tier.name}
+                    </h3>
+                  </div>
+                  <p style={{ fontSize: "15px", color: "#95D5B2", margin: "0 0 12px", lineHeight: 1.6 }}>
+                    {tier.subtitle}
+                  </p>
+                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    {tier.features.slice(0, 4).map((f, i) => (
+                      <span key={i} style={{
+                        fontSize: "12px", color: "#B7E4C7", fontWeight: 600,
+                        background: "rgba(183,228,199,0.08)", padding: "6px 12px",
+                        borderRadius: "8px", border: "1px solid rgba(183,228,199,0.15)",
+                      }}>
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 가격 */}
+                <div style={{ textAlign: "center", flexShrink: 0, minWidth: "140px" }}>
+                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#B7E4C7", marginBottom: "4px" }}>
+                    {tier.price}
+                  </div>
+                  <div style={{ fontSize: "13px", color: "#6B9E82" }}>{tier.priceNote}</div>
+                  <button disabled style={{
+                    marginTop: "16px", padding: "12px 32px", borderRadius: "10px",
+                    background: "#E8E5DC", color: "#999", fontSize: "14px", fontWeight: 700,
+                    border: "none", cursor: "not-allowed", letterSpacing: "0.05em",
+                  }}>
+                    SOLD OUT
+                  </button>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
         </div>
       </section>
 
