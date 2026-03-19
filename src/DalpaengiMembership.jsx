@@ -98,6 +98,31 @@ const TIERS = [
     cta: "달팽이 가족 문의",
     highlight: false,
   },
+  {
+    id: "custom",
+    level: "Lv.5",
+    emoji: "👑",
+    name: "자동화 시스템 구축",
+    subtitle: "자동화 인생 10년의 총 노하우로 셋팅해드립니다",
+    price: "커스텀",
+    priceNote: "금액 협의",
+    badge: "SOLD OUT",
+    badgeColor: "#D32F2F",
+    schedule: "일정 협의 · 1:1 맞춤 셋팅",
+    goal: "당신의 비즈니스에 맞는 자동화 시스템을 통째로 구축",
+    features: [
+      "비즈니스 분석 & 자동화 설계",
+      "n8n · Supabase · AI 에이전트 풀 셋팅",
+      "랜딩페이지 + 모객 + CRM 올인원 구축",
+      "운영 매뉴얼 & 유지보수 가이드 제공",
+      "구축 완료 후 1개월 무상 지원",
+      "달팽이 전 등급 혜택 포함",
+    ],
+    bonuses: ["펜션 무료 이용", "공방 시설 무료 이용", "평생 커뮤니티 접근"],
+    cta: "SOLD OUT",
+    highlight: false,
+    soldOut: true,
+  },
 ];
 
 const CURRICULUM = [
@@ -149,6 +174,7 @@ const FUNNEL_STEPS = [
   { emoji: "💻", label: "Lv.2 달팽이 친구", sub: '"이런 게 된다" — 경험 & 인사이트 공유', price: "₩9,900/월", color: "#52B788" },
   { emoji: "🔧", label: "Lv.3 달팽이 주민", sub: '"직접 만든다" — 100% 실습 & 결과물', price: "₩99,000/월", color: "#2D6A4F" },
   { emoji: "🚀", label: "Lv.4 달팽이 가족", sub: '"시스템을 구축한다" — 수익모델 완성', price: "₩990,000/월", color: "#1B4332" },
+  { emoji: "👑", label: "Lv.5 시스템 구축", sub: '"통째로 맡긴다" — 풀 셋팅 서비스', price: "SOLD OUT", color: "#0D1F17" },
 ];
 
 const RUNNING_SYSTEMS = [
@@ -497,14 +523,19 @@ function TierCard({ tier, index, onCTAClick }) {
 
           <div style={{ flex: 1 }} />
 
-          <button onClick={handleCTA} style={{
-            marginTop: "24px", width: "100%", padding: "14px 0", borderRadius: "12px",
-            border: isHL ? "none" : "1.5px solid #2D6A4F",
-            background: isHL ? "linear-gradient(135deg, #40916C, #52B788)" : "transparent",
-            color: isHL ? "#fff" : "#2D6A4F",
-            fontSize: "15px", fontWeight: 700, cursor: "pointer",
-            transition: "all 0.25s ease", letterSpacing: "0.02em",
-          }}>
+          <button
+            onClick={tier.soldOut ? undefined : handleCTA}
+            disabled={tier.soldOut}
+            style={{
+              marginTop: "24px", width: "100%", padding: "14px 0", borderRadius: "12px",
+              border: tier.soldOut ? "1.5px solid #CCC" : isHL ? "none" : "1.5px solid #2D6A4F",
+              background: tier.soldOut ? "#E8E5DC" : isHL ? "linear-gradient(135deg, #40916C, #52B788)" : "transparent",
+              color: tier.soldOut ? "#999" : isHL ? "#fff" : "#2D6A4F",
+              fontSize: "15px", fontWeight: 700,
+              cursor: tier.soldOut ? "not-allowed" : "pointer",
+              transition: "all 0.25s ease", letterSpacing: "0.02em",
+            }}
+          >
             {tier.cta}
           </button>
         </div>
@@ -872,10 +903,10 @@ export default function DalpaengiMembership() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", minWidth: "620px" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", minWidth: "760px" }}>
                 <thead>
                   <tr style={{ borderBottom: "2px solid #1B4332" }}>
-                    {["", "📬 Lv.1 레터", "💻 Lv.2 친구", "🔧 Lv.3 주민", "🚀 Lv.4 가족"].map((h, i) => (
+                    {["", "📬 Lv.1", "💻 Lv.2", "🔧 Lv.3", "🚀 Lv.4", "👑 Lv.5"].map((h, i) => (
                       <th key={i} style={{
                         padding: "12px 8px", textAlign: i === 0 ? "left" : "center",
                         fontWeight: 700, color: "#1B4332", fontSize: "13px",
@@ -885,18 +916,19 @@ export default function DalpaengiMembership() {
                 </thead>
                 <tbody>
                   {[
-                    ["가격", "무료", "₩9,900/월", "₩99,000/월", "₩990,000/월"],
-                    ["빈도", "주 2회", "주 1회 2시간", "월 1회 원데이", "주 1회 8시간"],
-                    ["형태", "뉴스레터", "온라인 라이브", "오프라인 실습", "오프라인 밀착"],
-                    ["AI 트렌드 뉴스", "✓", "✓", "✓", "✓"],
-                    ["라이브 시연", "—", "✓", "✓", "✓"],
-                    ["이론+실습 결과물", "—", "—", "✓", "✓"],
-                    ["수익모델 설계", "—", "—", "—", "✓"],
-                    ["마케팅 시스템 구축", "—", "—", "—", "✓"],
-                    ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용"],
-                    ["수익 분배 파트너십", "—", "—", "—", "최대 40%"],
-                    ["최소 약정", "없음", "없음", "3개월", "3개월"],
-                    ["정원", "무제한", "1,000명", "20명", "20명"],
+                    ["가격", "무료", "₩9,900/월", "₩99,000/월", "₩990,000/월", "금액 협의"],
+                    ["빈도", "주 2회", "주 1회 2시간", "월 1회 원데이", "주 1회 8시간", "맞춤 일정"],
+                    ["형태", "뉴스레터", "온라인 라이브", "오프라인 실습", "오프라인 밀착", "풀 셋팅"],
+                    ["AI 트렌드 뉴스", "✓", "✓", "✓", "✓", "✓"],
+                    ["라이브 시연", "—", "✓", "✓", "✓", "✓"],
+                    ["이론+실습 결과물", "—", "—", "✓", "✓", "✓"],
+                    ["수익모델 설계", "—", "—", "—", "✓", "✓"],
+                    ["마케팅 시스템 구축", "—", "—", "—", "✓", "✓"],
+                    ["풀 시스템 셋팅", "—", "—", "—", "—", "✓"],
+                    ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용", "무료 이용"],
+                    ["수익 분배 파트너십", "—", "—", "—", "최대 40%", "✓"],
+                    ["최소 약정", "없음", "없음", "3개월", "3개월", "협의"],
+                    ["정원", "무제한", "1,000명", "20명", "20명", "SOLD OUT"],
                   ].map((row, ri) => (
                     <tr key={ri} style={{ borderBottom: "1px solid #E8E5DC", background: ri % 2 === 0 ? "#FAFAF7" : "#fff" }}>
                       {row.map((cell, ci) => (
