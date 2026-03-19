@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import NewsletterSignupModal from "./components/NewsletterSignupModal";
+import MembershipApplyModal from "./components/MembershipApplyModal";
 
 /* ─── DATA ─── */
 const TIERS = [
@@ -359,20 +361,13 @@ function FAQItem({ item, index }) {
   );
 }
 
-function TierCard({ tier, index }) {
+function TierCard({ tier, index, onCTAClick }) {
   const [hovered, setHovered] = useState(false);
   const isHL = tier.highlight;
 
   const handleCTA = useCallback(() => {
-    const msg = tier.id === "letter"
-      ? "달팽이레터 구독 신청합니다!"
-      : tier.id === "online"
-      ? "온라인 멤버십 신청합니다! (월 9,900원)"
-      : tier.id === "offline"
-      ? "오프라인 멤버십 문의합니다! (월 99,000원)"
-      : "파트너 멤버십 문의합니다! (월 990,000원)";
-    window.open(`https://open.kakao.com/o/sool9241?msg=${encodeURIComponent(msg)}`, "_blank");
-  }, [tier.id]);
+    onCTAClick(tier.id);
+  }, [tier.id, onCTAClick]);
 
   return (
     <FadeIn delay={index * 0.1}>
@@ -508,6 +503,7 @@ function TierCard({ tier, index }) {
 /* ─── MAIN ─── */
 export default function DalpaengiMembership() {
   const [scrollY, setScrollY] = useState(0);
+  const [activeModal, setActiveModal] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -518,6 +514,10 @@ export default function DalpaengiMembership() {
   const scrollToTiers = useCallback((e) => {
     e.preventDefault();
     document.getElementById("tiers")?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  const handleCTAClick = useCallback((tierId) => {
+    setActiveModal(tierId);
   }, []);
 
   return (
@@ -590,7 +590,7 @@ export default function DalpaengiMembership() {
               }}>
                 멤버십 살펴보기 →
               </button>
-              <button onClick={() => window.open("https://open.kakao.com/o/sool9241", "_blank")} style={{
+              <button onClick={() => setActiveModal("letter")} style={{
                 display: "inline-flex", alignItems: "center", padding: "16px 32px",
                 background: "transparent", color: "#2D6A4F", borderRadius: "14px",
                 fontSize: "16px", fontWeight: 600, border: "1.5px solid #2D6A4F", cursor: "pointer",
@@ -792,7 +792,7 @@ export default function DalpaengiMembership() {
             gap: "20px", alignItems: "start",
           }}>
             {TIERS.map((tier, i) => (
-              <TierCard key={tier.id} tier={tier} index={i} />
+              <TierCard key={tier.id} tier={tier} index={i} onCTAClick={handleCTAClick} />
             ))}
           </div>
         </div>
@@ -986,7 +986,7 @@ export default function DalpaengiMembership() {
             무료 달팽이레터로 먼저 시작해보세요.<br />
             매주 2회, 최신 AI 트렌드를 전해드립니다.
           </p>
-          <button onClick={() => window.open("https://open.kakao.com/o/sool9241", "_blank")} style={{
+          <button onClick={() => setActiveModal("letter")} style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
             padding: "18px 40px", background: "#fff", color: "#1B4332",
             borderRadius: "14px", fontSize: "17px", fontWeight: 800,
@@ -1007,6 +1007,17 @@ export default function DalpaengiMembership() {
           전북 완주군 소양면 해월리 866-6 · 010-8531-9531
         </p>
       </footer>
+
+      {/* ══════ MODALS ══════ */}
+      <NewsletterSignupModal
+        isOpen={activeModal === "letter"}
+        onClose={() => setActiveModal(null)}
+      />
+      <MembershipApplyModal
+        isOpen={activeModal === "online" || activeModal === "offline" || activeModal === "partner"}
+        onClose={() => setActiveModal(null)}
+        tierId={activeModal || "online"}
+      />
     </div>
   );
 }
