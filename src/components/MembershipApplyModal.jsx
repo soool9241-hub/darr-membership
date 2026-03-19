@@ -5,22 +5,22 @@ import { supabase, getReferralCode } from "../lib/supabase";
 
 const TIER_CONFIG = {
   online: {
-    title: "💻 온라인 멤버십 신청",
-    desc: "매주 2시간 라이브 시연 · ₩9,900/월",
+    title: "💻 Lv.2 달팽이 친구 신청",
+    desc: "주 1회 AI 자동화 경험 & 인사이트 공유 · ₩9,900/월",
     successMsg: "신청이 접수되었습니다!\n카카오톡으로 결제 안내를 드리겠습니다.",
     showBusiness: false,
     showCommitment: false,
   },
   offline: {
-    title: "🔧 오프라인 멤버십 신청",
-    desc: "월 1회 오프라인 원데이 · ₩99,000/월 · 최소 3개월",
+    title: "🔧 Lv.3 달팽이 주민 신청",
+    desc: "월 1회 정기 · 100% 실습 · ₩99,000/월 · 최소 3개월",
     successMsg: "신청이 접수되었습니다!\n검토 후 개별 안내 드리겠습니다.",
     showBusiness: true,
     showCommitment: true,
   },
   partner: {
-    title: "🚀 파트너 멤버십 문의",
-    desc: "주 1회 8시간 밀착 세션 · ₩990,000/월 · 최소 3개월",
+    title: "🚀 Lv.4 달팽이 가족 문의",
+    desc: "월 4회 × 8시간 · 수익모델 + 마케팅 퍼널 구축 · ₩990,000/월 · 최소 3개월",
     successMsg: "문의가 접수되었습니다!\n1:1 상담을 위해 연락드리겠습니다.",
     showBusiness: true,
     showCommitment: true,
