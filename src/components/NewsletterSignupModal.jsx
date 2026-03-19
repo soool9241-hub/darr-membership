@@ -114,7 +114,7 @@ export default function NewsletterSignupModal({ isOpen, onClose }) {
             type="tel"
             value={form.phone}
             onChange={(v) => setForm({ ...form, phone: v })}
-            placeholder="010-0000-0000 (선택)"
+            placeholder="010-8531-9531 (선택)"
           />
 
           {submitError && (

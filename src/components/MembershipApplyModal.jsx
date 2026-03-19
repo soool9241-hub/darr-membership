@@ -1,54 +1,34 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import FormField from "./FormField";
-import { supabase, getReferralCode } from "../lib/supabase";
+import { supabase } from "../lib/supabase";
 
 const TIER_CONFIG = {
   online: {
-    title: "💻 Lv.2 달팽이 친구 신청",
+    title: "💻 온라인 멤버십 신청",
+    grade: "달팽이 친구",
     desc: "주 1회 AI 자동화 경험 & 인사이트 공유 · ₩9,900/월",
     successMsg: "신청이 접수되었습니다!\n카카오톡으로 결제 안내를 드리겠습니다.",
-    showBusiness: false,
-    showCommitment: false,
   },
   offline: {
-    title: "🔧 Lv.3 달팽이 주민 신청",
+    title: "🔧 오프라인 멤버십 신청",
+    grade: "달팽이 주민",
     desc: "월 1회 정기 · 100% 실습 · ₩99,000/월 · 최소 3개월",
     successMsg: "신청이 접수되었습니다!\n검토 후 개별 안내 드리겠습니다.",
-    showBusiness: true,
-    showCommitment: true,
   },
   partner: {
-    title: "🚀 Lv.4 달팽이 가족 문의",
+    title: "🚀 파트너 멤버십 문의",
+    grade: "달팽이 가족",
     desc: "월 4회 × 8시간 · 수익모델 + 마케팅 퍼널 구축 · ₩990,000/월 · 최소 3개월",
     successMsg: "문의가 접수되었습니다!\n1:1 상담을 위해 연락드리겠습니다.",
-    showBusiness: true,
-    showCommitment: true,
   },
 };
-
-const EXPERIENCE_OPTIONS = [
-  { value: "beginner", label: "입문 — AI 도구를 거의 써본 적 없음" },
-  { value: "intermediate", label: "중급 — ChatGPT 등 기본 도구 사용 경험" },
-  { value: "advanced", label: "고급 — n8n, API 연동 등 자동화 경험 있음" },
-];
-
-const HOW_FOUND_OPTIONS = [
-  { value: "search", label: "검색 (구글/네이버)" },
-  { value: "sns", label: "SNS (인스타/유튜브/블로그)" },
-  { value: "referral", label: "지인 소개" },
-  { value: "newsletter", label: "달팽이레터" },
-  { value: "other", label: "기타" },
-];
 
 export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const config = TIER_CONFIG[tierId] || TIER_CONFIG.online;
 
   const [form, setForm] = useState({
     name: "", email: "", phone: "",
-    business_type: "", goal: "", experience_level: "",
-    how_found: "", referral_code: getReferralCode() || "",
-    agree_commitment: false, agree_terms: false,
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -63,9 +43,6 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
     if (!form.email.trim()) errs.email = "이메일을 입력해주세요";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "올바른 이메일 형식이 아닙니다";
     if (!form.phone.trim()) errs.phone = "연락처를 입력해주세요";
-    if (config.showBusiness && !form.goal.trim()) errs.goal = "목표를 입력해주세요";
-    if (!form.agree_terms) errs.agree_terms = "개인정보 수집에 동의해주세요";
-    if (config.showCommitment && !form.agree_commitment) errs.agree_commitment = "최소 약정에 동의해주세요";
     return errs;
   };
 
@@ -85,11 +62,6 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
           name: form.name.trim(),
           email: form.email.trim().toLowerCase(),
           phone: form.phone.trim(),
-          business_type: form.business_type.trim() || null,
-          goal: form.goal.trim() || null,
-          experience_level: form.experience_level || null,
-          how_found: form.how_found || null,
-          referral_code: form.referral_code.trim() || null,
         });
 
         if (error) throw error;
@@ -104,12 +76,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   };
 
   const handleClose = () => {
-    setForm({
-      name: "", email: "", phone: "",
-      business_type: "", goal: "", experience_level: "",
-      how_found: "", referral_code: getReferralCode() || "",
-      agree_commitment: false, agree_terms: false,
-    });
+    setForm({ name: "", email: "", phone: "" });
     setErrors({});
     setSuccess(false);
     setSubmitError("");
@@ -157,57 +124,20 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
-          <p style={{ fontSize: "14px", color: "#6B7B6E", marginBottom: "20px", lineHeight: 1.6 }}>
+          <p style={{ fontSize: "14px", color: "#6B7B6E", marginBottom: "8px", lineHeight: 1.6 }}>
             {config.desc}
+          </p>
+          <p style={{
+            fontSize: "12px", color: "#95D5B2", marginBottom: "20px",
+            background: "#F0FAF4", padding: "8px 12px", borderRadius: "8px",
+            lineHeight: 1.5,
+          }}>
+            신청 시 등급은 <strong style={{ color: "#1B4332" }}>Lv. {config.grade}</strong>로 표시됩니다.
           </p>
 
           <FormField label="이름" value={form.name} onChange={(v) => setField("name", v)} error={errors.name} required placeholder="홍길동" />
           <FormField label="이메일" type="email" value={form.email} onChange={(v) => setField("email", v)} error={errors.email} required placeholder="example@email.com" />
-          <FormField label="연락처" type="tel" value={form.phone} onChange={(v) => setField("phone", v)} error={errors.phone} required placeholder="010-0000-0000" />
-
-          {config.showBusiness && (
-            <>
-              <FormField label="현재 직업/사업" value={form.business_type} onChange={(v) => setField("business_type", v)} placeholder="예: 카페 운영, 프리랜서, 직장인 등" />
-              <FormField label="달성하고 싶은 목표" type="textarea" value={form.goal} onChange={(v) => setField("goal", v)} error={errors.goal} required placeholder="예: AI로 마케팅 자동화를 구축하고 싶습니다" />
-              <FormField
-                label="AI 도구 경험 수준"
-                type="select"
-                value={form.experience_level}
-                onChange={(v) => setField("experience_level", v)}
-                options={EXPERIENCE_OPTIONS}
-              />
-            </>
-          )}
-
-          <FormField
-            label="어떻게 알게 되셨나요?"
-            type="select"
-            value={form.how_found}
-            onChange={(v) => setField("how_found", v)}
-            options={HOW_FOUND_OPTIONS}
-          />
-
-          <FormField label="추천인 코드" value={form.referral_code} onChange={(v) => setField("referral_code", v)} placeholder="추천인 코드가 있다면 입력 (선택)" />
-
-          {config.showCommitment && (
-            <FormField
-              label=""
-              type="checkbox"
-              value={form.agree_commitment}
-              onChange={(v) => setField("agree_commitment", v)}
-              error={errors.agree_commitment}
-              placeholder="최소 3개월 약정에 동의합니다. (약정 기간 중 해지 시 위약금 없이 정지 처리됩니다)"
-            />
-          )}
-
-          <FormField
-            label=""
-            type="checkbox"
-            value={form.agree_terms}
-            onChange={(v) => setField("agree_terms", v)}
-            error={errors.agree_terms}
-            placeholder="개인정보 수집 및 이용에 동의합니다. (신청 처리 목적으로만 사용됩니다)"
-          />
+          <FormField label="연락처" type="tel" value={form.phone} onChange={(v) => setField("phone", v)} error={errors.phone} required placeholder="010-8531-9531" />
 
           {submitError && (
             <div style={{
