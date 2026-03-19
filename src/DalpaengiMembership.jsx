@@ -831,11 +831,86 @@ export default function DalpaengiMembership() {
             </p>
           </FadeIn>
 
+          {/* Lv.1 달팽이레터 — 가로 풀 배너 */}
+          {(() => {
+            const letterTier = TIERS.find(t => t.id === "letter");
+            return (
+              <FadeIn>
+                <div
+                  onClick={() => handleCTAClick("letter")}
+                  style={{
+                    background: "#FAFAF7", borderRadius: "20px", padding: "32px 36px",
+                    border: "1px solid #E8E5DC", cursor: "pointer",
+                    display: "flex", alignItems: "center", gap: "28px", flexWrap: "wrap",
+                    transition: "box-shadow 0.3s ease",
+                    marginBottom: "20px",
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 12px 40px rgba(27,67,50,0.1)"}
+                  onMouseLeave={(e) => e.currentTarget.style.boxShadow = "none"}
+                >
+                  <div style={{
+                    fontSize: "40px", flexShrink: 0,
+                    width: "72px", height: "72px", borderRadius: "18px",
+                    background: "rgba(74,124,89,0.08)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    {letterTier.emoji}
+                  </div>
+                  <div style={{ flex: 1, minWidth: "200px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px", flexWrap: "wrap" }}>
+                      <span style={{
+                        fontSize: "11px", fontWeight: 800, color: "#fff",
+                        background: letterTier.badgeColor, padding: "3px 10px",
+                        borderRadius: "6px", letterSpacing: "0.05em",
+                      }}>
+                        {letterTier.badge}
+                      </span>
+                      <h3 style={{
+                        fontFamily: "'Noto Serif KR', serif",
+                        fontSize: "22px", fontWeight: 700, color: "#1B1B18", margin: 0,
+                      }}>
+                        {letterTier.name}
+                      </h3>
+                    </div>
+                    <p style={{ fontSize: "14px", color: "#6B7B6E", margin: "4px 0 10px", lineHeight: 1.5 }}>
+                      {letterTier.subtitle}
+                    </p>
+                    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                      {letterTier.features.map((f, i) => (
+                        <span key={i} style={{
+                          fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
+                          background: "rgba(45,106,79,0.06)", padding: "5px 12px",
+                          borderRadius: "8px", border: "1px solid rgba(45,106,79,0.1)",
+                        }}>
+                          ✓ {f}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{ textAlign: "center", flexShrink: 0 }}>
+                    <div style={{ fontSize: "32px", fontWeight: 800, color: "#1B4332", marginBottom: "4px" }}>
+                      {letterTier.price}
+                    </div>
+                    <button style={{
+                      marginTop: "8px", padding: "12px 32px", borderRadius: "10px",
+                      background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                      color: "#fff", fontSize: "14px", fontWeight: 700,
+                      border: "none", cursor: "pointer",
+                    }}>
+                      {letterTier.cta}
+                    </button>
+                  </div>
+                </div>
+              </FadeIn>
+            );
+          })()}
+
+          {/* Lv.2~4 — 3열 그리드 */}
           <div style={{
             display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
             gap: "20px", alignItems: "start",
           }}>
-            {TIERS.filter(t => !t.soldOut).map((tier, i) => (
+            {TIERS.filter(t => !t.soldOut && t.id !== "letter").map((tier, i) => (
               <TierCard key={tier.id} tier={tier} index={i} onCTAClick={handleCTAClick} />
             ))}
           </div>
