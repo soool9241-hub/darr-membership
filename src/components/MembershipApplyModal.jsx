@@ -10,7 +10,7 @@ const TIER_CONFIG = {
     desc: "다양한 AI 자동화 & 수익화 구조를 알아봅니다",
     price: 9900,
     yearlyPrice: 9900 * 12,
-    priceLabel: "1년 단위 신청",
+    priceLabel: "1년 멤버십",
     successMsg: "신청이 접수되었습니다!",
   },
   offline: {
@@ -140,18 +140,42 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
             </div>
             <div style={{ fontSize: "15px", fontWeight: 600, color: "#B7E4C7", marginBottom: "12px" }}>예금주: 임솔</div>
 
-            {isOffline && (
-              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>
-                선택 수업 {selectedCourses.length}건
+            {isOffline ? (
+              <>
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>
+                  선택 수업 {selectedCourses.length}건
+                </div>
+                <div style={{
+                  fontSize: "22px", fontWeight: 800, color: "#FEE500",
+                  background: "rgba(254,229,0,0.1)", padding: "8px 16px",
+                  borderRadius: "8px", display: "inline-block",
+                }}>
+                  ₩{formatPrice(totalPrice)}
+                </div>
+              </>
+            ) : config.yearlyPrice ? (
+              <>
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>1년 멤버십 · 정기결제 할인가</div>
+                <div style={{
+                  fontSize: "26px", fontWeight: 800, color: "#FEE500",
+                  background: "rgba(254,229,0,0.1)", padding: "8px 16px",
+                  borderRadius: "8px", display: "inline-block",
+                }}>
+                  ₩{formatPrice(config.price)}<span style={{ fontSize: "13px", color: "#B7E4C7" }}>/월</span>
+                </div>
+                <div style={{ fontSize: "11px", color: "#95D5B2", marginTop: "6px" }}>
+                  1년 멤버십 ₩{formatPrice(config.yearlyPrice)}
+                </div>
+              </>
+            ) : (
+              <div style={{
+                fontSize: "22px", fontWeight: 800, color: "#FEE500",
+                background: "rgba(254,229,0,0.1)", padding: "8px 16px",
+                borderRadius: "8px", display: "inline-block",
+              }}>
+                ₩{formatPrice(config.price)}<span style={{ fontSize: "13px", color: "#B7E4C7" }}>/월</span>
               </div>
             )}
-            <div style={{
-              fontSize: "22px", fontWeight: 800, color: "#FEE500",
-              background: "rgba(254,229,0,0.1)", padding: "8px 16px",
-              borderRadius: "8px", display: "inline-block",
-            }}>
-              ₩{formatPrice(totalPrice)}
-            </div>
           </div>
 
           <button
@@ -200,19 +224,19 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
             신청 시 등급은 <strong style={{ color: "#1B4332" }}>Lv. {config.grade}</strong>로 표시됩니다.
           </p>
 
-          {/* 온라인: 1년 단위 */}
+          {/* 온라인: 월 금액 강조 + 연 금액 작게 */}
           {config.yearlyPrice && (
             <div style={{
               background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
               borderRadius: "12px", padding: "20px", marginBottom: "20px",
               textAlign: "center",
             }}>
-              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px", letterSpacing: "0.1em" }}>{config.priceLabel}</div>
-              <div style={{ fontSize: "32px", fontWeight: 800, color: "#fff" }}>
-                ₩{formatPrice(config.yearlyPrice)}<span style={{ fontSize: "15px", fontWeight: 500, color: "#B7E4C7" }}>/년</span>
+              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px", letterSpacing: "0.1em" }}>1년 멤버십 · 정기결제 할인가</div>
+              <div style={{ fontSize: "36px", fontWeight: 800, color: "#fff" }}>
+                ₩{formatPrice(config.price)}<span style={{ fontSize: "15px", fontWeight: 500, color: "#B7E4C7" }}>/월</span>
               </div>
-              <div style={{ fontSize: "11px", color: "#95D5B2", marginTop: "8px" }}>
-                월 ₩{formatPrice(config.price)} × 12개월 · 정기결제 할인가
+              <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
+                1년 멤버십 ₩{formatPrice(config.yearlyPrice)}
               </div>
             </div>
           )}
@@ -326,9 +350,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
                 ? selectedCourses.length > 0
                   ? `${selectedCourses.length}건 · ₩${formatPrice(totalPrice)} 신청하기`
                   : "수업을 선택해주세요"
-                : config.yearlyPrice
-                  ? `₩${formatPrice(config.yearlyPrice)}/년 신청하기`
-                  : `₩${formatPrice(config.price)}/월 신청하기`
+                : `₩${formatPrice(config.price)}/월 정기결제 신청`
             }
           </button>
         </form>
