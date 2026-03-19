@@ -31,9 +31,10 @@ const TIERS = [
     level: "Lv.2",
     emoji: "💻",
     name: "온라인 멤버십",
-    subtitle: "등급: 달팽이 친구 · 주 1회 AI 자동화 경험 & 인사이트 공유",
+    grade: "달팽이 친구",
+    subtitle: "다양한 AI 자동화 & 수익화 구조를 알아봅니다",
     price: "₩9,900",
-    priceNote: "월 / 정기결제",
+    priceNote: "월 / 정기결제 시 할인가 적용",
     badge: "Lv.2",
     badgeColor: "#2D6A4F",
     schedule: "월 4회 · 매주 화요일 10:00~12:00 (2시간)",
@@ -54,9 +55,10 @@ const TIERS = [
     level: "Lv.3",
     emoji: "🔧",
     name: "오프라인 멤버십",
-    subtitle: "등급: 달팽이 주민 · 월 1회 정기 · 100% 실습 · 결과물 만들어가기",
+    grade: "달팽이 주민",
+    subtitle: "AI 수익화 · 자동화 시스템을 만들어 봅니다",
     price: "₩99,000",
-    priceNote: "월 / 정기결제 · 최소 3개월",
+    priceNote: "월 / 정기결제 시 할인가 적용",
     badge: "Lv.3",
     badgeColor: "#1B4332",
     schedule: "월 1회 · 오프라인 원데이 모임",
@@ -79,9 +81,10 @@ const TIERS = [
     level: "Lv.4",
     emoji: "🚀",
     name: "파트너 멤버십",
-    subtitle: "등급: 달팽이 가족 · 수익모델 설계 + 마케팅 퍼널 시스템 완전 구축",
+    grade: "달팽이 가족",
+    subtitle: "AI 수익화 · 자동화 시스템을 만들고 활용하여 지속 가능한 자동화 수익을 만들어봅니다!",
     price: "₩990,000",
-    priceNote: "월 / 정기결제 · 최소 3개월",
+    priceNote: "월 / 정기결제 시 할인가 적용",
     badge: "Lv.4",
     badgeColor: "#081C15",
     schedule: "월 4회 · 주 1회 × 8시간 (월 32시간)",
@@ -205,8 +208,8 @@ const FAQ_ITEMS = [
     a: "온라인 멤버십은 '이런 게 된다'를 눈으로 확인하는 단계입니다. 직접 결과물을 만들고 싶다면 오프라인, 수익 시스템을 완전히 구축하고 싶다면 파트너 멤버십을 추천합니다.",
   },
   {
-    q: "3개월 약정이 있는 이유는?",
-    a: "실제 결과를 보려면 최소 3개월이 필요합니다. 1개월차 랜딩페이지, 2개월차 모객 시스템, 3개월차 파트너십 — 3개월 후 완성된 수익 구조를 가져가실 수 있습니다.",
+    q: "정기결제 할인은 어떻게 적용되나요?",
+    a: "월 정기결제로 신청하시면 할인가가 자동 적용됩니다. 언제든 해지 가능하며, 해지 시 다음 결제부터 중단됩니다.",
   },
   {
     q: "완주군까지 가야 하나요?",
@@ -449,6 +452,14 @@ function TierCard({ tier, index, onCTAClick }) {
           }}>
             {tier.name}
           </h3>
+          {tier.grade && (
+            <p style={{
+              fontSize: "11px", color: isHL ? "#B7E4C7" : "#2D6A4F",
+              margin: "0 0 4px 0", fontWeight: 600, opacity: 0.8,
+            }}>
+              등급: {tier.grade}
+            </p>
+          )}
           <p style={{
             fontSize: "13px", color: isHL ? "#95D5B2" : "#6B7B6E",
             margin: "0 0 20px 0", fontWeight: 500,
@@ -962,6 +973,11 @@ export default function DalpaengiMembership() {
                       {tier.name}
                     </h3>
                   </div>
+                  {tier.grade && (
+                    <p style={{ fontSize: "12px", color: "#B7E4C7", margin: "0 0 6px", opacity: 0.8 }}>
+                      등급: {tier.grade}
+                    </p>
+                  )}
                   <p style={{ fontSize: "15px", color: "#95D5B2", margin: "0 0 12px", lineHeight: 1.6 }}>
                     {tier.subtitle}
                   </p>
@@ -1083,7 +1099,7 @@ export default function DalpaengiMembership() {
                     ["풀 시스템 셋팅", "—", "—", "—", "—", "✓"],
                     ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용", "무료 이용"],
                     ["수익 분배 파트너십", "—", "—", "—", "최대 40%", "✓"],
-                    ["최소 약정", "없음", "없음", "3개월", "3개월", "협의"],
+                    ["정기결제 할인", "—", "적용", "적용", "적용", "협의"],
                     ["정원", "무제한", "1,000명", "20명", "20명", "SOLD OUT"],
                   ].map((row, ri) => (
                     <tr key={ri} style={{ borderBottom: "1px solid #E8E5DC", background: ri % 2 === 0 ? "#FAFAF7" : "#fff" }}>
