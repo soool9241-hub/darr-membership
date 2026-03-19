@@ -7,28 +7,54 @@ const TIER_CONFIG = {
   online: {
     title: "💻 온라인 멤버십 신청",
     grade: "달팽이 친구",
-    desc: "주 1회 AI 자동화 경험 & 인사이트 공유 · ₩9,900/월",
-    successMsg: "신청이 접수되었습니다!\n카카오톡으로 결제 안내를 드리겠습니다.",
+    desc: "주 1회 AI 자동화 경험 & 인사이트 공유",
+    price: 9900,
+    minMonths: 1,
+    recurring: true,
+    successMsg: "신청이 접수되었습니다!\n정기결제 안내를 카카오톡으로 드리겠습니다.",
   },
   offline: {
     title: "🔧 오프라인 멤버십 신청",
     grade: "달팽이 주민",
-    desc: "월 1회 정기 · 100% 실습 · ₩99,000/월 · 최소 3개월",
-    successMsg: "신청이 접수되었습니다!\n검토 후 개별 안내 드리겠습니다.",
+    desc: "월 1회 정기 · 100% 실습",
+    price: 99000,
+    minMonths: 3,
+    recurring: true,
+    successMsg: "신청이 접수되었습니다!\n정기결제 안내를 카카오톡으로 드리겠습니다.",
   },
   partner: {
     title: "🚀 파트너 멤버십 문의",
     grade: "달팽이 가족",
-    desc: "월 4회 × 8시간 · 수익모델 + 마케팅 퍼널 구축 · ₩990,000/월 · 최소 3개월",
-    successMsg: "문의가 접수되었습니다!\n1:1 상담을 위해 연락드리겠습니다.",
+    desc: "월 4회 × 8시간 · 수익모델 + 마케팅 퍼널 구축",
+    price: 990000,
+    minMonths: 3,
+    recurring: true,
+    successMsg: "문의가 접수되었습니다!\n정기결제 안내를 카카오톡으로 드리겠습니다.",
   },
 };
+
+const MONTH_OPTIONS_1 = [
+  { value: "1", label: "1개월 (정기결제)" },
+  { value: "3", label: "3개월 (정기결제)" },
+  { value: "6", label: "6개월 (정기결제)" },
+  { value: "12", label: "12개월 (정기결제)" },
+];
+
+const MONTH_OPTIONS_3 = [
+  { value: "3", label: "3개월 (정기결제)" },
+  { value: "4", label: "4개월 (정기결제)" },
+  { value: "5", label: "5개월 (정기결제)" },
+  { value: "6", label: "6개월 (정기결제)" },
+  { value: "12", label: "12개월 (정기결제)" },
+];
+
+const formatPrice = (n) => n.toLocaleString("ko-KR");
 
 export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const config = TIER_CONFIG[tierId] || TIER_CONFIG.online;
 
   const [form, setForm] = useState({
-    name: "", email: "", phone: "",
+    name: "", email: "", phone: "", months: String(config.minMonths),
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -36,6 +62,9 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const [submitError, setSubmitError] = useState("");
 
   const setField = (key, value) => setForm(prev => ({ ...prev, [key]: value }));
+
+  const months = parseInt(form.months) || config.minMonths;
+  const totalPrice = config.price * months;
 
   const validate = () => {
     const errs = {};
@@ -62,6 +91,8 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
           name: form.name.trim(),
           email: form.email.trim().toLowerCase(),
           phone: form.phone.trim(),
+          months: months,
+          total_price: totalPrice,
         });
 
         if (error) throw error;
@@ -76,7 +107,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   };
 
   const handleClose = () => {
-    setForm({ name: "", email: "", phone: "" });
+    setForm({ name: "", email: "", phone: "", months: String(config.minMonths) });
     setErrors({});
     setSuccess(false);
     setSubmitError("");
@@ -128,7 +159,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
             {config.desc}
           </p>
           <p style={{
-            fontSize: "12px", color: "#95D5B2", marginBottom: "20px",
+            fontSize: "12px", color: "#5A6A5E", marginBottom: "20px",
             background: "#F0FAF4", padding: "8px 12px", borderRadius: "8px",
             lineHeight: 1.5,
           }}>
@@ -138,6 +169,38 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
           <FormField label="이름" value={form.name} onChange={(v) => setField("name", v)} error={errors.name} required placeholder="홍길동" />
           <FormField label="이메일" type="email" value={form.email} onChange={(v) => setField("email", v)} error={errors.email} required placeholder="example@email.com" />
           <FormField label="연락처" type="tel" value={form.phone} onChange={(v) => setField("phone", v)} error={errors.phone} required placeholder="010-8531-9531" />
+
+          <FormField
+            label={`신청 개월 수 (최소 ${config.minMonths}개월)`}
+            type="select"
+            value={form.months}
+            onChange={(v) => setField("months", v)}
+            options={config.minMonths === 1 ? MONTH_OPTIONS_1 : MONTH_OPTIONS_3}
+            required
+          />
+
+          <div style={{
+            background: "linear-gradient(135deg, #F0FAF4, #E8F5EC)",
+            borderRadius: "12px", padding: "16px", marginBottom: "16px",
+            border: "1px solid #B7DEBF",
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "13px", color: "#5A6A5E" }}>
+              <span>월 금액</span>
+              <span>₩{formatPrice(config.price)}</span>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "13px", color: "#5A6A5E" }}>
+              <span>신청 기간</span>
+              <span>{months}개월</span>
+            </div>
+            <div style={{ borderTop: "1px solid #B7DEBF", paddingTop: "10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#1B4332" }}>총 결제 금액</span>
+              <span style={{ fontSize: "20px", fontWeight: 800, color: "#1B4332" }}>₩{formatPrice(totalPrice)}</span>
+            </div>
+          </div>
+
+          <p style={{ fontSize: "11px", color: "#8A9A8E", textAlign: "center", marginBottom: "16px", lineHeight: 1.5 }}>
+            🔄 매월 자동 정기결제로 진행됩니다. 언제든 해지 가능합니다.
+          </p>
 
           {submitError && (
             <div style={{
@@ -159,7 +222,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
               marginTop: "8px",
             }}
           >
-            {loading ? "처리 중..." : "신청하기"}
+            {loading ? "처리 중..." : `${months}개월 · ₩${formatPrice(totalPrice)} 신청하기`}
           </button>
         </form>
       )}
