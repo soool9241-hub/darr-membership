@@ -19,6 +19,7 @@ const TIERS = [
       "실제 펜션·공방 자동화 비하인드 스토리",
       "멤버십 전용 할인 & 우선 안내",
     ],
+    bonuses: [],
     cta: "무료 구독하기",
     highlight: false,
   },
@@ -40,6 +41,7 @@ const TIERS = [
       '"이런 게 된다" — 가능성과 구조를 보여주는 시간',
       "질의응답 & 커뮤니티 접근",
     ],
+    bonuses: ["첫 30일 집중 온보딩 커리큘럼"],
     cta: "온라인 멤버십 시작",
     highlight: false,
   },
@@ -62,6 +64,7 @@ const TIERS = [
       "120평 CNC 공방 현장 워크숍",
       "온라인 멤버십 전체 포함",
     ],
+    bonuses: ["펜션 20% 할인", "공방 시설 무료 이용"],
     cta: "오프라인 멤버십 신청",
     highlight: true,
   },
@@ -84,6 +87,7 @@ const TIERS = [
       "n8n · Supabase · 웹사이트 세팅 동행",
       "온라인 + 오프라인 멤버십 전체 포함",
     ],
+    bonuses: ["펜션 무료 이용", "공방 시설 무료 이용", "수익 분배 파트너십 참여"],
     cta: "파트너 멤버십 문의",
     highlight: false,
   },
@@ -121,13 +125,60 @@ const PROOF_ITEMS = [
   { number: "5.0", label: "에어비앤비 평점" },
   { number: "120평", label: "CNC 공방 운영" },
   { number: "304+", label: "누적 예약 건수" },
+  { number: "10개", label: "AI 에이전트 운영 중" },
+  { number: "24시간", label: "자동화 시스템 가동" },
 ];
 
 const FUNNEL_STEPS = [
-  { emoji: "📬", label: "달팽이레터", sub: "AI 트렌드 파악", color: "#95D5B2" },
-  { emoji: "💻", label: "온라인", sub: "시연 & 구조 확인", color: "#52B788" },
-  { emoji: "🔧", label: "오프라인", sub: "실습 & 결과물", color: "#2D6A4F" },
-  { emoji: "🚀", label: "파트너", sub: "시스템 완전 구축", color: "#1B4332" },
+  { emoji: "📬", label: "달팽이레터", sub: '"이런 게 있다" — AI 트렌드 파악', price: "무료", color: "#95D5B2" },
+  { emoji: "💻", label: "온라인 멤버십", sub: '"이런 게 된다" — 시연 & 구조 확인', price: "₩9,900/월", color: "#52B788" },
+  { emoji: "🔧", label: "오프라인 멤버십", sub: '"직접 만든다" — 실습 & 결과물', price: "₩99,000/월", color: "#2D6A4F" },
+  { emoji: "🚀", label: "파트너 멤버십", sub: '"시스템을 구축한다" — 수익화 완성', price: "₩990,000/월", color: "#1B4332" },
+];
+
+const RUNNING_SYSTEMS = [
+  { icon: "🤖", name: "AI 예약 에이전트", desc: "24시간 자동 예약 접수 & 응대" },
+  { icon: "📱", name: "SMS 마케팅 자동화", desc: "Solapi 연동 자동 발송 시스템" },
+  { icon: "🔄", name: "n8n 워크플로우", desc: "10개 이상 자동화 파이프라인 운영" },
+  { icon: "🗄️", name: "Supabase 데이터베이스", desc: "고객·예약·파트너 데이터 통합 관리" },
+  { icon: "🌐", name: "랜딩페이지 자동 생성", desc: "React + Vercel 기반 즉시 배포" },
+  { icon: "📊", name: "매출 대시보드", desc: "실시간 매출·예약 모니터링" },
+];
+
+const MEMBER_PERKS = [
+  { icon: "🏡", title: "독채 펜션 할인", desc: "오프라인 멤버 20% / 파트너 멤버 무료 이용", tier: "오프라인+" },
+  { icon: "🔧", title: "CNC 공방 무료 이용", desc: "120평 공방 시설 & 장비 자유 이용", tier: "오프라인+" },
+  { icon: "🛠️", title: "신규 AI 도구 우선 체험", desc: "새로운 자동화 도구 출시 시 멤버 우선 공개", tier: "온라인+" },
+  { icon: "💰", title: "수익 분배 파트너십", desc: "멤버 소개 시 반복 수익 분배 (최대 40%)", tier: "파트너" },
+  { icon: "👥", title: "소수 정예 커뮤니티", desc: "20명 한정 비공개 그룹 — 깊은 네트워킹", tier: "오프라인+" },
+  { icon: "📋", title: "수익모델 상호 리뷰", desc: "멤버 간 비즈니스 모델 피드백 & 검증", tier: "파트너" },
+];
+
+const FAQ_ITEMS = [
+  {
+    q: "코딩을 전혀 몰라도 참여할 수 있나요?",
+    a: "네, 바이브 코딩은 AI와 대화하면서 코드를 만드는 방식입니다. 코딩 경험이 전혀 없어도 당일 결과물을 완성할 수 있도록 설계했습니다.",
+  },
+  {
+    q: "온라인 멤버십만으로도 충분한가요?",
+    a: "온라인 멤버십은 '이런 게 된다'를 눈으로 확인하는 단계입니다. 직접 결과물을 만들고 싶다면 오프라인, 수익 시스템을 완전히 구축하고 싶다면 파트너 멤버십을 추천합니다.",
+  },
+  {
+    q: "3개월 약정이 있는 이유는?",
+    a: "실제 결과를 보려면 최소 3개월이 필요합니다. 1개월차 랜딩페이지, 2개월차 모객 시스템, 3개월차 파트너십 — 3개월 후 완성된 수익 구조를 가져가실 수 있습니다.",
+  },
+  {
+    q: "완주군까지 가야 하나요?",
+    a: "오프라인/파트너 멤버십은 월 1~4회 완주군 현장에서 진행됩니다. 120평 CNC 공방과 실제 운영 중인 시스템을 직접 보는 것이 핵심 가치입니다. 온라인 멤버십은 어디서든 참여 가능합니다.",
+  },
+  {
+    q: "환불 규정은 어떻게 되나요?",
+    a: "첫 세션 참여 후 만족하지 못하시면 전액 환불해 드립니다. 약정 기간 중 해지 시 남은 기간에 대해 위약금 없이 정지 처리됩니다.",
+  },
+  {
+    q: "파트너 수익 분배는 어떻게 이루어지나요?",
+    a: "파트너 멤버가 새로운 회원을 소개하면, 해당 회원의 월 구독료에서 최대 40%를 매월 반복 수익으로 지급합니다. 소개한 회원이 유지하는 한 계속 수익이 발생합니다.",
+  },
 ];
 
 /* ─── HOOKS ─── */
@@ -187,7 +238,6 @@ function CurriculumCard({ item, index }) {
           outline: "none",
         }}
       >
-        {/* Header row */}
         <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
           <div style={{
             fontSize: "12px", fontWeight: 800, color: "#2D6A4F",
@@ -196,7 +246,6 @@ function CurriculumCard({ item, index }) {
           }}>
             {item.num}
           </div>
-
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
               <span style={{
@@ -214,7 +263,6 @@ function CurriculumCard({ item, index }) {
               </span>
             </div>
           </div>
-
           <div style={{
             fontSize: "20px", color: isOpen ? "#2D6A4F" : "#B0B8B2",
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
@@ -224,16 +272,12 @@ function CurriculumCard({ item, index }) {
             ▾
           </div>
         </div>
-
-        {/* Description - always visible */}
         <p style={{
           fontSize: "14px", color: "#5A6A5E", lineHeight: 1.7,
           margin: "12px 0 0 0", paddingLeft: "42px",
         }}>
           {item.desc}
         </p>
-
-        {/* Expandable details */}
         <div style={{
           overflow: "hidden",
           maxHeight: isOpen ? "300px" : "0px",
@@ -256,6 +300,59 @@ function CurriculumCard({ item, index }) {
               </span>
             ))}
           </div>
+        </div>
+      </div>
+    </FadeIn>
+  );
+}
+
+function FAQItem({ item, index }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <FadeIn delay={index * 0.08}>
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => setIsOpen(prev => !prev)}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setIsOpen(prev => !prev); }}
+        style={{
+          background: "#fff",
+          borderRadius: "14px",
+          padding: "20px 24px",
+          border: isOpen ? "1.5px solid #2D6A4F" : "1px solid #E8E5DC",
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+          userSelect: "none",
+          outline: "none",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
+          <span style={{ fontSize: "15px", fontWeight: 600, color: "#1B1B18", lineHeight: 1.5 }}>
+            {item.q}
+          </span>
+          <span style={{
+            fontSize: "18px", color: isOpen ? "#2D6A4F" : "#B0B8B2",
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+            flexShrink: 0,
+          }}>
+            ▾
+          </span>
+        </div>
+        <div style={{
+          overflow: "hidden",
+          maxHeight: isOpen ? "200px" : "0px",
+          opacity: isOpen ? 1 : 0,
+          transition: "max-height 0.4s ease, opacity 0.3s ease 0.05s",
+        }}>
+          <p style={{
+            fontSize: "14px", color: "#5A6A5E", lineHeight: 1.7,
+            margin: "12px 0 0 0", paddingTop: "12px",
+            borderTop: "1px dashed #E8E5DC",
+          }}>
+            {item.a}
+          </p>
         </div>
       </div>
     </FadeIn>
@@ -301,7 +398,6 @@ function TierCard({ tier, index }) {
           border: isHL ? "none" : "1px solid #E8E5DC",
           position: "relative", overflow: "hidden",
         }}>
-          {/* Badge */}
           <div style={{
             position: "absolute", top: "20px", right: "20px",
             background: tier.badgeColor, color: "#fff",
@@ -326,7 +422,6 @@ function TierCard({ tier, index }) {
             {tier.subtitle}
           </p>
 
-          {/* Price */}
           <div style={{ marginBottom: "16px" }}>
             <span style={{
               fontSize: "34px", fontWeight: 800,
@@ -341,7 +436,6 @@ function TierCard({ tier, index }) {
             )}
           </div>
 
-          {/* Schedule box */}
           <div style={{
             background: isHL ? "rgba(183,228,199,0.08)" : "rgba(74,124,89,0.04)",
             borderRadius: "10px", padding: "10px 14px", marginBottom: "16px",
@@ -355,9 +449,8 @@ function TierCard({ tier, index }) {
             </div>
           </div>
 
-          {/* Features */}
           <ul style={{
-            listStyle: "none", padding: 0, margin: "0 0 auto 0",
+            listStyle: "none", padding: 0, margin: "0 0 0 0",
             display: "flex", flexDirection: "column", gap: "10px",
           }}>
             {tier.features.map((f, i) => (
@@ -371,7 +464,31 @@ function TierCard({ tier, index }) {
             ))}
           </ul>
 
-          {/* CTA Button */}
+          {/* Bonus perks */}
+          {tier.bonuses && tier.bonuses.length > 0 && (
+            <div style={{
+              marginTop: "14px", paddingTop: "14px",
+              borderTop: `1px dashed ${isHL ? "rgba(149,213,178,0.3)" : "#E8E5DC"}`,
+            }}>
+              <div style={{
+                fontSize: "11px", fontWeight: 700, color: isHL ? "#95D5B2" : "#2D6A4F",
+                marginBottom: "8px", letterSpacing: "0.05em",
+              }}>
+                🎁 멤버 전용 혜택
+              </div>
+              {tier.bonuses.map((b, i) => (
+                <div key={i} style={{
+                  fontSize: "12.5px", color: isHL ? "#B7E4C7" : "#4A7C59",
+                  display: "flex", alignItems: "center", gap: "6px", lineHeight: 1.6,
+                }}>
+                  <span style={{ fontSize: "10px" }}>★</span> {b}
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div style={{ flex: 1 }} />
+
           <button onClick={handleCTA} style={{
             marginTop: "24px", width: "100%", padding: "14px 0", borderRadius: "12px",
             border: isHL ? "none" : "1.5px solid #2D6A4F",
@@ -489,17 +606,86 @@ export default function DalpaengiMembership() {
       <section style={{ padding: "60px 24px", background: "#1B4332" }}>
         <div style={{
           maxWidth: "900px", margin: "0 auto",
-          display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-          gap: "32px", textAlign: "center",
+          display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+          gap: "28px", textAlign: "center",
         }}>
           {PROOF_ITEMS.map((item, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
+            <FadeIn key={i} delay={i * 0.08}>
               <div>
-                <div style={{ fontSize: "36px", fontWeight: 800, color: "#B7E4C7" }}>{item.number}</div>
-                <div style={{ fontSize: "14px", color: "#95D5B2", marginTop: "4px", fontWeight: 500 }}>{item.label}</div>
+                <div style={{ fontSize: "32px", fontWeight: 800, color: "#B7E4C7" }}>{item.number}</div>
+                <div style={{ fontSize: "13px", color: "#95D5B2", marginTop: "4px", fontWeight: 500 }}>{item.label}</div>
               </div>
             </FadeIn>
           ))}
+        </div>
+      </section>
+
+      {/* ══════ RUNNING SYSTEMS — 차별화 포인트 ══════ */}
+      <section style={{ padding: "80px 24px", background: "#fff" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>
+              다른 AI 스터디와의 결정적 차이
+            </div>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700,
+              marginBottom: "12px",
+            }}>
+              지금 실제로 돌아가고 있는 시스템
+            </h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "48px", lineHeight: 1.7 }}>
+              이론이 아닙니다. 아래 시스템들이 지금 이 순간에도<br />
+              120평 공방과 60평 펜션에서 <strong style={{ color: "#1B4332" }}>24시간 자동으로 작동</strong>하고 있습니다.
+            </p>
+          </FadeIn>
+
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "16px",
+          }}>
+            {RUNNING_SYSTEMS.map((sys, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <div style={{
+                  background: "#FAFAF7", borderRadius: "14px", padding: "20px",
+                  border: "1px solid #E8E5DC",
+                  display: "flex", alignItems: "flex-start", gap: "14px",
+                }}>
+                  <div style={{
+                    fontSize: "28px", flexShrink: 0,
+                    width: "48px", height: "48px", borderRadius: "12px",
+                    background: "rgba(45,106,79,0.06)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    {sys.icon}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: "15px", fontWeight: 700, color: "#1B1B18", marginBottom: "4px" }}>
+                      {sys.name}
+                    </div>
+                    <div style={{ fontSize: "13px", color: "#6B7B6E", lineHeight: 1.5 }}>
+                      {sys.desc}
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.5}>
+            <div style={{
+              marginTop: "32px", textAlign: "center",
+              background: "rgba(45,106,79,0.04)", borderRadius: "12px",
+              padding: "16px 24px", border: "1px dashed rgba(45,106,79,0.2)",
+            }}>
+              <p style={{ fontSize: "14px", color: "#2D6A4F", fontWeight: 600, margin: 0 }}>
+                이 모든 시스템을 직접 보고, 배우고, 만들 수 있습니다.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -532,7 +718,16 @@ export default function DalpaengiMembership() {
                   {step.emoji}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: "17px", fontWeight: 700 }}>{step.label}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: "17px", fontWeight: 700 }}>{step.label}</span>
+                    <span style={{
+                      fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+                      background: "rgba(45,106,79,0.08)", padding: "2px 10px",
+                      borderRadius: "100px",
+                    }}>
+                      {step.price}
+                    </span>
+                  </div>
                   <div style={{ fontSize: "14px", color: "#6B7B6E", marginTop: "2px" }}>{step.sub}</div>
                 </div>
                 {i < 3 && <div style={{ fontSize: "18px", color: "#95D5B2", fontWeight: 700 }}>→</div>}
@@ -603,6 +798,54 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
+      {/* ══════ MEMBER PERKS — "안 하면 손해" 혜택 ══════ */}
+      <section style={{ padding: "80px 24px", background: "#1B4332" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <FadeIn>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "28px", fontWeight: 700,
+              textAlign: "center", marginBottom: "12px", color: "#E8E5DC",
+            }}>
+              안 하면 손해 — 멤버 전용 혜택
+            </h2>
+            <p style={{ textAlign: "center", color: "#95D5B2", fontSize: "15px", marginBottom: "48px" }}>
+              멤버십 요금 이상의 가치를 돌려받습니다
+            </p>
+          </FadeIn>
+
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "16px",
+          }}>
+            {MEMBER_PERKS.map((perk, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <div style={{
+                  background: "rgba(255,255,255,0.06)", borderRadius: "14px",
+                  padding: "20px", border: "1px solid rgba(149,213,178,0.15)",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "8px" }}>
+                    <span style={{ fontSize: "24px" }}>{perk.icon}</span>
+                    <div>
+                      <div style={{ fontSize: "15px", fontWeight: 700, color: "#D8F3DC" }}>{perk.title}</div>
+                      <span style={{
+                        fontSize: "10px", fontWeight: 700, color: "#95D5B2",
+                        background: "rgba(149,213,178,0.15)", padding: "2px 8px",
+                        borderRadius: "100px",
+                      }}>
+                        {perk.tier}
+                      </span>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: "13px", color: "#95D5B2", margin: 0, lineHeight: 1.5 }}>
+                    {perk.desc}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ══════ COMPARISON TABLE ══════ */}
       <section style={{ padding: "80px 24px", background: "#fff" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -637,6 +880,8 @@ export default function DalpaengiMembership() {
                     ["이론+실습 결과물", "—", "—", "✓", "✓"],
                     ["수익모델 설계", "—", "—", "—", "✓"],
                     ["마케팅 시스템 구축", "—", "—", "—", "✓"],
+                    ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용"],
+                    ["수익 분배 파트너십", "—", "—", "—", "최대 40%"],
                     ["최소 약정", "없음", "없음", "3개월", "3개월"],
                     ["정원", "무제한", "1,000명", "20명", "20명"],
                   ].map((row, ri) => (
@@ -658,8 +903,31 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
-      {/* ══════ HOST ══════ */}
+      {/* ══════ FAQ ══════ */}
       <section style={{ padding: "80px 24px", background: "#F5F4EF" }}>
+        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+          <FadeIn>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "28px", fontWeight: 700,
+              textAlign: "center", marginBottom: "12px",
+            }}>
+              자주 묻는 질문
+            </h2>
+            <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "40px" }}>
+              궁금한 점이 있으시면 카카오톡으로 편하게 문의해주세요
+            </p>
+          </FadeIn>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {FAQ_ITEMS.map((item, i) => (
+              <FAQItem key={i} item={item} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ HOST ══════ */}
+      <section style={{ padding: "80px 24px", background: "#fff" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>
           <FadeIn>
             <div style={{ fontSize: "48px", marginBottom: "12px" }}>🐌</div>
@@ -673,13 +941,14 @@ export default function DalpaengiMembership() {
               n8n · Supabase · Claude API · React를 활용해<br />
               <strong style={{ color: "#1B4332" }}>예약부터 마케팅까지 전 과정을 AI로 자동화</strong>하고 있습니다.<br /><br />
               7년간의 호스팅 경험과 에어비앤비 평점 5.0,<br />
-              그리고 현재진행형 자동화 실험의 모든 것을 공유합니다.
+              서울이 아닌 완주에서 만들어낸 자동화 성공 사례.<br />
+              현재진행형 실험의 모든 것을 공유합니다.
             </p>
 
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="tel:01085319531" style={{
                 display: "inline-flex", alignItems: "center", gap: "6px",
-                background: "#fff", padding: "10px 20px", borderRadius: "10px",
+                background: "#FAFAF7", padding: "10px 20px", borderRadius: "10px",
                 fontSize: "14px", fontWeight: 500, color: "#3A4A3E",
                 border: "1px solid #E8E5DC", textDecoration: "none",
               }}>
@@ -687,7 +956,7 @@ export default function DalpaengiMembership() {
               </a>
               <a href="https://open.kakao.com/o/sool9241" target="_blank" rel="noopener noreferrer" style={{
                 display: "inline-flex", alignItems: "center", gap: "6px",
-                background: "#fff", padding: "10px 20px", borderRadius: "10px",
+                background: "#FAFAF7", padding: "10px 20px", borderRadius: "10px",
                 fontSize: "14px", fontWeight: 500, color: "#3A4A3E",
                 border: "1px solid #E8E5DC", textDecoration: "none",
               }}>
