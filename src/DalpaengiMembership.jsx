@@ -132,36 +132,70 @@ const BOOTCAMP = {
 const DFY_PACKAGES = [
   {
     name: "스타터",
-    emoji: "⚡",
+    emoji: "🌱",
     price: "300만원",
-    desc: "SMS/카톡 자동 발송 + 구글 시트 연동",
-    target: "1인 사업자",
-    includes: ["SMS·카톡 자동 발송", "구글 시트 연동", "기본 n8n 워크플로우", "1개월 무상 AS"],
+    period: "납기 2주",
+    desc: "우리 사업의 첫 번째 온라인 거점을 만듭니다",
+    target: "홈페이지가 없거나 제대로 된 랜딩페이지가 필요한 사장님",
+    includes: [
+      "반응형 랜딩페이지 1개 (Vercel 배포)",
+      "문의 폼 + 카톡/이메일 자동 알림",
+      "기본 SEO 세팅 + SSL 인증서",
+      "유입 퍼널 설계서 (PDF)",
+      "무료 미끼 기획안 + CTA 카피 3종",
+      "관리 가이드 + 1개월 무상 AS",
+    ],
   },
   {
     name: "비즈니스",
-    emoji: "🏢",
-    price: "500만원",
-    desc: "예약 시스템 + 고객 관리 + 자동 안내",
-    target: "숙박 · F&B · 학원",
+    emoji: "🚀",
+    price: "600만원",
+    period: "납기 3주",
+    desc: "고객이 알아서 찾아오고, 시스템이 알아서 관리합니다",
+    target: "예약/주문 관리에 시간을 뺏기고 있는 사장님",
     popular: true,
-    includes: ["예약 시스템 구축", "고객 관리 CRM", "자동 안내 메시지", "n8n + Supabase 연동", "1개월 무상 AS"],
+    includes: [
+      "랜딩페이지 + 갤러리 + 네이버 지도",
+      "Supabase 고객 DB 구축",
+      "SMS/카톡 자동 발송 (예약확인·방문안내·감사)",
+      "7일 이메일 자동 시퀀스",
+      "리뷰 자동 수집 시스템",
+      "퍼널 설계서 + 실행 가이드",
+      "1시간 인수인계 교육 + 1개월 무상 AS",
+    ],
   },
   {
     name: "프리미엄",
-    emoji: "👑",
-    price: "800만원",
-    desc: "풀 자동화 (예약+정산+마케팅+대시보드)",
-    target: "중소기업",
-    includes: ["예약+정산 자동화", "마케팅 자동화", "실시간 대시보드", "n8n + Supabase + AI", "인수인계 교육 (1시간)", "1개월 무상 AS"],
+    emoji: "💎",
+    price: "900만원",
+    period: "납기 4주",
+    desc: "데이터가 쌓이고, 시스템이 분석하고, 리포트가 알아서 옵니다",
+    target: "시스템으로 사업을 굴리고 싶은 대표님",
+    includes: [
+      "웹사이트 최대 5페이지 + 예약/결제 연동",
+      "Supabase 풀 DB + 관리자 대시보드",
+      "SMS/카톡 고객 여정 전체 자동화",
+      "7일 + 14일 이메일 시퀀스",
+      "AI 자동 응답 챗봇 (24시간)",
+      "주간 + 월간 AI 인사이트 리포트 자동 발송",
+      "리텐션 자동화 (이탈 방지)",
+      "풀 퍼널 매뉴얼 + 2시간 인수인계 + 1개월 무상 AS",
+    ],
   },
 ];
 
-const MAINTENANCE_PLAN = {
-  price: "월 30만원",
-  desc: "구축 완료 후에도 안심하세요. 무제한 수정 + 모니터링 + 장애 대응",
-  features: ["무제한 수정 요청", "24시간 시스템 모니터링", "장애 발생 시 즉시 대응", "월 1회 성과 리포트"],
-};
+const DFY_ADDONS = [
+  { name: "카카오 비즈채널 세팅", price: "+100만원" },
+  { name: "네이버 검색광고 세팅", price: "+80만원" },
+  { name: "SNS 콘텐츠 자동 생성", price: "+120만원" },
+  { name: "경쟁사 모니터링 봇", price: "+100만원" },
+];
+
+const MAINTENANCE_PLANS = [
+  { name: "기본 유지보수", price: "30만원/월", desc: "무제한 수정 + 장애 대응 (24시간 내) + 시스템 모니터링" },
+  { name: "성장 관리", price: "50만원/월", desc: "기본 유지보수 + 월 1회 데이터 분석 미팅 (30분, 줌)" },
+  { name: "전담 운영", price: "100만원/월", desc: "성장 관리 + SNS 콘텐츠 + 광고 최적화 + 분기 퍼널 점검" },
+];
 
 const FREE_RESOURCES = [
   { emoji: "📋", name: "소상공인 자동화 체크리스트", desc: "내 사업에서 자동화할 수 있는 포인트 20가지", type: "PDF" },
@@ -1136,18 +1170,19 @@ export default function DalpaengiMembership() {
             }}>STEP 5 — 통째로 맡기기</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>🔧 자동화 시스템, 통째로 만들어드립니다</h2>
+            }}>🔧 사장님은 사업에 집중하세요. 시스템은 저희가 만듭니다.</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
-              직접 배울 시간이 없으신 분을 위해, 자동화 10년 노하우로 시스템을 셋팅해드립니다.<br />
+              펜션과 CNC 공방을 직접 운영하며 검증한 자동화 시스템을 여러분의 사업에 맞춤 구축해드립니다.<br />
               멤버십 회원은 <strong style={{ color: "#1B4332" }}>15~20% 할인</strong>이 적용됩니다.
             </p>
             <p style={{ fontSize: "13px", color: "#8A9A8E", marginBottom: "40px" }}>
-              30분 무료 상담 → 요구사항 정의 → 구축 (2~4주) → 인수인계 교육 (1시간) → 1개월 무상 AS
+              무료 상담 (30분) → 계약 + 착수금 50% → 구축 (2~4주) → 인수인계 교육 → 잔금 50% → 1개월 무상 AS
             </p>
           </FadeIn>
 
+          {/* 3종 패키지 */}
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
             gap: "20px", alignItems: "start",
           }}>
             {DFY_PACKAGES.map((pkg, i) => (
@@ -1178,26 +1213,28 @@ export default function DalpaengiMembership() {
                       color: pkg.popular ? "#E8E5DC" : "#1B1B18", margin: "0 0 4px",
                     }}>{pkg.name}</h3>
                     <p style={{
-                      fontSize: "12px", color: pkg.popular ? "#95D5B2" : "#8A9A8E",
-                      margin: "0 0 4px", fontWeight: 600,
-                    }}>타겟: {pkg.target}</p>
+                      fontSize: "11px", color: pkg.popular ? "#95D5B2" : "#8A9A8E",
+                      margin: "0 0 8px", fontWeight: 600,
+                    }}>{pkg.period} · {pkg.target}</p>
                     <p style={{
                       fontSize: "13px", color: pkg.popular ? "#B7E4C7" : "#6B7B6E",
-                      margin: "0 0 16px", lineHeight: 1.5,
-                    }}>{pkg.desc}</p>
+                      margin: "0 0 16px", lineHeight: 1.5, fontStyle: "italic",
+                    }}>"{pkg.desc}"</p>
 
-                    <div style={{
-                      fontSize: "30px", fontWeight: 800,
-                      color: pkg.popular ? "#B7E4C7" : "#1B4332", marginBottom: "16px",
-                    }}>{pkg.price}<span style={{ fontSize: "14px", fontWeight: 500, color: pkg.popular ? "#6B9E82" : "#8A9A8E" }}>/건</span></div>
+                    <div style={{ marginBottom: "16px" }}>
+                      <span style={{
+                        fontSize: "30px", fontWeight: 800,
+                        color: pkg.popular ? "#B7E4C7" : "#1B4332",
+                      }}>{pkg.price}</span>
+                    </div>
 
-                    <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "flex", flexDirection: "column", gap: "7px" }}>
                       {pkg.includes.map((item, j) => (
                         <li key={j} style={{
-                          fontSize: "13px", color: pkg.popular ? "#D8F3DC" : "#3A4A3E",
-                          display: "flex", alignItems: "center", gap: "8px",
+                          fontSize: "12.5px", color: pkg.popular ? "#D8F3DC" : "#3A4A3E",
+                          display: "flex", alignItems: "flex-start", gap: "8px", lineHeight: 1.5,
                         }}>
-                          <span style={{ color: pkg.popular ? "#95D5B2" : "#4A7C59" }}>✓</span> {item}
+                          <span style={{ color: pkg.popular ? "#95D5B2" : "#4A7C59", flexShrink: 0, marginTop: "2px" }}>✓</span> {item}
                         </li>
                       ))}
                     </ul>
@@ -1218,39 +1255,55 @@ export default function DalpaengiMembership() {
             ))}
           </div>
 
-          {/* 유지보수 플랜 */}
+          {/* 추가 옵션 (애드온) */}
+          <FadeIn delay={0.4}>
+            <div style={{
+              marginTop: "24px", background: "#fff", borderRadius: "14px",
+              padding: "20px 24px", border: "1px solid #E8E5DC",
+            }}>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "#2D6A4F", marginBottom: "12px" }}>
+                🔌 추가 옵션 (어떤 패키지에든 추가 가능)
+              </div>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                {DFY_ADDONS.map((addon, i) => (
+                  <span key={i} style={{
+                    fontSize: "12px", color: "#3A4A3E", fontWeight: 600,
+                    background: "#F5F4EF", padding: "6px 14px",
+                    borderRadius: "8px", border: "1px solid #E8E5DC",
+                  }}>
+                    {addon.name} <span style={{ color: "#2D6A4F", fontWeight: 700 }}>{addon.price}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* 유지보수 3종 */}
           <FadeIn delay={0.5}>
             <div style={{
-              marginTop: "32px", background: "#fff", borderRadius: "16px",
-              padding: "28px 32px", border: "1px solid #E8E5DC",
-              display: "flex", alignItems: "center", gap: "24px", flexWrap: "wrap",
+              marginTop: "16px", background: "#fff", borderRadius: "14px",
+              padding: "20px 24px", border: "1px solid #E8E5DC",
             }}>
-              <div style={{ flex: 1, minWidth: "240px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                  <span style={{ fontSize: "24px" }}>🛡️</span>
-                  <span style={{
-                    fontFamily: "'Noto Serif KR', serif", fontSize: "18px", fontWeight: 700, color: "#1B1B18",
-                  }}>구축 후 유지보수</span>
-                  <span style={{
-                    fontSize: "11px", fontWeight: 700, color: "#2D6A4F",
-                    background: "rgba(45,106,79,0.08)", padding: "3px 10px", borderRadius: "100px",
-                  }}>선택</span>
-                </div>
-                <p style={{ fontSize: "13px", color: "#6B7B6E", margin: "0 0 10px", lineHeight: 1.6 }}>
-                  {MAINTENANCE_PLAN.desc}
-                </p>
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                  {MAINTENANCE_PLAN.features.map((f, i) => (
-                    <span key={i} style={{
-                      fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
-                      background: "rgba(45,106,79,0.06)", padding: "5px 12px",
-                      borderRadius: "8px", border: "1px solid rgba(45,106,79,0.1)",
-                    }}>✓ {f}</span>
-                  ))}
-                </div>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "#2D6A4F", marginBottom: "14px" }}>
+                🛡️ 납품 후 유지보수 (선택)
               </div>
-              <div style={{ textAlign: "center", flexShrink: 0 }}>
-                <div style={{ fontSize: "28px", fontWeight: 800, color: "#1B4332" }}>{MAINTENANCE_PLAN.price}</div>
+              <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                {MAINTENANCE_PLANS.map((plan, i) => (
+                  <div key={i} style={{
+                    flex: "1 1 200px", background: "#FAFAF7", borderRadius: "10px",
+                    padding: "14px 16px", border: "1px solid #E8E5DC",
+                  }}>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B4332", marginBottom: "4px" }}>
+                      {plan.name}
+                    </div>
+                    <div style={{ fontSize: "18px", fontWeight: 800, color: "#2D6A4F", marginBottom: "6px" }}>
+                      {plan.price}
+                    </div>
+                    <div style={{ fontSize: "12px", color: "#6B7B6E", lineHeight: 1.5 }}>
+                      {plan.desc}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </FadeIn>
