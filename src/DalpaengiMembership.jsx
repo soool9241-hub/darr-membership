@@ -835,6 +835,10 @@ export default function DalpaengiMembership() {
                     <div style={{ flex: 1, paddingTop: "4px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "4px" }}>
                         <span style={{ fontSize: "18px", fontWeight: 700, color: "#1B1B18" }}>{step.label}</span>
+                        <span style={{
+                          fontSize: "12px", fontWeight: 700, color: "#fff", background: step.color,
+                          padding: "3px 12px", borderRadius: "100px",
+                        }}>{step.price}</span>
                       </div>
                       <p style={{ fontSize: "14px", color: "#5A6A5E", margin: "0 0 6px", lineHeight: 1.6 }}>{step.sub}</p>
                       <span style={{
