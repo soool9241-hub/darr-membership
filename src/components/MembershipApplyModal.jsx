@@ -44,10 +44,21 @@ const TIER_CONFIG = {
     price: null,
     priceLabel: "30분 무료 상담 후 견적 안내",
     packages: [
-      { id: "starter", name: "⚡ 스타터 (300만원)", price: 3000000 },
-      { id: "business", name: "🏢 비즈니스 (500만원)", price: 5000000 },
-      { id: "premium", name: "👑 프리미엄 (800만원)", price: 8000000 },
-      { id: "custom", name: "💬 맞춤 상담 (금액 협의)", price: 0 },
+      { id: "starter", name: "🌱 스타터", price: "300만원", desc: "랜딩페이지 + 퍼널 설계 · 납기 2주" },
+      { id: "business", name: "🚀 비즈니스", price: "600만원", desc: "DB + SMS/이메일 자동화 · 납기 3주", popular: true },
+      { id: "premium", name: "💎 프리미엄", price: "900만원", desc: "풀 시스템 + AI 챗봇 + 리포트 · 납기 4주" },
+      { id: "custom", name: "💬 맞춤 상담", price: "금액 협의", desc: "특수 요구사항이 있으신 경우" },
+    ],
+    addons: [
+      { id: "kakao_biz", name: "카카오 비즈채널 세팅", price: "+100만원" },
+      { id: "naver_ad", name: "네이버 검색광고 세팅", price: "+80만원" },
+      { id: "sns_auto", name: "SNS 콘텐츠 자동 생성", price: "+120만원" },
+      { id: "competitor", name: "경쟁사 모니터링 봇", price: "+100만원" },
+    ],
+    maintenance: [
+      { id: "basic", name: "기본 유지보수", price: "30만원/월", desc: "무제한 수정 + 장애 대응 + 모니터링" },
+      { id: "growth", name: "성장 관리", price: "50만원/월", desc: "기본 + 월 1회 데이터 분석 미팅" },
+      { id: "dedicated", name: "전담 운영", price: "100만원/월", desc: "성장 + SNS + 광고 + 분기 점검" },
     ],
     successMsg: "상담 요청이 접수되었습니다!",
   },
@@ -60,6 +71,8 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
 
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [selectedPackage, setSelectedPackage] = useState("");
+  const [selectedAddons, setSelectedAddons] = useState([]);
+  const [selectedMaintenance, setSelectedMaintenance] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -67,6 +80,9 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const [copied, setCopied] = useState(false);
 
   const setField = (key, value) => setForm(prev => ({ ...prev, [key]: value }));
+  const toggleAddon = (id) => setSelectedAddons(prev =>
+    prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+  );
 
   const isDfy = tierId === "dfy";
   const totalPrice = isDfy
@@ -95,12 +111,20 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
     try {
       if (supabase) {
         if (isDfy) {
+          const addonNames = selectedAddons.map(id => config.addons?.find(a => a.id === id)?.name).filter(Boolean);
+          const maintName = config.maintenance?.find(m => m.id === selectedMaintenance)?.name || "";
+          const details = [
+            `패키지: ${selectedPackage}`,
+            addonNames.length > 0 ? `추가옵션: ${addonNames.join(", ")}` : "",
+            maintName ? `유지보수: ${maintName}` : "",
+            form.message.trim() ? `요청사항: ${form.message.trim()}` : "",
+          ].filter(Boolean).join(" | ");
           const { error } = await supabase.from("contact_inquiries").insert({
             name: form.name.trim(),
             email: form.email.trim().toLowerCase(),
             phone: form.phone.trim(),
             subject: `구축 대행 상담 - ${selectedPackage}`,
-            message: form.message.trim() || `패키지: ${selectedPackage}`,
+            message: details,
             inquiry_type: "dfy",
           });
           if (error) throw error;
@@ -129,6 +153,8 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const handleClose = () => {
     setForm({ name: "", email: "", phone: "", message: "" });
     setSelectedPackage("");
+    setSelectedAddons([]);
+    setSelectedMaintenance("");
     setErrors({});
     setSuccess(false);
     setSubmitError("");
@@ -293,9 +319,9 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
                     key={pkg.id}
                     onClick={() => setSelectedPackage(pkg.id)}
                     style={{
-                      display: "flex", alignItems: "center", gap: "10px",
-                      padding: "12px 14px", marginBottom: "8px",
-                      borderRadius: "10px", cursor: "pointer",
+                      display: "flex", alignItems: "center", gap: "12px",
+                      padding: "14px 16px", marginBottom: "8px",
+                      borderRadius: "12px", cursor: "pointer",
                       border: checked ? "2px solid #2D6A4F" : "1.5px solid #E8E5DC",
                       background: checked ? "#F0FAF4" : "#FAFAF7",
                       transition: "all 0.2s",
@@ -305,10 +331,21 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
                       type="radio"
                       checked={checked}
                       onChange={() => {}}
-                      style={{ accentColor: "#2D6A4F", width: "18px", height: "18px" }}
+                      style={{ accentColor: "#2D6A4F", width: "18px", height: "18px", flexShrink: 0 }}
                     />
-                    <span style={{ fontSize: "14px", fontWeight: checked ? 700 : 500, color: checked ? "#1B4332" : "#5A6A5E" }}>
-                      {pkg.name}
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <span style={{ fontSize: "14px", fontWeight: checked ? 700 : 600, color: checked ? "#1B4332" : "#3A4A3E" }}>
+                          {pkg.name}
+                        </span>
+                        {pkg.popular && (
+                          <span style={{ fontSize: "10px", fontWeight: 700, color: "#fff", background: "#52B788", padding: "2px 8px", borderRadius: "100px" }}>인기</span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: "12px", color: "#6B7B6E", marginTop: "2px" }}>{pkg.desc}</div>
+                    </div>
+                    <span style={{ fontSize: "14px", fontWeight: 700, color: checked ? "#1B4332" : "#8A9A8E", flexShrink: 0 }}>
+                      {pkg.price}
                     </span>
                   </label>
                 );
@@ -316,6 +353,89 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
               {errors.packages && (
                 <div style={{ fontSize: "12px", color: "#D32F2F", marginTop: "4px" }}>{errors.packages}</div>
               )}
+            </div>
+          )}
+
+          {/* DFY 추가 옵션 */}
+          {isDfy && config.addons && (
+            <div style={{ marginBottom: "20px" }}>
+              <div style={{ fontSize: "13px", fontWeight: 600, color: "#3A4A3E", marginBottom: "4px" }}>
+                추가 옵션 <span style={{ fontSize: "11px", color: "#8A9A8E", fontWeight: 400 }}>(선택)</span>
+              </div>
+              <div style={{ fontSize: "11px", color: "#8A9A8E", marginBottom: "10px" }}>원하는 옵션을 자유롭게 선택하세요</div>
+              {config.addons.map((addon) => {
+                const checked = selectedAddons.includes(addon.id);
+                return (
+                  <label
+                    key={addon.id}
+                    onClick={() => toggleAddon(addon.id)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: "10px",
+                      padding: "12px 14px", marginBottom: "6px",
+                      borderRadius: "10px", cursor: "pointer",
+                      border: checked ? "2px solid #52B788" : "1.5px solid #E8E5DC",
+                      background: checked ? "#F0FAF4" : "#FAFAF7",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => {}}
+                      style={{ accentColor: "#2D6A4F", width: "16px", height: "16px", flexShrink: 0 }}
+                    />
+                    <span style={{ flex: 1, fontSize: "13px", fontWeight: checked ? 600 : 500, color: checked ? "#1B4332" : "#5A6A5E" }}>
+                      {addon.name}
+                    </span>
+                    <span style={{ fontSize: "13px", fontWeight: 600, color: checked ? "#2D6A4F" : "#8A9A8E", flexShrink: 0 }}>
+                      {addon.price}
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+          )}
+
+          {/* DFY 유지보수 플랜 */}
+          {isDfy && config.maintenance && (
+            <div style={{ marginBottom: "20px" }}>
+              <div style={{ fontSize: "13px", fontWeight: 600, color: "#3A4A3E", marginBottom: "4px" }}>
+                납품 후 유지보수 <span style={{ fontSize: "11px", color: "#8A9A8E", fontWeight: 400 }}>(선택)</span>
+              </div>
+              <div style={{ fontSize: "11px", color: "#8A9A8E", marginBottom: "10px" }}>구축 완료 후 지속 관리가 필요하시면 선택하세요</div>
+              {config.maintenance.map((plan) => {
+                const checked = selectedMaintenance === plan.id;
+                return (
+                  <label
+                    key={plan.id}
+                    onClick={() => setSelectedMaintenance(checked ? "" : plan.id)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: "10px",
+                      padding: "12px 14px", marginBottom: "6px",
+                      borderRadius: "10px", cursor: "pointer",
+                      border: checked ? "2px solid #52B788" : "1.5px solid #E8E5DC",
+                      background: checked ? "#F0FAF4" : "#FAFAF7",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      checked={checked}
+                      onChange={() => {}}
+                      style={{ accentColor: "#2D6A4F", width: "16px", height: "16px", flexShrink: 0 }}
+                    />
+                    <div style={{ flex: 1 }}>
+                      <span style={{ fontSize: "13px", fontWeight: checked ? 600 : 500, color: checked ? "#1B4332" : "#5A6A5E" }}>
+                        {plan.name}
+                      </span>
+                      <div style={{ fontSize: "11px", color: "#8A9A8E", marginTop: "2px" }}>{plan.desc}</div>
+                    </div>
+                    <span style={{ fontSize: "13px", fontWeight: 600, color: checked ? "#2D6A4F" : "#8A9A8E", flexShrink: 0 }}>
+                      {plan.price}
+                    </span>
+                  </label>
+                );
+              })}
             </div>
           )}
 
