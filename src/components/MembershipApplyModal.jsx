@@ -16,9 +16,16 @@ const TIER_CONFIG = {
   pro: {
     title: "🔧 프로 멤버십 신청",
     grade: "달팽이 주민",
-    desc: "소그룹 코칭 + 오프라인 실습으로 직접 만들고 결과를 냅니다",
-    price: 199000,
-    priceLabel: "월 정기결제",
+    desc: "소그룹 코칭 + 오프라인 실습으로 직접 만들고 결과를 냅니다. 원하는 과목을 선택하세요.",
+    price: null,
+    pricePerCourse: 199000,
+    priceLabel: "과목당 · 6시간 · 이론+실습",
+    courses: [
+      { id: "landing", name: "팔리는 랜딩페이지 구축", icon: "🖥️", tag: "바이브 코딩 · 6시간", desc: "AI와 함께 전환율 높은 랜딩페이지를 직접 만들고 배포" },
+      { id: "marketing", name: "나 대신 일하는 모객 시스템", icon: "🤖", tag: "AI 시스템 · 광고 · 6시간", desc: "24시간 자동으로 고객을 모으고 전환시키는 시스템 구축" },
+      { id: "operation", name: "운영관리 AI 효율화", icon: "📊", tag: "관리자 페이지 · 데이터 · 6시간", desc: "데이터 기반으로 운영을 자동화하는 시스템 구축" },
+      { id: "partner", name: "마케터 100명 만드는 노하우", icon: "🤝", tag: "파트너십 시스템 · 6시간", desc: "파트너십 시스템을 직접 설계하고 구축" },
+    ],
     successMsg: "신청이 접수되었습니다!",
   },
   partner: {
@@ -73,6 +80,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const [selectedPackage, setSelectedPackage] = useState("");
   const [selectedAddons, setSelectedAddons] = useState([]);
   const [selectedMaintenance, setSelectedMaintenance] = useState("");
+  const [selectedCourses, setSelectedCourses] = useState([]);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -83,11 +91,17 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const toggleAddon = (id) => setSelectedAddons(prev =>
     prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
   );
+  const toggleCourse = (id) => setSelectedCourses(prev =>
+    prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+  );
+  const isPro = tierId === "pro";
 
   const isDfy = tierId === "dfy";
   const totalPrice = isDfy
-    ? (config.packages?.find(p => p.id === selectedPackage)?.price || 0)
-    : config.price;
+    ? 0
+    : isPro
+      ? (selectedCourses.length * (config.pricePerCourse || 0))
+      : config.price;
 
   const validate = () => {
     const errs = {};
@@ -96,6 +110,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "올바른 이메일 형식이 아닙니다";
     if (!form.phone.trim()) errs.phone = "연락처를 입력해주세요";
     if (isDfy && !selectedPackage) errs.packages = "관심 패키지를 선택해주세요";
+    if (isPro && selectedCourses.length === 0) errs.courses = "수강할 과목을 선택해주세요";
     return errs;
   };
 
@@ -129,13 +144,20 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
           });
           if (error) throw error;
         } else {
+          const courseNames = isPro && selectedCourses.length > 0
+            ? selectedCourses.map(id => config.courses?.find(c => c.id === id)?.name).filter(Boolean).join(", ")
+            : null;
           const insertData = {
             tier_id: tierId === "bootcamp" ? "offline" : tierId === "pro" ? "offline" : tierId,
             name: form.name.trim(),
             email: form.email.trim().toLowerCase(),
             phone: form.phone.trim(),
             total_price: totalPrice,
-            admin_notes: tierId === "bootcamp" ? "8주 부트캠프 신청" : tierId === "pro" ? "프로 멤버십 신청" : null,
+            admin_notes: tierId === "bootcamp"
+              ? "8주 부트캠프 신청"
+              : isPro
+                ? `프로 멤버십 신청 | 선택 과목: ${courseNames} | ${selectedCourses.length}과목 × ₩199,000 = ₩${formatPrice(totalPrice)}`
+                : null,
           };
           const { error } = await supabase.from("membership_applications").insert(insertData);
           if (error) throw error;
@@ -155,6 +177,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
     setSelectedPackage("");
     setSelectedAddons([]);
     setSelectedMaintenance("");
+    setSelectedCourses([]);
     setErrors({});
     setSuccess(false);
     setSubmitError("");
@@ -280,8 +303,71 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
             </p>
           )}
 
-          {/* 가격 표시 (DFY 제외) */}
-          {config.price && (
+          {/* 프로 멤버십 — 과목 선택 */}
+          {isPro && config.courses && (
+            <div style={{ marginBottom: "20px" }}>
+              <div style={{ fontSize: "13px", fontWeight: 600, color: "#3A4A3E", marginBottom: "4px" }}>
+                수강 과목 선택 <span style={{ color: "#D32F2F" }}>*</span>
+              </div>
+              <div style={{ fontSize: "11px", color: "#8A9A8E", marginBottom: "10px" }}>
+                과목당 ₩{formatPrice(config.pricePerCourse)} · 6시간 · 이론+실습 · 당일 결과물 완성
+              </div>
+              {config.courses.map((course) => {
+                const checked = selectedCourses.includes(course.id);
+                return (
+                  <label
+                    key={course.id}
+                    onClick={() => toggleCourse(course.id)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: "12px",
+                      padding: "14px 16px", marginBottom: "8px",
+                      borderRadius: "12px", cursor: "pointer",
+                      border: checked ? "2px solid #2D6A4F" : "1.5px solid #E8E5DC",
+                      background: checked ? "#F0FAF4" : "#FAFAF7",
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => {}}
+                      style={{ accentColor: "#2D6A4F", width: "18px", height: "18px", flexShrink: 0 }}
+                    />
+                    <span style={{ fontSize: "20px" }}>{course.icon}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: "14px", fontWeight: checked ? 700 : 600, color: checked ? "#1B4332" : "#3A4A3E" }}>
+                        {course.name}
+                      </div>
+                      <div style={{ fontSize: "11px", color: "#8A9A8E", marginTop: "2px" }}>{course.desc}</div>
+                    </div>
+                  </label>
+                );
+              })}
+              {errors.courses && (
+                <div style={{ fontSize: "12px", color: "#D32F2F", marginTop: "4px" }}>{errors.courses}</div>
+              )}
+
+              {/* 자동 계산 가격 */}
+              <div style={{
+                background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                borderRadius: "12px", padding: "16px 20px", marginTop: "12px", textAlign: "center",
+              }}>
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>
+                  {selectedCourses.length > 0
+                    ? `${selectedCourses.length}과목 × ₩${formatPrice(config.pricePerCourse)}`
+                    : "과목을 선택해주세요"}
+                </div>
+                <div style={{ fontSize: "32px", fontWeight: 800, color: selectedCourses.length > 0 ? "#fff" : "#6B9E82" }}>
+                  {selectedCourses.length > 0
+                    ? `₩${formatPrice(selectedCourses.length * config.pricePerCourse)}`
+                    : "₩0"}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 가격 표시 (DFY, 프로 제외) */}
+          {config.price && !isPro && (
             <div style={{
               background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
               borderRadius: "12px", padding: "20px", marginBottom: "20px", textAlign: "center",
@@ -464,15 +550,15 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
 
           <button
             type="submit"
-            disabled={loading || (isDfy && !selectedPackage)}
+            disabled={loading || (isDfy && !selectedPackage) || (isPro && selectedCourses.length === 0)}
             style={{
               width: "100%", padding: "14px", borderRadius: "12px",
-              background: (loading || (isDfy && !selectedPackage))
+              background: (loading || (isDfy && !selectedPackage) || (isPro && selectedCourses.length === 0))
                 ? "#95D5B2"
                 : "linear-gradient(135deg, #1B4332, #2D6A4F)",
               color: "#fff", fontSize: "15px", fontWeight: 700,
               border: "none",
-              cursor: (loading || (isDfy && !selectedPackage)) ? "not-allowed" : "pointer",
+              cursor: (loading || (isDfy && !selectedPackage) || (isPro && selectedCourses.length === 0)) ? "not-allowed" : "pointer",
               marginTop: "8px",
             }}
           >
@@ -480,9 +566,13 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
               ? "처리 중..."
               : isDfy
                 ? "무료 상담 신청하기"
-                : tierId === "bootcamp"
-                  ? `₩${formatPrice(config.price)} 부트캠프 신청하기`
-                  : `₩${formatPrice(config.price)}/월 정기결제 신청`
+                : isPro
+                  ? selectedCourses.length > 0
+                    ? `₩${formatPrice(totalPrice)} 프로 멤버십 신청 (${selectedCourses.length}과목)`
+                    : "과목을 선택해주세요"
+                  : tierId === "bootcamp"
+                    ? `₩${formatPrice(config.price)} 부트캠프 신청하기`
+                    : `₩${formatPrice(config.price)}/월 정기결제 신청`
             }
           </button>
         </form>
