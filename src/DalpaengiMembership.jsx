@@ -211,16 +211,16 @@ const PROOF_ITEMS = [
 ];
 
 const FUNNEL_STEPS = [
-  { emoji: "📬", label: "Lv.1 달팽이레터", sub: '"이런 게 있다" — AI 트렌드 파악', price: "무료", color: "#95D5B2" },
-  { emoji: "💻", label: "Lv.2 온라인 멤버십", sub: '"이런 게 된다" — 라이브 + 커뮤니티 + 템플릿 (달팽이 친구)', price: "₩29,900/월", color: "#52B788" },
-  { emoji: "🔧", label: "Lv.3 프로 멤버십", sub: '"직접 만든다" — 소그룹 코칭 + 오프라인 실습 (달팽이 주민)', price: "₩199,000/월", color: "#2D6A4F" },
-  { emoji: "🚀", label: "Lv.4 파트너 멤버십", sub: '"시스템을 구축한다" — 1:1 코칭 + 수익모델 완성 (달팽이 가족)', price: "₩990,000/월", color: "#1B4332" },
-  { emoji: "🔧", label: "구축 대행 (DFY)", sub: '"통째로 맡긴다" — 자동화 시스템 풀 셋팅', price: "300~800만/건", color: "#0D1F17" },
+  { emoji: "📬", label: "무료로 시작하기", sub: '주 2회 AI 트렌드 뉴스레터를 받아보세요', price: "무료", color: "#95D5B2" },
+  { emoji: "💻", label: "눈으로 확인하기", sub: '라이브 시연 + 커뮤니티 + 템플릿으로 가능성을 확인하세요', price: "₩29,900/월", color: "#52B788" },
+  { emoji: "🔧", label: "직접 만들어보기", sub: '소그룹 코칭과 오프라인 실습으로 내 결과물을 완성하세요', price: "₩199,000/월", color: "#2D6A4F" },
+  { emoji: "🚀", label: "수익 시스템 구축", sub: '1:1 밀착 코칭으로 나만의 자동화 수익 구조를 완성하세요', price: "₩990,000/월", color: "#1B4332" },
 ];
 
-const SIDE_FUNNELS = [
-  { emoji: "🎓", label: "8주 부트캠프", sub: "분기 1회 · 30명 한정 · 집중 실습", price: "₩990,000/인" },
-  { emoji: "📦", label: "디지털 상품", sub: "VOD 강의 · 템플릿 팩 · 기업 교육", price: "₩29,000~" },
+const EXTRA_OPTIONS = [
+  { emoji: "🎓", label: "8주 집중 과정", sub: "단기간에 자동화 시스템을 처음부터 끝까지 만들고 싶다면", price: "₩990,000" },
+  { emoji: "🔧", label: "통째로 맡기기", sub: "배우기보다 완성된 시스템을 바로 받고 싶다면", price: "300~800만원" },
+  { emoji: "📦", label: "혼자 시작하기", sub: "VOD 강의와 자동화 템플릿으로 내 속도대로 시작하고 싶다면", price: "₩29,000~" },
 ];
 
 const RUNNING_SYSTEMS = [
@@ -611,7 +611,7 @@ export default function DalpaengiMembership() {
 
           <FadeIn delay={0.25}>
             <p style={{ fontSize: "14px", color: "#8A9A8E", marginBottom: "36px" }}>
-              배우고 싶은 사람에게는 멤버십을, 맡기고 싶은 사람에게는 구축 대행을.
+              직접 배우고 싶다면 멤버십을, 맡기고 싶다면 구축 대행을 선택하세요.
             </p>
           </FadeIn>
 
@@ -717,7 +717,7 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>6개 수익원 × 단계별 성장 여정</h2>
+            }}>나에게 맞는 시작점 찾기</h2>
             <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "48px" }}>
               무료 레터부터 시작해서, 나만의 속도로 올라갑니다
             </p>
@@ -728,7 +728,7 @@ export default function DalpaengiMembership() {
               fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", display: "inline-block", marginBottom: "16px",
-            }}>메인 퍼널</div>
+            }}>단계별 성장 경로</div>
           </FadeIn>
 
           {FUNNEL_STEPS.map((step, i) => (
@@ -762,14 +762,14 @@ export default function DalpaengiMembership() {
               fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", display: "inline-block", marginTop: "32px", marginBottom: "16px",
-            }}>사이드 퍼널</div>
+            }}>이런 분들에게도 딱 맞는 선택지가 있어요</div>
           </FadeIn>
 
-          {SIDE_FUNNELS.map((step, i) => (
-            <FadeIn key={`side-${i}`} delay={0.7 + i * 0.1}>
+          {EXTRA_OPTIONS.map((step, i) => (
+            <FadeIn key={`extra-${i}`} delay={0.7 + i * 0.1}>
               <div style={{
                 display: "flex", alignItems: "center", gap: "20px",
-                padding: "16px 0", borderBottom: i < SIDE_FUNNELS.length - 1 ? "1px solid #E8E5DC" : "none",
+                padding: "16px 0", borderBottom: i < EXTRA_OPTIONS.length - 1 ? "1px solid #E8E5DC" : "none",
               }}>
                 <div style={{
                   width: "44px", height: "44px", borderRadius: "12px", background: "#40916C",
@@ -800,13 +800,13 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>프로 멤버십 · 부트캠프 핵심 커리큘럼</div>
+            }}>이런 걸 직접 만들 수 있어요</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
             }}>현장에서 만들고, 가져간다</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              프로 멤버십 오프라인 워크샵과 8주 부트캠프에서 다루는 핵심 커리큘럼입니다.<br />
-              이론과 실습을 병행하며, 완성된 결과물을 가져갑니다.
+              프로 멤버십과 8주 부트캠프에서 배우고 직접 만드는 핵심 주제입니다.<br />
+              이론과 실습을 병행하며, 돌아갈 때는 완성된 결과물을 손에 들고 갑니다.
               <br /><br />
               <span style={{ color: "#2D6A4F", fontWeight: 600 }}>▾ 각 항목을 클릭하면 상세 내용이 펼쳐집니다</span>
             </p>
@@ -832,7 +832,7 @@ export default function DalpaengiMembership() {
               textAlign: "center", marginBottom: "12px",
             }}>나에게 맞는 멤버십 선택</h2>
             <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "52px" }}>
-              달팽이처럼 천천히, 하지만 확실하게 — 반복 매출이 안정적 기반을 만듭니다
+              달팽이처럼 천천히, 하지만 확실하게
             </p>
           </FadeIn>
 
@@ -917,10 +917,10 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>프로젝트 매출 — 분기 1회</div>
+            }}>단기간에 끝내고 싶다면</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>{BOOTCAMP.emoji} {BOOTCAMP.name}</h2>
+            }}>{BOOTCAMP.emoji} 8주 만에 내 자동화 시스템 완성</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
               {BOOTCAMP.subtitle}
             </p>
@@ -1018,16 +1018,16 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>프로젝트 매출 — 상시</div>
+            }}>배울 시간이 없다면</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>🔧 자동화 구축 대행 (DFY)</h2>
+            }}>🔧 자동화 시스템, 통째로 만들어드립니다</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
-              "배우기보다 맡기고 싶다" — 자동화 인생 10년의 노하우로 셋팅해드립니다.<br />
+              직접 배울 시간이 없으신 분을 위해, 자동화 10년 노하우로 시스템을 셋팅해드립니다.<br />
               멤버십 회원은 <strong style={{ color: "#1B4332" }}>15~20% 할인</strong>이 적용됩니다.
             </p>
             <p style={{ fontSize: "13px", color: "#8A9A8E", marginBottom: "40px" }}>
-              30분 무료 상담 → 요구사항 정의 → 구축 (2~4주) → 인수인계 교육 → 1개월 무상 AS
+              30분 무료 상담 → 요구사항 정의 → 구축 (2~4주) → 인수인계 교육 (1시간) → 1개월 무상 AS
             </p>
           </FadeIn>
 
@@ -1113,12 +1113,12 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>상시 판매</div>
+            }}>내 속도대로 시작하기</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>📦 디지털 상품 & 기업 교육</h2>
+            }}>📦 바로 활용할 수 있는 자동화 도구</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              멤버십 없이도 바로 활용할 수 있는 VOD 강의, 자동화 템플릿, 기업 워크샵
+              멤버십 없이도 시작할 수 있습니다. VOD 강의로 배우고, 템플릿으로 바로 적용하세요.
             </p>
           </FadeIn>
 
@@ -1301,8 +1301,8 @@ export default function DalpaengiMembership() {
               fontSize: "14px", color: "#2D6A4F", fontWeight: 600, fontStyle: "italic",
               margin: "0 auto 28px", maxWidth: "480px", lineHeight: 1.7,
             }}>
-              "시스템을 가지고 싶은 사람에게는 대행을,<br />
-              배우고 싶은 사람에게는 멤버십을."
+              "직접 배우고 싶다면 멤버십을,<br />
+              바로 결과물이 필요하다면 구축 대행을 선택하세요."
             </p>
 
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -1335,8 +1335,8 @@ export default function DalpaengiMembership() {
             fontSize: "clamp(24px, 4vw, 34px)", fontWeight: 700,
             color: "#fff", marginBottom: "12px", lineHeight: 1.4,
           }}>
-            6개의 달팽이가 각자의 속도로 꾸준히 기어가면,<br />
-            합치면 10억이 됩니다.
+            더디더라도 달팽이처럼 천천히,<br />
+            하지만 확실한 수익 구조를 만들어갑니다.
           </h2>
           <p style={{ fontSize: "16px", color: "#B7E4C7", marginBottom: "36px", lineHeight: 1.7 }}>
             무료 달팽이레터로 먼저 시작해보세요.<br />
