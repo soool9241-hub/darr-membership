@@ -1203,7 +1203,7 @@ export default function DalpaengiMembership() {
             }}>퍼널구축 아카데미 — 집중 스터디반</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>{BOOTCAMP.emoji} 8주 만에 내 사업의 자동화 퍼널을 완성합니다</h2>
+            }}>{BOOTCAMP.emoji} 8주 만에 내 사업의 자동화 퍼널을 완성합니다<br /><span style={{ fontSize: "18px", fontWeight: 500, color: "#6B7B6E" }}>퍼널 구축 아카데미 — 집중 스터디반</span></h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "8px", lineHeight: 1.7 }}>
               기술이 아니라 "매출이 나는 구조"를 만드는 과정.
             </p>
