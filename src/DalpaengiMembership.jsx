@@ -756,14 +756,14 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>5단계 자동화 성장 시스템</div>
+            }}>6단계의 차별화된 성장 스터디</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>무료에서 시작해서, 시스템이 안내합니다</h2>
+            }}>느리지만 가장 트렌디하게</h2>
             <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "48px", lineHeight: 1.7 }}>
-              부담 없이 무료 자료부터 받아보세요.<br />
-              다음 단계는 시스템이 자연스럽게 안내해드립니다.
+              지속 가능한 수익 구조를 함께 만들어갑니다.<br />
+              부담 없이 무료 자료부터 시작하세요.
             </p>
           </FadeIn>
 
