@@ -1265,12 +1265,13 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>STEP 2 — 가볍게 시작하기</div>
+            }}>멤버십 구독 없이 바로 시작</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>📦 내 사업에 바로 적용할 수 있는 자동화 도구</h2>
+            }}>📦 바로 구매 서비스</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              무료 자료가 도움이 되셨다면, 여기서 한 단계 더. VOD 강의로 체계적으로 배우고, 템플릿으로 바로 적용하세요.
+              멤버십 구독 없이도 바로 활용할 수 있습니다.<br />
+              VOD 강의로 체계적으로 배우고, 자동화 템플릿으로 내 사업에 즉시 적용하세요.
             </p>
           </FadeIn>
 
