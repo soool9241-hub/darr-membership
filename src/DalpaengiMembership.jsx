@@ -1377,8 +1377,11 @@ export default function DalpaengiMembership() {
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
             }}>📦 바로 구매 서비스</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
-              수요 없는 공급은 최소화하려고요!<br />
-              수요 있는 공급자가 되길 바래봅니다!
+              멤버십 구독 없이도 바로 활용할 수 있습니다.<br />
+              소상공인 사장님이 진짜 필요한 시스템을 만들어, 저렴한 연 구독으로 제공합니다.
+            </p>
+            <p style={{ color: "#8A9A8E", fontSize: "13px", marginBottom: "12px", fontStyle: "italic" }}>
+              "수요 없는 공급은 최소화하려고요. 수요 있는 공급자가 되길 바래봅니다."
             </p>
             <div style={{
               background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
