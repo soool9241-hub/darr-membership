@@ -112,20 +112,52 @@ const BOOTCAMP = {
   priceNote: "30명 한정 | 온라인 주 2회 (화·목 저녁 8시, 90분) + 오프라인 OT/졸업식",
   schedule: "온라인 주 2회 (화·목 저녁 8시, 90분) + 오프라인 OT/졸업식",
   nextTerm: "3기 모집 중 (9월 개강)",
-  curriculum: [
-    { week: "1주차", title: "자동화 설계 사고법", task: "내 사업 자동화 포인트 10개 도출" },
-    { week: "2주차", title: "n8n 기초 + 첫 워크플로우", task: "구글 시트 → SMS 자동 발송" },
-    { week: "3주차", title: "Supabase 데이터베이스", task: "고객 DB 설계 + API 연동" },
-    { week: "4주차", title: "고객 여정 자동화", task: "예약 → 안내 → 감사 전체 플로우" },
-    { week: "5주차", title: "마케팅 자동화", task: "콘텐츠 자동 생성 + 예약 게시" },
-    { week: "6주차", title: "AI 에이전트 설계", task: "Claude API 활용 자동 응답 시스템" },
-    { week: "7주차", title: "대시보드 + 모니터링", task: "Vercel 배포 + 실시간 현황판" },
-    { week: "8주차", title: "최종 프로젝트 발표", task: "내 사업에 적용한 자동화 시스템 시연" },
+  phases: [
+    {
+      label: "PHASE 1 — 설계", period: "1~2주", desc: "내 사업을 분석하고 퍼널을 그린다", color: "#0F6E56", bg: "#E1F5EE",
+      weeks: [
+        { week: "1", title: "내 사업의 자동화 포인트 찾기", sub: "하루 중 \"이거 또 해야 하나\" 싶은 반복 업무 10개를 찾아낸다.", result: "내 사업 자동화 포인트 10개 목록" },
+        { week: "2", title: "고객이 찾아오는 퍼널 설계", sub: "어디서 손님이 오고, 뭘 보고 결정하고, 어떻게 다시 오게 하는지 흐름을 그린다.", result: "내 사업 전용 퍼널 설계도 (PDF)" },
+      ],
+    },
+    {
+      label: "PHASE 2 — 구축", period: "3~6주", desc: "직접 만들고, 바로 돌린다", color: "#185FA5", bg: "#E6F1FB",
+      weeks: [
+        { week: "3", title: "내 홈페이지 + 예약 폼 만들기", sub: "코딩 없이 내 가게 랜딩페이지를 직접 만든다. 수업 끝나면 인터넷에 떠있다.", result: "내 랜딩페이지 1개 (라이브 배포)" },
+        { week: "4", title: "고객 DB + 자동 문자 시스템", sub: "예약이 들어오면 고객 정보 자동 저장, 확인·안내·감사 문자까지 자동.", result: "고객 DB + SMS 자동 발송 시스템" },
+        { week: "5", title: "리뷰 자동 수집 + 리텐션", sub: "좋은 리뷰는 네이버로, 나쁜 건 내부로. 30일 미방문 단골에게 자동 발송.", result: "리뷰 자동 수집 + 재방문 유도 시스템" },
+        { week: "6", title: "콘텐츠 자동 생성 + SNS 게시", sub: "AI가 블로그/인스타 초안을 만들고, 검토 후 버튼 하나로 예약 게시.", result: "AI 콘텐츠 자동 생성 파이프라인" },
+      ],
+    },
+    {
+      label: "PHASE 3 — 완성", period: "7~8주", desc: "대시보드로 한눈에, 발표로 마무리", color: "#854F0B", bg: "#FAEEDA",
+      weeks: [
+        { week: "7", title: "매출 대시보드 + 주간 리포트", sub: "폰으로 오늘 예약, 이번 달 매출, 지난달 대비 한눈에. 매주 카톡 자동 발송.", result: "내 사업 대시보드 + 자동 리포트" },
+        { week: "8", title: "최종 발표 — 내 퍼널 시연", sub: "8주간 만든 전체 퍼널을 시연하고, 동기들과 피드백을 나눈다.", result: "내 사업 자동화 퍼널 전체 완성" },
+      ],
+    },
+  ],
+  beforeAfter: {
+    before: ["예약 문자 또 까먹었어", "인스타 해야 하는데 시간이 없어", "리뷰 부탁한다는 말이 민망해", "이번 달 매출이 얼마인지 모르겠어", "홈페이지? 그거 비싸잖아"],
+    after: ["예약 들어오면 문자가 알아서 나가", "블로그 글이 자동으로 올라가", "퇴실 다음날 리뷰 요청이 자동 발송", "폰으로 매출 대시보드 바로 확인", "내 홈페이지가 생겼어! 무료로!"],
+  },
+  results: [
+    { title: "만들어진 시스템", items: [["내 랜딩페이지", "1개"], ["고객 DB", "구축 완료"], ["자동 문자/카톡", "세팅 완료"], ["리뷰 자동 수집", "가동 중"], ["매출 대시보드", "라이브"]] },
+    { title: "절약되는 시간", items: [["예약 관리", "-1시간/일"], ["문자 발송", "-30분/일"], ["리뷰 요청", "자동"], ["SNS 콘텐츠", "-2시간/주"], ["매출 정리", "자동"]] },
+    { title: "받는 혜택", items: [["온라인 멤버십", "3개월 무료"], ["구축 대행", "15% 할인"], ["줌 녹화본", "평생 소장"], ["동기 네트워크", "평생 유지"], ["프로 멤버십", "전환 우대"]] },
+  ],
+  recommend: [
+    { q: "홈페이지가 없어요", a: "3주차에 직접 만든 내 홈페이지가 인터넷에 뜹니다." },
+    { q: "예약 문자 매번 까먹어요", a: "4주차에 자동 발송 세팅하면 다시는 안 까먹습니다." },
+    { q: "리뷰 부탁이 민망해요", a: "5주차에 시스템이 대신 부탁합니다. 자동으로." },
+    { q: "인스타 할 시간이 없어요", a: "6주차에 AI가 초안 만들고 예약 게시까지." },
+    { q: "매출 정리가 귀찮아요", a: "7주차에 폰으로 한눈에 보는 대시보드 완성." },
+    { q: "코딩? 저는 진짜 못해요", a: "코딩 없습니다. 진짜로. 클릭과 복붙으로 끝." },
   ],
   benefits: [
     "온라인 멤버십 3개월 무료 포함",
-    "온라인 멤버십 회원 10% 할인 (89.1만원)",
-    "5명 이상 단체 등록 20% 할인",
+    "구축 대행 15% 할인",
+    "줌 녹화본 평생 소장",
     "졸업 후 프로 멤버십 전환 우대",
   ],
 };
@@ -1189,80 +1221,140 @@ export default function DalpaengiMembership() {
             </div>
           </FadeIn>
 
-          <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
-            {/* 커리큘럼 */}
-            <div style={{ flex: "1 1 400px" }}>
-              <FadeIn delay={0.1}>
-                <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px", color: "#1B4332" }}>
-                  📋 8주 커리큘럼
-                </h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {BOOTCAMP.curriculum.map((item, i) => (
-                    <div key={i} style={{
-                      display: "flex", gap: "12px", padding: "12px 16px",
-                      background: i % 2 === 0 ? "#FAFAF7" : "#fff",
-                      borderRadius: "10px", border: "1px solid #E8E5DC",
+          {/* Before / After */}
+          <FadeIn delay={0.1}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 1fr", gap: "0", marginBottom: "32px" }}>
+              <div style={{ background: "#FCEBEB", borderRadius: "12px", padding: "20px" }}>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#791F1F", marginBottom: "10px" }}>8주 전 사장님</h4>
+                {BOOTCAMP.beforeAfter.before.map((t, i) => (
+                  <p key={i} style={{ fontSize: "12px", color: "#791F1F", lineHeight: 1.8 }}>"{t}"</p>
+                ))}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", color: "#8A9A8E" }}>vs</div>
+              <div style={{ background: "#E1F5EE", borderRadius: "12px", padding: "20px" }}>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#085041", marginBottom: "10px" }}>8주 후 사장님</h4>
+                {BOOTCAMP.beforeAfter.after.map((t, i) => (
+                  <p key={i} style={{ fontSize: "12px", color: "#085041", lineHeight: 1.8 }}>"{t}"</p>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* 3단계 커리큘럼 */}
+          <FadeIn delay={0.2}>
+            <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px", color: "#1B4332" }}>
+              📋 8주 커리큘럼 — 3단계 구조
+            </h3>
+            {BOOTCAMP.phases.map((phase, pi) => (
+              <div key={pi} style={{ marginBottom: "16px" }}>
+                <div style={{
+                  fontSize: "12px", fontWeight: 700, padding: "8px 16px",
+                  background: phase.bg, color: phase.color,
+                  borderRadius: "10px 10px 0 0",
+                }}>{phase.label} ({phase.period}): {phase.desc}</div>
+                <div style={{ border: "1px solid #E8E5DC", borderTop: "none", borderRadius: "0 0 10px 10px", overflow: "hidden" }}>
+                  {phase.weeks.map((w, wi) => (
+                    <div key={wi} style={{
+                      display: "flex", borderBottom: wi < phase.weeks.length - 1 ? "1px solid #E8E5DC" : "none",
                     }}>
-                      <span style={{
-                        fontSize: "11px", fontWeight: 800, color: "#2D6A4F",
-                        background: "rgba(45,106,79,0.08)", padding: "4px 8px",
-                        borderRadius: "6px", flexShrink: 0, alignSelf: "flex-start",
-                      }}>{item.week}</span>
-                      <div>
-                        <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18" }}>{item.title}</div>
-                        <div style={{ fontSize: "12px", color: "#6B7B6E", marginTop: "2px" }}>{item.task}</div>
+                      <div style={{
+                        width: "56px", display: "flex", flexDirection: "column",
+                        alignItems: "center", justifyContent: "center", flexShrink: 0,
+                        padding: "12px 8px", background: phase.bg,
+                      }}>
+                        <span style={{ fontSize: "18px", fontWeight: 700, color: phase.color }}>{w.week}</span>
+                        <span style={{ fontSize: "10px", color: phase.color, opacity: 0.7 }}>week</span>
+                      </div>
+                      <div style={{ flex: 1, padding: "12px 16px", borderLeft: "1px solid #E8E5DC" }}>
+                        <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18", marginBottom: "2px" }}>{w.title}</div>
+                        <div style={{ fontSize: "12px", color: "#6B7B6E", lineHeight: 1.5 }}>{w.sub}</div>
+                        <div style={{
+                          fontSize: "11px", marginTop: "6px", padding: "4px 10px",
+                          borderRadius: "6px", display: "inline-block",
+                          background: phase.bg, color: phase.color, fontWeight: 600,
+                        }}>결과물: {w.result}</div>
                       </div>
                     </div>
                   ))}
                 </div>
-              </FadeIn>
-            </div>
+              </div>
+            ))}
+          </FadeIn>
 
-            {/* 가격 + 혜택 */}
-            <div style={{ flex: "1 1 280px" }}>
-              <FadeIn delay={0.2}>
-                <div style={{
-                  background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-                  borderRadius: "16px", padding: "28px", textAlign: "center", marginBottom: "20px",
-                }}>
-                  <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "8px", letterSpacing: "0.1em" }}>
-                    {BOOTCAMP.schedule}
-                  </div>
-                  <div style={{ fontSize: "36px", fontWeight: 800, color: "#fff", marginBottom: "4px" }}>
-                    {BOOTCAMP.price}
-                  </div>
-                  <div style={{ fontSize: "13px", color: "#95D5B2" }}>{BOOTCAMP.priceNote}</div>
-
-                  <button
-                    onClick={() => handleCTAClick("bootcamp")}
-                    style={{
-                      marginTop: "20px", width: "100%", padding: "14px",
-                      borderRadius: "12px", border: "none",
-                      background: "linear-gradient(135deg, #40916C, #52B788)",
-                      color: "#fff", fontSize: "15px", fontWeight: 700, cursor: "pointer",
-                    }}
-                  >🎓 부트캠프 신청하기</button>
-                </div>
-
-                <div style={{
-                  background: "#FAFAF7", borderRadius: "12px", padding: "20px",
+          {/* 8주 후 결과물 3열 */}
+          <FadeIn delay={0.3}>
+            <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "32px 0 16px", color: "#1B4332" }}>
+              🎯 8주 후 갖게 되는 것
+            </h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px", marginBottom: "24px" }}>
+              {BOOTCAMP.results.map((col, i) => (
+                <div key={i} style={{
+                  background: "#FAFAF7", borderRadius: "12px", padding: "16px",
                   border: "1px solid #E8E5DC",
                 }}>
-                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#2D6A4F", marginBottom: "12px" }}>
-                    🎁 부트캠프 혜택
-                  </div>
-                  {BOOTCAMP.benefits.map((b, i) => (
-                    <div key={i} style={{
-                      fontSize: "13px", color: "#3A4A3E", display: "flex",
-                      alignItems: "flex-start", gap: "8px", lineHeight: 1.6,
+                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#0F6E56", marginBottom: "10px" }}>{col.title}</div>
+                  {col.items.map(([label, value], j) => (
+                    <div key={j} style={{
+                      display: "flex", justifyContent: "space-between", fontSize: "12px",
+                      padding: "4px 0", borderBottom: j < col.items.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
                     }}>
-                      <span style={{ color: "#4A7C59", flexShrink: 0 }}>✓</span> {b}
+                      <span style={{ color: "#3A4A3E" }}>{label}</span>
+                      <span style={{ color: "#1D9E75", fontWeight: 600 }}>{value}</span>
                     </div>
                   ))}
                 </div>
-              </FadeIn>
+              ))}
             </div>
-          </div>
+          </FadeIn>
+
+          {/* 이런 사장님께 추천 */}
+          <FadeIn delay={0.35}>
+            <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "32px 0 16px", color: "#1B4332" }}>
+              💡 이런 사장님께 추천합니다
+            </h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "10px", marginBottom: "32px" }}>
+              {BOOTCAMP.recommend.map((r, i) => (
+                <div key={i} style={{
+                  background: "#F5F4EF", borderRadius: "10px", padding: "12px 16px",
+                }}>
+                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#1B1B18", marginBottom: "4px" }}>"{r.q}"</div>
+                  <div style={{ fontSize: "12px", color: "#6B7B6E" }}>{r.a}</div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          {/* 가격 + 혜택 + CTA */}
+          <FadeIn delay={0.4}>
+            <div style={{
+              background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+              borderRadius: "16px", padding: "32px", textAlign: "center",
+            }}>
+              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "8px", letterSpacing: "0.1em" }}>
+                {BOOTCAMP.priceNote}
+              </div>
+              <div style={{ fontSize: "40px", fontWeight: 800, color: "#fff", marginBottom: "8px" }}>
+                {BOOTCAMP.price}
+              </div>
+              <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginBottom: "20px" }}>
+                {BOOTCAMP.benefits.map((b, i) => (
+                  <span key={i} style={{
+                    fontSize: "11px", color: "#B7E4C7", background: "rgba(183,228,199,0.12)",
+                    padding: "4px 12px", borderRadius: "100px",
+                  }}>✓ {b}</span>
+                ))}
+              </div>
+              <button
+                onClick={() => handleCTAClick("bootcamp")}
+                style={{
+                  padding: "16px 48px", borderRadius: "12px", border: "none",
+                  background: "linear-gradient(135deg, #40916C, #52B788)",
+                  color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer",
+                  boxShadow: "0 8px 32px rgba(64,145,108,0.3)",
+                }}
+              >🎓 퍼널구축 아카데미 신청하기</button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
