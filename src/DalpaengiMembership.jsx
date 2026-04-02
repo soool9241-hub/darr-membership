@@ -105,12 +105,13 @@ const TIERS = [
 
 const BOOTCAMP = {
   emoji: "🎓",
-  name: "8주 부트캠프",
-  subtitle: "8주 동안 내 사업에 맞는 자동화 시스템을 처음부터 끝까지 만듭니다",
+  name: "퍼널구축 아카데미",
+  subtitle: "8주 만에 내 사업의 자동화 퍼널을 완성합니다.\n기술이 아니라 \"매출이 나는 구조\"를 만드는 과정.",
+  longDesc: "n8n도, Supabase도, 코딩도 몰라도 됩니다.\n\"내 가게에 손님이 알아서 오고, 문자가 알아서 나가고, 리뷰가 알아서 쌓이는 구조\"\n그걸 8주 만에 직접 만듭니다.",
   price: "₩990,000",
-  priceNote: "1인 / 30명 한정 · 연 4기 운영",
+  priceNote: "30명 한정 | 온라인 주 2회 (화·목 저녁 8시, 90분) + 오프라인 OT/졸업식",
   schedule: "온라인 주 2회 (화·목 저녁 8시, 90분) + 오프라인 OT/졸업식",
-  nextTerm: "2기 모집 중 (6월 개강)",
+  nextTerm: "3기 모집 중 (9월 개강)",
   curriculum: [
     { week: "1주차", title: "자동화 설계 사고법", task: "내 사업 자동화 포인트 10개 도출" },
     { week: "2주차", title: "n8n 기초 + 첫 워크플로우", task: "구글 시트 → SMS 자동 발송" },
@@ -1167,12 +1168,17 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>빠른 트랙 — 8주 집중 과정</div>
+            }}>퍼널구축 아카데미</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>{BOOTCAMP.emoji} 8주 만에 내 자동화 시스템 완성</h2>
-            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
-              {BOOTCAMP.subtitle}
+            }}>{BOOTCAMP.emoji} 8주 만에 내 사업의 자동화 퍼널을 완성합니다</h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "8px", lineHeight: 1.7 }}>
+              기술이 아니라 "매출이 나는 구조"를 만드는 과정.
+            </p>
+            <p style={{ color: "#5A6A5E", fontSize: "14px", marginBottom: "12px", lineHeight: 1.8 }}>
+              n8n도, Supabase도, 코딩도 몰라도 됩니다.<br />
+              "내 가게에 손님이 알아서 오고, 문자가 알아서 나가고, 리뷰가 알아서 쌓이는 구조"<br />
+              그걸 8주 만에 직접 만듭니다.
             </p>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
