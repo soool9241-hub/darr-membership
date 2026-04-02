@@ -114,7 +114,8 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
               : "무료로 주 2회, 최신 AI 자동화 트렌드를 받아보세요."}
           </p>
 
-          <div style={{ marginBottom: "20px" }}>
+          {waitlistMode && (
+            <div style={{ marginBottom: "20px" }}>
               <div style={{ fontSize: "13px", fontWeight: 600, color: "#3A4A3E", marginBottom: "10px" }}>
                 관심 상품 선택 <span style={{ fontSize: "11px", color: "#8A9A8E", fontWeight: 400 }}>(선택 · 복수 가능)</span>
               </div>
@@ -155,6 +156,7 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
                 })}
               </div>
             </div>
+          )}
 
           <FormField
             label="이메일"
@@ -199,7 +201,7 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
               transition: "all 0.2s",
             }}
           >
-            {loading ? "처리 중..." : "🐌 구독하기 + 관심 상품 등록"}
+            {loading ? "처리 중..." : waitlistMode ? "📋 대기자 등록 + 뉴스레터 구독" : "🐌 무료 구독하기"}
           </button>
         </form>
       )}
