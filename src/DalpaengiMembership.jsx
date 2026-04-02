@@ -34,7 +34,7 @@ const TIERS = [
     grade: "달팽이 친구",
     subtitle: "주간 라이브 + 커뮤니티 + 템플릿으로 AI 자동화를 익힙니다",
     price: "₩29,900",
-    priceNote: "월 / 첫 달 50% 할인 (레터 구독자)",
+    priceNote: "월 / 레터 구독자 첫 달 50% → ₩14,950",
     badge: "Lv.2",
     badgeColor: "#2D6A4F",
     schedule: "주 1회 라이브 + 월 1회 Q&A",
@@ -157,13 +157,31 @@ const DFY_PACKAGES = [
   },
 ];
 
+const MAINTENANCE_PLAN = {
+  price: "월 30만원",
+  desc: "구축 완료 후에도 안심하세요. 무제한 수정 + 모니터링 + 장애 대응",
+  features: ["무제한 수정 요청", "24시간 시스템 모니터링", "장애 발생 시 즉시 대응", "월 1회 성과 리포트"],
+};
+
+const FREE_RESOURCES = [
+  { emoji: "📋", name: "소상공인 자동화 체크리스트", desc: "내 사업에서 자동화할 수 있는 포인트 20가지", type: "PDF" },
+  { emoji: "🎬", name: "n8n 첫걸음 30분 무료 강의", desc: "자동화가 뭔지 30분 만에 이해하기", type: "영상" },
+  { emoji: "📊", name: "매출 2배 만드는 퍼널 템플릿", desc: "검증된 자동화 퍼널 구조를 바로 적용", type: "구글 시트" },
+];
+
 const DIGITAL_PRODUCTS = [
   { emoji: "🎬", name: "n8n 자동화 입문 (3시간)", price: "₩49,000", type: "VOD 강의" },
   { emoji: "🎬", name: "소상공인 AI 실전 활용 (5시간)", price: "₩79,000", type: "VOD 강의" },
+  { emoji: "🎬", name: "Supabase로 예약 시스템 만들기 (4시간)", price: "₩69,000", type: "VOD 강의" },
+  { emoji: "🎬", name: "마케팅 자동화 마스터 (6시간)", price: "₩89,000", type: "VOD 강의" },
+  { emoji: "🎬", name: "AI 에이전트 설계 실전 (4시간)", price: "₩79,000", type: "VOD 강의" },
   { emoji: "📦", name: "SMS 자동 발송 스타터 팩", price: "₩29,000", type: "템플릿 팩" },
   { emoji: "📦", name: "예약 관리 올인원 팩", price: "₩49,000", type: "템플릿 팩" },
   { emoji: "📦", name: "SNS 콘텐츠 자동화 팩", price: "₩39,000", type: "템플릿 팩" },
+  { emoji: "📦", name: "매출 2배 퍼널 템플릿", price: "₩39,000", type: "템플릿 팩" },
+  { emoji: "📦", name: "고객 관리 CRM 올인원 팩", price: "₩49,000", type: "템플릿 팩" },
   { emoji: "🏫", name: "AI 자동화 체험 워크샵 (3시간)", price: "₩150만원~", type: "기업 교육" },
+  { emoji: "🏫", name: "업무 자동화 실전 교육 (6시간)", price: "₩200만원~", type: "기업 교육" },
 ];
 
 const CURRICULUM = [
@@ -820,6 +838,72 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
+      {/* ══════ FREE RESOURCES ══════ */}
+      <section style={{ padding: "80px 24px", background: "linear-gradient(180deg, #F5F4EF 0%, #EBE9E1 100%)" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>지금 바로 무료로 받아보세요</div>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
+            }}>무료 자동화 자료 3종</h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
+              달팽이레터를 구독하시면 아래 자료를 무료로 보내드립니다.
+            </p>
+          </FadeIn>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {FREE_RESOURCES.map((res, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div style={{
+                  background: "#fff", borderRadius: "14px", padding: "20px 24px",
+                  border: "1px solid #E8E5DC",
+                  display: "flex", alignItems: "center", gap: "16px",
+                }}>
+                  <div style={{
+                    fontSize: "28px", flexShrink: 0, width: "52px", height: "52px",
+                    borderRadius: "14px", background: "rgba(45,106,79,0.06)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>{res.emoji}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+                      <span style={{ fontSize: "16px", fontWeight: 700, color: "#1B1B18" }}>{res.name}</span>
+                      <span style={{
+                        fontSize: "10px", fontWeight: 700, color: "#fff", background: "#2D6A4F",
+                        padding: "2px 8px", borderRadius: "100px",
+                      }}>무료</span>
+                    </div>
+                    <div style={{ fontSize: "13px", color: "#6B7B6E" }}>{res.desc}</div>
+                  </div>
+                  <span style={{
+                    fontSize: "11px", fontWeight: 600, color: "#8A9A8E",
+                    background: "#F5F4EF", padding: "4px 10px", borderRadius: "6px", flexShrink: 0,
+                  }}>{res.type}</span>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.4}>
+            <div style={{ textAlign: "center", marginTop: "28px" }}>
+              <button
+                onClick={() => handleCTAClick("letter")}
+                style={{
+                  padding: "16px 40px", borderRadius: "14px",
+                  background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                  color: "#fff", fontSize: "16px", fontWeight: 700,
+                  border: "none", cursor: "pointer",
+                  boxShadow: "0 8px 32px rgba(27,67,50,0.2)",
+                }}
+              >🐌 무료 구독하고 자료 받기</button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ══════ TIER CARDS ══════ */}
       <section id="tiers" style={{
         padding: "80px 24px 100px",
@@ -1102,6 +1186,43 @@ export default function DalpaengiMembership() {
               </FadeIn>
             ))}
           </div>
+
+          {/* 유지보수 플랜 */}
+          <FadeIn delay={0.5}>
+            <div style={{
+              marginTop: "32px", background: "#fff", borderRadius: "16px",
+              padding: "28px 32px", border: "1px solid #E8E5DC",
+              display: "flex", alignItems: "center", gap: "24px", flexWrap: "wrap",
+            }}>
+              <div style={{ flex: 1, minWidth: "240px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                  <span style={{ fontSize: "24px" }}>🛡️</span>
+                  <span style={{
+                    fontFamily: "'Noto Serif KR', serif", fontSize: "18px", fontWeight: 700, color: "#1B1B18",
+                  }}>구축 후 유지보수</span>
+                  <span style={{
+                    fontSize: "11px", fontWeight: 700, color: "#2D6A4F",
+                    background: "rgba(45,106,79,0.08)", padding: "3px 10px", borderRadius: "100px",
+                  }}>선택</span>
+                </div>
+                <p style={{ fontSize: "13px", color: "#6B7B6E", margin: "0 0 10px", lineHeight: 1.6 }}>
+                  {MAINTENANCE_PLAN.desc}
+                </p>
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                  {MAINTENANCE_PLAN.features.map((f, i) => (
+                    <span key={i} style={{
+                      fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
+                      background: "rgba(45,106,79,0.06)", padding: "5px 12px",
+                      borderRadius: "8px", border: "1px solid rgba(45,106,79,0.1)",
+                    }}>✓ {f}</span>
+                  ))}
+                </div>
+              </div>
+              <div style={{ textAlign: "center", flexShrink: 0 }}>
+                <div style={{ fontSize: "28px", fontWeight: 800, color: "#1B4332" }}>{MAINTENANCE_PLAN.price}</div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -1239,7 +1360,7 @@ export default function DalpaengiMembership() {
                     ["구축 대행 할인", "—", "—", "15%", "20%"],
                     ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용"],
                     ["수익 분배 파트너십", "—", "—", "—", "최대 40%"],
-                    ["정원", "무제한", "550명", "50명", "20명"],
+                    ["정원", "무제한", "800명", "50명", "20명"],
                   ].map((row, ri) => (
                     <tr key={ri} style={{ borderBottom: "1px solid #E8E5DC", background: ri % 2 === 0 ? "#FAFAF7" : "#fff" }}>
                       {row.map((cell, ci) => (
