@@ -7,33 +7,49 @@ const TIER_CONFIG = {
   online: {
     title: "💻 온라인 멤버십 신청",
     grade: "달팽이 친구",
-    desc: "다양한 AI 자동화 & 수익화 구조를 알아봅니다",
-    price: 9900,
-    yearlyPrice: 9900 * 12,
-    priceLabel: "1년 멤버십",
-    successMsg: "신청이 접수되었습니다!",
+    desc: "주간 라이브 + 커뮤니티 + 템플릿으로 AI 자동화를 익힙니다",
+    price: 29900,
+    priceLabel: "월 정기결제",
+    firstMonthDiscount: true,
+    successMsg: "신청이 접수되��습니다!",
   },
-  offline: {
-    title: "🔧 오프라인 멤버십 신청",
+  pro: {
+    title: "🔧 프로 멤버십 신청",
     grade: "달팽이 주민",
-    desc: "AI 수익화 · 자동화 시스템을 만들어 봅니다",
-    pricePerClass: 99000,
-    priceLabel: "선택 수강 · 월 1회 수업",
-    courses: [
-      { id: "landing", name: "팔리는 랜딩페이지 구축", emoji: "🌐" },
-      { id: "mokaek", name: "나 대신 일하는 모객 시스템", emoji: "🤖" },
-      { id: "operations", name: "운영관리 AI 효율화", emoji: "⚙️" },
-      { id: "partnership", name: "마케터 100명 만드는 파트너십", emoji: "🤝" },
-    ],
+    desc: "소그룹 코칭 + 오프라인 실습으로 직접 만들고 결과를 냅니다",
+    price: 199000,
+    priceLabel: "월 정기결제",
     successMsg: "신청이 접수되었습니다!",
   },
   partner: {
     title: "🚀 파트너 멤버십 문의",
     grade: "달팽이 가족",
-    desc: "AI 수익화 · 자동화 시스템을 만들고 활용하여 지속 가능한 자동화 수익을 만들어봅니다!",
+    desc: "1:1 코칭으로 자동화 수익 시스템을 완전히 구축합니다",
     price: 990000,
-    priceLabel: "월 정기결제",
+    priceLabel: "월 정기결제 · 20명 한정",
     successMsg: "문의가 접수되었습니다!",
+  },
+  bootcamp: {
+    title: "🎓 8주 부트캠프 신청",
+    grade: null,
+    desc: "8주 동안 내 사업에 맞는 자동화 시스템을 처음부터 끝까지 만듭니다",
+    price: 990000,
+    priceLabel: "1인 · 30명 한정 · 연 4기",
+    successMsg: "신청이 접수되었습니다!",
+  },
+  dfy: {
+    title: "🔧 구축 대행 무료 상담",
+    grade: null,
+    desc: "자동화 시스템을 통째로 맡기고 싶은 분을 위한 무료 상담 신청",
+    price: null,
+    priceLabel: "30분 무료 상담 후 견적 안내",
+    packages: [
+      { id: "starter", name: "⚡ 스타터 (300만원)", price: 3000000 },
+      { id: "business", name: "🏢 비즈니스 (500만원)", price: 5000000 },
+      { id: "premium", name: "👑 프리미엄 (800만원)", price: 8000000 },
+      { id: "custom", name: "💬 맞춤 상담 (금액 협의)", price: 0 },
+    ],
+    successMsg: "상담 요청이 접수되었습니다!",
   },
 };
 
@@ -42,8 +58,8 @@ const formatPrice = (n) => n.toLocaleString("ko-KR");
 export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   const config = TIER_CONFIG[tierId] || TIER_CONFIG.online;
 
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
-  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [selectedPackage, setSelectedPackage] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -52,16 +68,10 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
 
   const setField = (key, value) => setForm(prev => ({ ...prev, [key]: value }));
 
-  const toggleCourse = (id) => {
-    setSelectedCourses(prev =>
-      prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
-    );
-  };
-
-  const isOffline = tierId === "offline";
-  const totalPrice = isOffline
-    ? selectedCourses.length * config.pricePerClass
-    : config.yearlyPrice || config.price;
+  const isDfy = tierId === "dfy";
+  const totalPrice = isDfy
+    ? (config.packages?.find(p => p.id === selectedPackage)?.price || 0)
+    : config.price;
 
   const validate = () => {
     const errs = {};
@@ -69,7 +79,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
     if (!form.email.trim()) errs.email = "이메일을 입력해주세요";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "올바른 이메일 형식이 아닙니다";
     if (!form.phone.trim()) errs.phone = "연락처를 입력해주세요";
-    if (isOffline && selectedCourses.length === 0) errs.courses = "수강할 수업을 선택해주세요";
+    if (isDfy && !selectedPackage) errs.packages = "관심 패키지를 선택해주세요";
     return errs;
   };
 
@@ -84,19 +94,28 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
 
     try {
       if (supabase) {
-        const insertData = {
-          tier_id: tierId,
-          name: form.name.trim(),
-          email: form.email.trim().toLowerCase(),
-          phone: form.phone.trim(),
-          total_price: totalPrice,
-        };
-        if (isOffline) {
-          insertData.months = selectedCourses.length;
-          insertData.admin_notes = selectedCourses.join(", ");
+        if (isDfy) {
+          const { error } = await supabase.from("contact_inquiries").insert({
+            name: form.name.trim(),
+            email: form.email.trim().toLowerCase(),
+            phone: form.phone.trim(),
+            subject: `구축 대행 상담 - ${selectedPackage}`,
+            message: form.message.trim() || `패키지: ${selectedPackage}`,
+            inquiry_type: "dfy",
+          });
+          if (error) throw error;
+        } else {
+          const insertData = {
+            tier_id: tierId === "bootcamp" ? "offline" : tierId === "pro" ? "offline" : tierId,
+            name: form.name.trim(),
+            email: form.email.trim().toLowerCase(),
+            phone: form.phone.trim(),
+            total_price: totalPrice,
+            admin_notes: tierId === "bootcamp" ? "8주 부트캠프 신청" : tierId === "pro" ? "프로 멤버십 신청" : null,
+          };
+          const { error } = await supabase.from("membership_applications").insert(insertData);
+          if (error) throw error;
         }
-        const { error } = await supabase.from("membership_applications").insert(insertData);
-        if (error) throw error;
       }
       setSuccess(true);
     } catch (err) {
@@ -108,8 +127,8 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
   };
 
   const handleClose = () => {
-    setForm({ name: "", email: "", phone: "" });
-    setSelectedCourses([]);
+    setForm({ name: "", email: "", phone: "", message: "" });
+    setSelectedPackage("");
     setErrors({});
     setSuccess(false);
     setSubmitError("");
@@ -121,141 +140,158 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
     <Modal isOpen={isOpen} onClose={handleClose} title={config.title}>
       {success ? (
         <div style={{ textAlign: "center", padding: "20px 0" }}>
-          <div style={{ fontSize: "48px", marginBottom: "12px" }}>💸</div>
-          <h4 style={{
-            fontFamily: "'Noto Serif KR', serif", fontSize: "20px",
-            fontWeight: 700, color: "#1B4332", marginBottom: "16px",
-          }}>
-            입금 요청
-          </h4>
-
-          <div style={{
-            background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-            borderRadius: "12px", padding: "24px", marginBottom: "16px",
-            textAlign: "center",
-          }}>
-            <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "10px", letterSpacing: "0.1em" }}>입금 계좌</div>
-            <div style={{ fontSize: "22px", fontWeight: 800, color: "#fff", marginBottom: "6px" }}>
-              카카오뱅크 3333-06-4749542
-            </div>
-            <div style={{ fontSize: "15px", fontWeight: 600, color: "#B7E4C7", marginBottom: "12px" }}>예금주: 임솔</div>
-
-            {isOffline ? (
-              <>
-                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>
-                  선택 수업 {selectedCourses.length}건
-                </div>
-                <div style={{
-                  fontSize: "22px", fontWeight: 800, color: "#FEE500",
-                  background: "rgba(254,229,0,0.1)", padding: "8px 16px",
-                  borderRadius: "8px", display: "inline-block",
-                }}>
-                  ₩{formatPrice(totalPrice)}
-                </div>
-              </>
-            ) : config.yearlyPrice ? (
-              <>
-                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>1년 멤버십 · 정기결제 할인가</div>
-                <div style={{
-                  fontSize: "26px", fontWeight: 800, color: "#FEE500",
-                  background: "rgba(254,229,0,0.1)", padding: "8px 16px",
-                  borderRadius: "8px", display: "inline-block",
-                }}>
-                  ₩{formatPrice(config.price)}<span style={{ fontSize: "13px", color: "#B7E4C7" }}>/월</span>
-                </div>
-                <div style={{ fontSize: "11px", color: "#95D5B2", marginTop: "6px" }}>
-                  1년 멤버십 ₩{formatPrice(config.yearlyPrice)}
-                </div>
-              </>
-            ) : (
-              <div style={{
-                fontSize: "22px", fontWeight: 800, color: "#FEE500",
-                background: "rgba(254,229,0,0.1)", padding: "8px 16px",
-                borderRadius: "8px", display: "inline-block",
+          {isDfy ? (
+            /* DFY 상담 접수 완료 */
+            <>
+              <div style={{ fontSize: "48px", marginBottom: "12px" }}>🔧</div>
+              <h4 style={{
+                fontFamily: "'Noto Serif KR', serif", fontSize: "20px",
+                fontWeight: 700, color: "#1B4332", marginBottom: "16px",
+              }}>상담 요청 접수 완료!</h4>
+              <p style={{
+                fontSize: "14px", color: "#5A6A5E", lineHeight: 1.8,
+                marginBottom: "24px",
               }}>
-                ₩{formatPrice(config.price)}<span style={{ fontSize: "13px", color: "#B7E4C7" }}>/월</span>
+                빠른 시일 내에 연락드리겠습니다.<br />
+                30분 무료 상담을 통해 맞춤 견적을 안내해 드립니다.
+              </p>
+              <button onClick={handleClose} style={{
+                width: "100%", padding: "14px", borderRadius: "12px",
+                background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                color: "#fff", fontSize: "15px", fontWeight: 700,
+                border: "none", cursor: "pointer",
+              }}>확인</button>
+            </>
+          ) : (
+            /* 멤버십/부트캠프 입금 요청 */
+            <>
+              <div style={{ fontSize: "48px", marginBottom: "12px" }}>💸</div>
+              <h4 style={{
+                fontFamily: "'Noto Serif KR', serif", fontSize: "20px",
+                fontWeight: 700, color: "#1B4332", marginBottom: "16px",
+              }}>입금 요청</h4>
+
+              <div style={{
+                background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                borderRadius: "12px", padding: "24px", marginBottom: "16px", textAlign: "center",
+              }}>
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "10px", letterSpacing: "0.1em" }}>입금 계좌</div>
+                <div style={{ fontSize: "22px", fontWeight: 800, color: "#fff", marginBottom: "6px" }}>
+                  카카오뱅크 3333-06-4749542
+                </div>
+                <div style={{ fontSize: "15px", fontWeight: 600, color: "#B7E4C7", marginBottom: "12px" }}>예금주: 임솔</div>
+
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px" }}>{config.priceLabel}</div>
+                {config.firstMonthDiscount ? (
+                  <>
+                    <div style={{
+                      fontSize: "26px", fontWeight: 800, color: "#FEE500",
+                      background: "rgba(254,229,0,0.1)", padding: "8px 16px",
+                      borderRadius: "8px", display: "inline-block",
+                    }}>
+                      ₩{formatPrice(config.price)}<span style={{ fontSize: "13px", color: "#B7E4C7" }}>/월</span>
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#95D5B2", marginTop: "6px" }}>
+                      첫 달 50% 할인 ₩{formatPrice(Math.round(config.price / 2))} (레터 구독자)
+                    </div>
+                  </>
+                ) : (
+                  <div style={{
+                    fontSize: "26px", fontWeight: 800, color: "#FEE500",
+                    background: "rgba(254,229,0,0.1)", padding: "8px 16px",
+                    borderRadius: "8px", display: "inline-block",
+                  }}>
+                    ₩{formatPrice(config.price)}
+                    {tierId !== "bootcamp" && <span style={{ fontSize: "13px", color: "#B7E4C7" }}>/월</span>}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText("3333-06-4749542");
-              setCopied(true);
-              setTimeout(() => setCopied(false), 2000);
-            }}
-            style={{
-              width: "100%", padding: "14px", borderRadius: "12px",
-              background: copied ? "#2D6A4F" : "linear-gradient(135deg, #1B4332, #2D6A4F)",
-              color: "#fff", fontSize: "15px", fontWeight: 700,
-              border: "none", cursor: "pointer", marginBottom: "10px",
-              transition: "all 0.2s",
-            }}
-          >
-            {copied ? "✅ 계좌번호 복사 완료!" : "📋 계좌번호 복사하기"}
-          </button>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("3333-06-4749542");
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                style={{
+                  width: "100%", padding: "14px", borderRadius: "12px",
+                  background: copied ? "#2D6A4F" : "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                  color: "#fff", fontSize: "15px", fontWeight: 700,
+                  border: "none", cursor: "pointer", marginBottom: "10px",
+                  transition: "all 0.2s",
+                }}
+              >
+                {copied ? "✅ 계좌번호 복사 완료!" : "📋 계좌번호 복사하기"}
+              </button>
 
-          <p style={{
-            fontSize: "13px", color: "#5A6A5E", lineHeight: 1.8,
-            marginBottom: "16px", textAlign: "center",
-          }}>
-            입금 확인 후 신청 완료 문자를 보내드립니다!
-          </p>
+              <p style={{
+                fontSize: "13px", color: "#5A6A5E", lineHeight: 1.8,
+                marginBottom: "16px", textAlign: "center",
+              }}>
+                입금 확인 후 신청 완료 문자를 보내드립니다!
+              </p>
 
-          <button onClick={handleClose} style={{
-            width: "100%", padding: "14px", borderRadius: "12px",
-            background: "#F5F4EF", color: "#3A4A3E",
-            fontSize: "15px", fontWeight: 600,
-            border: "1px solid #E8E5DC", cursor: "pointer",
-          }}>
-            확인
-          </button>
+              <button onClick={handleClose} style={{
+                width: "100%", padding: "14px", borderRadius: "12px",
+                background: "#F5F4EF", color: "#3A4A3E",
+                fontSize: "15px", fontWeight: 600,
+                border: "1px solid #E8E5DC", cursor: "pointer",
+              }}>확인</button>
+            </>
+          )}
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
           <p style={{ fontSize: "14px", color: "#6B7B6E", marginBottom: "8px", lineHeight: 1.6 }}>
             {config.desc}
           </p>
-          <p style={{
-            fontSize: "12px", color: "#5A6A5E", marginBottom: "16px",
-            background: "#F0FAF4", padding: "8px 12px", borderRadius: "8px",
-            lineHeight: 1.5,
-          }}>
-            신청 시 등급은 <strong style={{ color: "#1B4332" }}>Lv. {config.grade}</strong>로 표시됩니다.
-          </p>
+          {config.grade && (
+            <p style={{
+              fontSize: "12px", color: "#5A6A5E", marginBottom: "16px",
+              background: "#F0FAF4", padding: "8px 12px", borderRadius: "8px", lineHeight: 1.5,
+            }}>
+              신청 시 등급은 <strong style={{ color: "#1B4332" }}>Lv. {config.grade}</strong>로 표시됩니다.
+            </p>
+          )}
 
-          {/* 온라인: 월 금액 강조 + 연 금액 작게 */}
-          {config.yearlyPrice && (
+          {/* 가격 표시 (DFY 제외) */}
+          {config.price && (
             <div style={{
               background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-              borderRadius: "12px", padding: "20px", marginBottom: "20px",
-              textAlign: "center",
+              borderRadius: "12px", padding: "20px", marginBottom: "20px", textAlign: "center",
             }}>
-              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px", letterSpacing: "0.1em" }}>1년 멤버십 · 정기결제 할인가</div>
+              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px", letterSpacing: "0.1em" }}>
+                {config.priceLabel}
+              </div>
               <div style={{ fontSize: "36px", fontWeight: 800, color: "#fff" }}>
-                ₩{formatPrice(config.price)}<span style={{ fontSize: "15px", fontWeight: 500, color: "#B7E4C7" }}>/월</span>
+                ₩{formatPrice(config.price)}
+                {tierId !== "bootcamp" && <span style={{ fontSize: "15px", fontWeight: 500, color: "#B7E4C7" }}>/월</span>}
               </div>
-              <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
-                1년 멤버십 ₩{formatPrice(config.yearlyPrice)}
-              </div>
+              {config.firstMonthDiscount && (
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
+                  레터 구독자 첫 달 50% → ₩{formatPrice(Math.round(config.price / 2))}
+                </div>
+              )}
+              {tierId === "bootcamp" && (
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
+                  온라인 주 2회 · 8주 과정 · 30명 한정
+                </div>
+              )}
             </div>
           )}
 
-          {/* 오프라인: 수업 선택 체크박스 */}
-          {isOffline && (
+          {/* DFY 패키지 선택 */}
+          {isDfy && config.packages && (
             <div style={{ marginBottom: "20px" }}>
               <div style={{ fontSize: "13px", fontWeight: 600, color: "#3A4A3E", marginBottom: "10px" }}>
-                수강할 수업 선택 <span style={{ color: "#D32F2F" }}>*</span>
-                <span style={{ fontSize: "11px", fontWeight: 400, color: "#8A9A8E", marginLeft: "8px" }}>
-                  ₩{formatPrice(config.pricePerClass)} / 건
-                </span>
+                관심 패키지 <span style={{ color: "#D32F2F" }}>*</span>
               </div>
-              {config.courses.map((course) => {
-                const checked = selectedCourses.includes(course.id);
+              {config.packages.map((pkg) => {
+                const checked = selectedPackage === pkg.id;
                 return (
                   <label
-                    key={course.id}
-                    onClick={() => toggleCourse(course.id)}
+                    key={pkg.id}
+                    onClick={() => setSelectedPackage(pkg.id)}
                     style={{
                       display: "flex", alignItems: "center", gap: "10px",
                       padding: "12px 14px", marginBottom: "8px",
@@ -266,60 +302,36 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
                     }}
                   >
                     <input
-                      type="checkbox"
+                      type="radio"
                       checked={checked}
                       onChange={() => {}}
                       style={{ accentColor: "#2D6A4F", width: "18px", height: "18px" }}
                     />
-                    <span style={{ fontSize: "18px" }}>{course.emoji}</span>
                     <span style={{ fontSize: "14px", fontWeight: checked ? 700 : 500, color: checked ? "#1B4332" : "#5A6A5E" }}>
-                      {course.name}
+                      {pkg.name}
                     </span>
                   </label>
                 );
               })}
-              {errors.courses && (
-                <div style={{ fontSize: "12px", color: "#D32F2F", marginTop: "4px" }}>{errors.courses}</div>
+              {errors.packages && (
+                <div style={{ fontSize: "12px", color: "#D32F2F", marginTop: "4px" }}>{errors.packages}</div>
               )}
-
-              <div style={{
-                background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-                borderRadius: "12px", padding: "16px", marginTop: "12px",
-                textAlign: "center",
-              }}>
-                <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "4px" }}>
-                  {selectedCourses.length}건 선택
-                </div>
-                <div style={{ fontSize: "28px", fontWeight: 800, color: "#fff" }}>
-                  ₩{formatPrice(totalPrice)}
-                </div>
-                <div style={{ fontSize: "11px", color: "#95D5B2", marginTop: "6px" }}>
-                  현재 커리큘럼 4개 · 추후 업데이트 예정
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* 파트너: 월 정기결제 */}
-          {!config.yearlyPrice && !isOffline && (
-            <div style={{
-              background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-              borderRadius: "12px", padding: "20px", marginBottom: "20px",
-              textAlign: "center",
-            }}>
-              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "6px", letterSpacing: "0.1em" }}>{config.priceLabel}</div>
-              <div style={{ fontSize: "32px", fontWeight: 800, color: "#fff" }}>
-                ₩{formatPrice(config.price)}<span style={{ fontSize: "15px", fontWeight: 500, color: "#B7E4C7" }}>/월</span>
-              </div>
-              <div style={{ fontSize: "11px", color: "#95D5B2", marginTop: "8px" }}>
-                매월 자동결제 · 언제든 해지 가능
-              </div>
             </div>
           )}
 
           <FormField label="이름" value={form.name} onChange={(v) => setField("name", v)} error={errors.name} required placeholder="홍길동" />
           <FormField label="이메일" type="email" value={form.email} onChange={(v) => setField("email", v)} error={errors.email} required placeholder="example@email.com" />
           <FormField label="연락처" type="tel" value={form.phone} onChange={(v) => setField("phone", v)} error={errors.phone} required placeholder="010-8531-9531" />
+
+          {isDfy && (
+            <FormField
+              label="추가 요청사항"
+              type="textarea"
+              value={form.message}
+              onChange={(v) => setField("message", v)}
+              placeholder="자동화하고 싶은 업무나 현재 상황을 간단히 적어주세요 (선택)"
+            />
+          )}
 
           {submitError && (
             <div style={{
@@ -332,25 +344,25 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
 
           <button
             type="submit"
-            disabled={loading || (isOffline && selectedCourses.length === 0)}
+            disabled={loading || (isDfy && !selectedPackage)}
             style={{
               width: "100%", padding: "14px", borderRadius: "12px",
-              background: (loading || (isOffline && selectedCourses.length === 0))
+              background: (loading || (isDfy && !selectedPackage))
                 ? "#95D5B2"
                 : "linear-gradient(135deg, #1B4332, #2D6A4F)",
               color: "#fff", fontSize: "15px", fontWeight: 700,
               border: "none",
-              cursor: (loading || (isOffline && selectedCourses.length === 0)) ? "not-allowed" : "pointer",
+              cursor: (loading || (isDfy && !selectedPackage)) ? "not-allowed" : "pointer",
               marginTop: "8px",
             }}
           >
             {loading
               ? "처리 중..."
-              : isOffline
-                ? selectedCourses.length > 0
-                  ? `${selectedCourses.length}건 · ₩${formatPrice(totalPrice)} 신청하기`
-                  : "수업을 선택해주세요"
-                : `₩${formatPrice(config.price)}/월 정기결제 신청`
+              : isDfy
+                ? "무료 상담 신청하기"
+                : tierId === "bootcamp"
+                  ? `₩${formatPrice(config.price)} 부트캠프 신청하기`
+                  : `₩${formatPrice(config.price)}/월 정기결제 신청`
             }
           </button>
         </form>

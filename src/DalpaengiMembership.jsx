@@ -32,48 +32,48 @@ const TIERS = [
     emoji: "💻",
     name: "온라인 멤버십",
     grade: "달팽이 친구",
-    subtitle: "다양한 AI 자동화 & 수익화 구조를 알아봅니다",
-    price: "₩9,900",
-    priceNote: "월 / 정기결제 시 할인가 적용",
+    subtitle: "주간 라이브 + 커뮤니티 + 템플릿으로 AI 자동화를 익힙니다",
+    price: "₩29,900",
+    priceNote: "월 / 첫 달 50% 할인 (레터 구독자)",
     badge: "Lv.2",
     badgeColor: "#2D6A4F",
-    schedule: "월 4회 · 매주 화요일 10:00~12:00 (2시간)",
-    goal: "실제 돌아가는 자동화 시스템을 눈으로 확인",
+    schedule: "주 1회 라이브 + 월 1회 Q&A",
+    goal: "실제 돌아가는 자동화 시스템을 눈으로 확인하고 따라 만든다",
     features: [
-      "매주 2시간 라이브 시연 세션",
-      "실제 운영 중인 자동화 구조 공개",
-      "n8n · Supabase · Claude 활용 사례 시연",
-      '"이런 게 된다" — 가능성과 구조를 보여주는 시간',
-      "질의응답 & 커뮤니티 접근",
+      "주 1회 라이브 시연 세션 (녹화본 제공)",
+      "전용 커뮤니티 (카카오 오픈채팅 / 디스코드)",
+      "월간 자동화 템플릿 팩 (n8n JSON + 구글 시트)",
+      "월 1회 Q&A 라이브 (질의응답 전용)",
+      "신규 AI 도구 얼리 액세스 리뷰",
+      "부트캠프 · 오프라인 10% 할인",
     ],
     bonuses: ["첫 30일 집중 온보딩 커리큘럼"],
     cta: "온라인 멤버십 시작",
     highlight: false,
   },
   {
-    id: "offline",
+    id: "pro",
     level: "Lv.3",
     emoji: "🔧",
-    name: "오프라인 멤버십",
+    name: "프로 멤버십",
     grade: "달팽이 주민",
-    subtitle: "AI 수익화 · 자동화 시스템을 만들어 봅니다",
-    price: "₩99,000",
-    priceNote: "월 / 정기결제 시 할인가 적용",
+    subtitle: "소그룹 코칭 + 오프라인 실습으로 직접 만들고 결과를 냅니다",
+    price: "₩199,000",
+    priceNote: "월 / 정기결제",
     badge: "Lv.3",
     badgeColor: "#1B4332",
-    schedule: "월 1회 · 오프라인 원데이 모임",
+    schedule: "월 1회 오프라인 + 월 2회 소그룹 코칭",
     goal: "현장에서 직접 만들고, 완성된 결과물을 가져간다",
     features: [
-      "팔리는 랜딩페이지 구축 — 바이브 코딩",
-      "나 대신 일하는 모객 시스템 — AI 에이전트 설계",
-      "운영관리 AI 효율화 — 관리자 페이지 고도화",
-      "마케터 100명 만드는 법 — 파트너십 시스템",
-      "이론 + 실습 병행, 당일 결과물 완성",
-      "120평 CNC 공방 현장 워크숍",
-      "온라인 멤버십 전체 포함",
+      "온라인 멤버십 전체 혜택 포함",
+      "월 1회 오프라인 종일 워크샵 (120평 CNC 공방)",
+      "월 2회 소그룹 코칭 (5명 단위, 화상 60분)",
+      "구축 대행 15% 할인",
+      "파트너 멤버십 우선 대기 자격",
+      "전용 네트워킹 채널",
     ],
     bonuses: ["펜션 20% 할인", "공방 시설 무료 이용"],
-    cta: "오프라인 멤버십 신청",
+    cta: "프로 멤버십 신청",
     highlight: true,
   },
   {
@@ -82,50 +82,88 @@ const TIERS = [
     emoji: "🚀",
     name: "파트너 멤버십",
     grade: "달팽이 가족",
-    subtitle: "AI 수익화 · 자동화 시스템을 만들고 활용하여 지속 가능한 자동화 수익을 만들어봅니다!",
+    subtitle: "1:1 코칭으로 자동화 수익 시스템을 완전히 구축합니다",
     price: "₩990,000",
-    priceNote: "월 / 정기결제 시 할인가 적용",
+    priceNote: "월 / 20명 한정 (대기 리스트)",
     badge: "Lv.4",
     badgeColor: "#081C15",
-    schedule: "월 4회 · 주 1회 × 8시간 (월 32시간)",
+    schedule: "주 1회 1:1 코칭 (60분) + 실시간 QA",
     goal: "수익모델 설계부터 마케팅 시스템까지 완전 구축",
     features: [
-      "주 1회 8시간 밀착 원데이 세션",
-      "나만의 수익모델 구조 설계 & 검증",
-      "마케팅 자동화 시스템 직접 구축",
-      "랜딩페이지 + 모객 + 파트너십 올인원",
-      "n8n · Supabase · 웹사이트 세팅 동행",
-      "온라인 + 오프라인 멤버십 전체 포함",
+      "주 1회 1:1 화상 코칭 (60분)",
+      "전용 카톡 채널 실시간 QA",
+      "자동화 시스템 공동 설계",
+      "구축 대행 20% 할인",
+      "분기 1회 파트너 전용 오프라인 네트워킹",
+      "온라인 + 프로 멤버십 전체 포함",
     ],
-    bonuses: ["펜션 무료 이용", "공방 시설 무료 이용", "수익 분배 파트너십 참여"],
+    bonuses: ["펜션 무료 이용", "공방 시설 무료 이용", "수익 분배 파트너십 참여 (최대 40%)"],
     cta: "파트너 멤버십 문의",
     highlight: false,
   },
+];
+
+const BOOTCAMP = {
+  emoji: "🎓",
+  name: "8주 부트캠프",
+  subtitle: "8주 동안 내 사업에 맞는 자동화 시스템을 처음부터 끝까지 만듭니다",
+  price: "₩990,000",
+  priceNote: "1인 / 30명 한정 · 연 4기 운영",
+  schedule: "온라인 주 2회 (화·목 저녁 8시, 90분) + 오프라인 OT/졸업식",
+  nextTerm: "2기 모집 중 (6월 개강)",
+  curriculum: [
+    { week: "1주차", title: "자동화 설계 사고법", task: "내 사업 자동화 포인트 10개 도출" },
+    { week: "2주차", title: "n8n 기초 + 첫 워크플로우", task: "구글 시트 → SMS 자동 발송" },
+    { week: "3주차", title: "Supabase 데이터베이스", task: "고객 DB 설계 + API 연동" },
+    { week: "4주차", title: "고객 여정 자동화", task: "예약 → 안내 → 감사 전체 플로우" },
+    { week: "5주차", title: "마케팅 자동화", task: "콘텐츠 자동 생성 + 예약 게시" },
+    { week: "6주차", title: "AI 에이전트 설계", task: "Claude API 활용 자동 응답 시스템" },
+    { week: "7주차", title: "대시보드 + 모니터링", task: "Vercel 배포 + 실시간 현황판" },
+    { week: "8주차", title: "최종 프로젝트 발표", task: "내 사업에 적용한 자동화 시스템 시연" },
+  ],
+  benefits: [
+    "온라인 멤버십 3개월 무료 포함",
+    "온라인 멤버십 회원 10% 할인 (89.1만원)",
+    "5명 이상 단체 등록 20% 할인",
+    "졸업 후 프로 멤버십 전환 우대",
+  ],
+};
+
+const DFY_PACKAGES = [
   {
-    id: "custom",
-    level: "Lv.5",
-    emoji: "👑",
-    name: "자동화 시스템 구축",
-    subtitle: "자동화 인생 10년의 총 노하우로 셋팅해드립니다",
-    price: "커스텀",
-    priceNote: "금액 협의",
-    badge: "SOLD OUT",
-    badgeColor: "#D32F2F",
-    schedule: "일정 협의 · 1:1 맞춤 셋팅",
-    goal: "당신의 비즈니스에 맞는 자동화 시스템을 통째로 구축",
-    features: [
-      "비즈니스 분석 & 자동화 설계",
-      "n8n · Supabase · AI 에이전트 풀 셋팅",
-      "랜딩페이지 + 모객 + CRM 올인원 구축",
-      "운영 매뉴얼 & 유지보수 가이드 제공",
-      "구축 완료 후 1개월 무상 지원",
-      "달팽이 전 등급 혜택 포함",
-    ],
-    bonuses: ["펜션 무료 이용", "공방 시설 무료 이용", "평생 커뮤니티 접근"],
-    cta: "SOLD OUT",
-    highlight: false,
-    soldOut: true,
+    name: "스타터",
+    emoji: "⚡",
+    price: "300만원",
+    desc: "SMS/카톡 자동 발송 + 구글 시트 연동",
+    target: "1인 사업자",
+    includes: ["SMS·카톡 자동 발송", "구글 시트 연동", "기본 n8n 워크플로우", "1개월 무상 AS"],
   },
+  {
+    name: "비즈니스",
+    emoji: "🏢",
+    price: "500만원",
+    desc: "예약 시스템 + 고객 관리 + 자동 안내",
+    target: "숙박 · F&B · 학원",
+    popular: true,
+    includes: ["예약 시스템 구축", "고객 관리 CRM", "자동 안내 메시지", "n8n + Supabase 연동", "1개월 무상 AS"],
+  },
+  {
+    name: "프리미엄",
+    emoji: "👑",
+    price: "800만원",
+    desc: "풀 자동화 (예약+정산+마케팅+대시보드)",
+    target: "중소기업",
+    includes: ["예약+정산 자동화", "마케팅 자동화", "실시간 대시보드", "n8n + Supabase + AI", "인수인계 교육 (1시간)", "1개월 무상 AS"],
+  },
+];
+
+const DIGITAL_PRODUCTS = [
+  { emoji: "🎬", name: "n8n 자동화 입문 (3시간)", price: "₩49,000", type: "VOD 강의" },
+  { emoji: "🎬", name: "소상공인 AI 실전 활용 (5시간)", price: "₩79,000", type: "VOD 강의" },
+  { emoji: "📦", name: "SMS 자동 발송 스타터 팩", price: "₩29,000", type: "템플릿 팩" },
+  { emoji: "📦", name: "예약 관리 올인원 팩", price: "₩49,000", type: "템플릿 팩" },
+  { emoji: "📦", name: "SNS 콘텐츠 자동화 팩", price: "₩39,000", type: "템플릿 팩" },
+  { emoji: "🏫", name: "AI 자동화 체험 워크샵 (3시간)", price: "₩150만원~", type: "기업 교육" },
 ];
 
 const CURRICULUM = [
@@ -174,10 +212,15 @@ const PROOF_ITEMS = [
 
 const FUNNEL_STEPS = [
   { emoji: "📬", label: "Lv.1 달팽이레터", sub: '"이런 게 있다" — AI 트렌드 파악', price: "무료", color: "#95D5B2" },
-  { emoji: "💻", label: "Lv.2 온라인 멤버십", sub: '"이런 게 된다" — 경험 & 인사이트 공유 (등급: 달팽이 친구)', price: "₩9,900/월", color: "#52B788" },
-  { emoji: "🔧", label: "Lv.3 오프라인 멤버십", sub: '"직접 만든다" — 100% 실습 & 결과물 (등급: 달팽이 주민)', price: "₩99,000/월", color: "#2D6A4F" },
-  { emoji: "🚀", label: "Lv.4 파트너 멤버십", sub: '"시스템을 구축한다" — 수익모델 완성 (등급: 달팽이 가족)', price: "₩990,000/월", color: "#1B4332" },
-  { emoji: "👑", label: "Lv.5 시스템 구축", sub: '"통째로 맡긴다" — 풀 셋팅 서비스', price: "SOLD OUT", color: "#0D1F17" },
+  { emoji: "💻", label: "Lv.2 온라인 멤버십", sub: '"이런 게 된다" — 라이브 + 커뮤니티 + 템플릿 (달팽이 친구)', price: "₩29,900/월", color: "#52B788" },
+  { emoji: "🔧", label: "Lv.3 프로 멤버십", sub: '"직접 만든다" — 소그룹 코칭 + 오프라인 실습 (달팽이 주민)', price: "₩199,000/월", color: "#2D6A4F" },
+  { emoji: "🚀", label: "Lv.4 파트너 멤버십", sub: '"시스템을 구축한다" — 1:1 코칭 + 수익모델 완성 (달팽이 가족)', price: "₩990,000/월", color: "#1B4332" },
+  { emoji: "🔧", label: "구축 대행 (DFY)", sub: '"통째로 맡긴다" — 자동화 시스템 풀 셋팅', price: "300~800만/건", color: "#0D1F17" },
+];
+
+const SIDE_FUNNELS = [
+  { emoji: "🎓", label: "8주 부트캠프", sub: "분기 1회 · 30명 한정 · 집중 실습", price: "₩990,000/인" },
+  { emoji: "📦", label: "디지털 상품", sub: "VOD 강의 · 템플릿 팩 · 기업 교육", price: "₩29,000~" },
 ];
 
 const RUNNING_SYSTEMS = [
@@ -190,12 +233,12 @@ const RUNNING_SYSTEMS = [
 ];
 
 const MEMBER_PERKS = [
-  { icon: "🏡", title: "독채 펜션 할인", desc: "오프라인 멤버 20% / 파트너 멤버 무료 이용", tier: "오프라인+" },
-  { icon: "🔧", title: "CNC 공방 무료 이용", desc: "120평 공방 시설 & 장비 자유 이용", tier: "오프라인+" },
+  { icon: "🏡", title: "독채 펜션 할인", desc: "프로 멤버 20% / 파트너 멤버 무료 이용", tier: "프로+" },
+  { icon: "🔧", title: "CNC 공방 무료 이용", desc: "120평 공방 시설 & 장비 자유 이용", tier: "프로+" },
   { icon: "🛠️", title: "신규 AI 도구 우선 체험", desc: "새로운 자동화 도구 출시 시 멤버 우선 공개", tier: "온라인+" },
   { icon: "💰", title: "수익 분배 파트너십", desc: "멤버 소개 시 반복 수익 분배 (최대 40%)", tier: "파트너" },
-  { icon: "👥", title: "소수 정예 커뮤니티", desc: "20명 한정 비공개 그룹 — 깊은 네트워킹", tier: "오프라인+" },
-  { icon: "📋", title: "수익모델 상호 리뷰", desc: "멤버 간 비즈니스 모델 피드백 & 검증", tier: "파트너" },
+  { icon: "👥", title: "소그룹 코칭", desc: "5명 단위 밀착 코칭 — 월 2회 화상 60분", tier: "프로+" },
+  { icon: "📋", title: "구축 대행 할인", desc: "프로 15% · 파트너 20% 할인 적용", tier: "프로+" },
 ];
 
 const FAQ_ITEMS = [
@@ -205,19 +248,27 @@ const FAQ_ITEMS = [
   },
   {
     q: "온라인 멤버십만으로도 충분한가요?",
-    a: "온라인 멤버십은 '이런 게 된다'를 눈으로 확인하는 단계입니다. 직접 결과물을 만들고 싶다면 오프라인, 수익 시스템을 완전히 구축하고 싶다면 파트너 멤버십을 추천합니다.",
+    a: "온라인 멤버십은 라이브 시연, 커뮤니티, 템플릿으로 충분히 배울 수 있습니다. 직접 코칭 받으며 결과물을 만들고 싶다면 프로, 수익 시스템을 완전히 구축하고 싶다면 파트너 멤버십을 추천합니다.",
   },
   {
-    q: "정기결제 할인은 어떻게 적용되나요?",
-    a: "월 정기결제로 신청하시면 할인가가 자동 적용됩니다. 언제든 해지 가능하며, 해지 시 다음 결제부터 중단됩니다.",
+    q: "기존 9,900원에서 29,900원으로 왜 인상되었나요?",
+    a: "주간 라이브(녹화본 제공), 전용 커뮤니티, 월간 자동화 템플릿 팩, Q&A 라이브 등 기존 대비 5배 이상의 가치가 추가되었습니다. 레터 구독자는 첫 달 50% 할인(14,950원)으로 시작할 수 있습니다.",
+  },
+  {
+    q: "프로 멤버십과 부트캠프의 차이가 뭔가요?",
+    a: "프로 멤버십은 월 구독형으로 꾸준히 소그룹 코칭과 오프라인 워크샵에 참여합니다. 부트캠프는 8주 집중 과정으로, 내 사업에 맞는 자동화 시스템을 처음부터 끝까지 완성하는 프로그램입니다.",
+  },
+  {
+    q: "구축 대행은 어떻게 진행되나요?",
+    a: "30분 무료 상담 → 요구사항 정의 → 견적 발행 → 계약금 50% → 구축 (2~4주) → 인수인계 교육 → 잔금 50% 순으로 진행됩니다. 멤버십 회원은 15~20% 할인이 적용됩니다.",
   },
   {
     q: "완주군까지 가야 하나요?",
-    a: "오프라인/파트너 멤버십은 월 1~4회 완주군 현장에서 진행됩니다. 120평 CNC 공방과 실제 운영 중인 시스템을 직접 보는 것이 핵심 가치입니다. 온라인 멤버십은 어디서든 참여 가능합니다.",
+    a: "프로 멤버십 오프라인 워크샵은 월 1회 완주군에서 진행됩니다. 소그룹 코칭은 화상으로 진행되며, 온라인 멤버십은 어디서든 참여 가능합니다.",
   },
   {
     q: "환불 규정은 어떻게 되나요?",
-    a: "첫 세션 참여 후 만족하지 못하시면 전액 환불해 드립니다. 약정 기간 중 해지 시 남은 기간에 대해 위약금 없이 정지 처리됩니다.",
+    a: "7일 내 전액 환불 원칙입니다. 첫 세션 참여 후 만족하지 못하시면 전액 환불해 드립니다. 약정 기간 중 해지 시 남은 기간에 대해 위약금 없이 정지 처리됩니다.",
   },
   {
     q: "파트너 수익 분배는 어떻게 이루어지나요?",
@@ -258,28 +309,20 @@ function FadeIn({ children, delay = 0 }) {
 
 function CurriculumCard({ item, index }) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = useCallback(() => {
-    setIsOpen(prev => !prev);
-  }, []);
+  const handleClick = useCallback(() => setIsOpen(prev => !prev), []);
 
   return (
     <FadeIn delay={index * 0.12}>
       <div
-        role="button"
-        tabIndex={0}
+        role="button" tabIndex={0}
         onClick={handleClick}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleClick(); }}
         style={{
-          background: "#fff",
-          borderRadius: "18px",
-          padding: "28px 24px",
+          background: "#fff", borderRadius: "18px", padding: "28px 24px",
           border: isOpen ? "1.5px solid #2D6A4F" : "1px solid #E8E5DC",
-          cursor: "pointer",
-          transition: "all 0.3s ease",
+          cursor: "pointer", transition: "all 0.3s ease",
           boxShadow: isOpen ? "0 12px 40px rgba(27,67,50,0.1)" : "0 2px 12px rgba(0,0,0,0.04)",
-          userSelect: "none",
-          outline: "none",
+          userSelect: "none", outline: "none",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
@@ -287,61 +330,41 @@ function CurriculumCard({ item, index }) {
             fontSize: "12px", fontWeight: 800, color: "#2D6A4F",
             background: "rgba(45,106,79,0.08)", borderRadius: "8px",
             padding: "6px 10px", flexShrink: 0, letterSpacing: "0.05em",
-          }}>
-            {item.num}
-          </div>
+          }}>{item.num}</div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-              <span style={{
-                fontFamily: "'Noto Serif KR', serif",
-                fontSize: "18px", fontWeight: 700, color: "#1B1B18",
-              }}>
+              <span style={{ fontFamily: "'Noto Serif KR', serif", fontSize: "18px", fontWeight: 700, color: "#1B1B18" }}>
                 {item.icon} {item.title}
               </span>
               <span style={{
                 fontSize: "11px", fontWeight: 700, color: "#40916C",
-                background: "rgba(64,145,108,0.1)", padding: "3px 10px",
-                borderRadius: "100px",
-              }}>
-                {item.tag}
-              </span>
+                background: "rgba(64,145,108,0.1)", padding: "3px 10px", borderRadius: "100px",
+              }}>{item.tag}</span>
             </div>
           </div>
           <div style={{
             fontSize: "20px", color: isOpen ? "#2D6A4F" : "#B0B8B2",
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s ease, color 0.3s ease",
-            flexShrink: 0, lineHeight: 1,
-          }}>
-            ▾
-          </div>
+            transition: "transform 0.3s ease, color 0.3s ease", flexShrink: 0, lineHeight: 1,
+          }}>▾</div>
         </div>
-        <p style={{
-          fontSize: "14px", color: "#5A6A5E", lineHeight: 1.7,
-          margin: "12px 0 0 0", paddingLeft: "42px",
-        }}>
+        <p style={{ fontSize: "14px", color: "#5A6A5E", lineHeight: 1.7, margin: "12px 0 0 0", paddingLeft: "42px" }}>
           {item.desc}
         </p>
         <div style={{
-          overflow: "hidden",
-          maxHeight: isOpen ? "300px" : "0px",
-          opacity: isOpen ? 1 : 0,
-          transition: "max-height 0.4s ease, opacity 0.3s ease 0.05s",
-          paddingLeft: "42px",
+          overflow: "hidden", maxHeight: isOpen ? "300px" : "0px", opacity: isOpen ? 1 : 0,
+          transition: "max-height 0.4s ease, opacity 0.3s ease 0.05s", paddingLeft: "42px",
         }}>
           <div style={{
             display: "flex", gap: "8px", flexWrap: "wrap",
-            marginTop: "16px", paddingTop: "16px",
-            borderTop: "1px dashed #D4D1C7",
+            marginTop: "16px", paddingTop: "16px", borderTop: "1px dashed #D4D1C7",
           }}>
             {item.details.map((d, i) => (
               <span key={i} style={{
                 fontSize: "13px", color: "#2D6A4F", fontWeight: 600,
                 background: "rgba(45,106,79,0.06)", padding: "8px 14px",
                 borderRadius: "8px", border: "1px solid rgba(45,106,79,0.1)",
-              }}>
-                {d}
-              </span>
+              }}>{d}</span>
             ))}
           </div>
         </div>
@@ -352,51 +375,34 @@ function CurriculumCard({ item, index }) {
 
 function FAQItem({ item, index }) {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <FadeIn delay={index * 0.08}>
       <div
-        role="button"
-        tabIndex={0}
+        role="button" tabIndex={0}
         onClick={() => setIsOpen(prev => !prev)}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setIsOpen(prev => !prev); }}
         style={{
-          background: "#fff",
-          borderRadius: "14px",
-          padding: "20px 24px",
+          background: "#fff", borderRadius: "14px", padding: "20px 24px",
           border: isOpen ? "1.5px solid #2D6A4F" : "1px solid #E8E5DC",
-          cursor: "pointer",
-          transition: "all 0.3s ease",
-          userSelect: "none",
-          outline: "none",
+          cursor: "pointer", transition: "all 0.3s ease", userSelect: "none", outline: "none",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
-          <span style={{ fontSize: "15px", fontWeight: 600, color: "#1B1B18", lineHeight: 1.5 }}>
-            {item.q}
-          </span>
+          <span style={{ fontSize: "15px", fontWeight: 600, color: "#1B1B18", lineHeight: 1.5 }}>{item.q}</span>
           <span style={{
             fontSize: "18px", color: isOpen ? "#2D6A4F" : "#B0B8B2",
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s ease",
-            flexShrink: 0,
-          }}>
-            ▾
-          </span>
+            transition: "transform 0.3s ease", flexShrink: 0,
+          }}>▾</span>
         </div>
         <div style={{
-          overflow: "hidden",
-          maxHeight: isOpen ? "200px" : "0px",
-          opacity: isOpen ? 1 : 0,
+          overflow: "hidden", maxHeight: isOpen ? "200px" : "0px", opacity: isOpen ? 1 : 0,
           transition: "max-height 0.4s ease, opacity 0.3s ease 0.05s",
         }}>
           <p style={{
             fontSize: "14px", color: "#5A6A5E", lineHeight: 1.7,
-            margin: "12px 0 0 0", paddingTop: "12px",
-            borderTop: "1px dashed #E8E5DC",
-          }}>
-            {item.a}
-          </p>
+            margin: "12px 0 0 0", paddingTop: "12px", borderTop: "1px dashed #E8E5DC",
+          }}>{item.a}</p>
         </div>
       </div>
     </FadeIn>
@@ -406,10 +412,7 @@ function FAQItem({ item, index }) {
 function TierCard({ tier, index, onCTAClick }) {
   const [hovered, setHovered] = useState(false);
   const isHL = tier.highlight;
-
-  const handleCTA = useCallback(() => {
-    onCTAClick(tier.id);
-  }, [tier.id, onCTAClick]);
+  const handleCTA = useCallback(() => onCTAClick(tier.id), [tier.id, onCTAClick]);
 
   return (
     <FadeIn delay={index * 0.1}>
@@ -419,8 +422,7 @@ function TierCard({ tier, index, onCTAClick }) {
         style={{
           position: "relative",
           background: isHL ? "linear-gradient(165deg, #1B4332 0%, #2D6A4F 50%, #40916C 100%)" : "#FAFAF7",
-          borderRadius: "20px",
-          padding: isHL ? "3px" : "0",
+          borderRadius: "20px", padding: isHL ? "3px" : "0",
           transform: hovered ? "translateY(-6px)" : "translateY(0)",
           transition: "transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease",
           boxShadow: hovered ? "0 20px 60px rgba(27,67,50,0.18)" : "0 4px 20px rgba(0,0,0,0.06)",
@@ -428,52 +430,39 @@ function TierCard({ tier, index, onCTAClick }) {
       >
         <div style={{
           background: isHL ? "linear-gradient(180deg, #0D1F17 0%, #132E1F 100%)" : "#FAFAF7",
-          borderRadius: isHL ? "18px" : "20px",
-          padding: "32px 28px",
-          minHeight: "540px",
+          borderRadius: isHL ? "18px" : "20px", padding: "32px 28px", minHeight: "540px",
           display: "flex", flexDirection: "column",
-          border: isHL ? "none" : "1px solid #E8E5DC",
-          position: "relative", overflow: "hidden",
+          border: isHL ? "none" : "1px solid #E8E5DC", position: "relative", overflow: "hidden",
         }}>
           <div style={{
             position: "absolute", top: "20px", right: "20px",
             background: tier.badgeColor, color: "#fff",
             fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em",
             padding: "5px 10px", borderRadius: "6px",
-          }}>
-            {tier.badge}
-          </div>
+          }}>{tier.badge}</div>
 
           <div style={{ fontSize: "36px", marginBottom: "12px" }}>{tier.emoji}</div>
 
           <h3 style={{
             fontFamily: "'Noto Serif KR', serif", fontSize: "22px", fontWeight: 700,
             color: isHL ? "#E8E5DC" : "#1B1B18", margin: "0 0 4px 0", lineHeight: 1.3,
-          }}>
-            {tier.name}
-          </h3>
+          }}>{tier.name}</h3>
           {tier.grade && (
             <p style={{
               fontSize: "11px", color: isHL ? "#B7E4C7" : "#2D6A4F",
               margin: "0 0 4px 0", fontWeight: 600, opacity: 0.8,
-            }}>
-              등급: {tier.grade}
-            </p>
+            }}>등급: {tier.grade}</p>
           )}
           <p style={{
             fontSize: "13px", color: isHL ? "#95D5B2" : "#6B7B6E",
             margin: "0 0 20px 0", fontWeight: 500,
-          }}>
-            {tier.subtitle}
-          </p>
+          }}>{tier.subtitle}</p>
 
           <div style={{ marginBottom: "16px" }}>
             <span style={{
               fontSize: "34px", fontWeight: 800,
               color: isHL ? "#B7E4C7" : "#1B4332", letterSpacing: "-0.02em",
-            }}>
-              {tier.price}
-            </span>
+            }}>{tier.price}</span>
             {tier.priceNote && (
               <span style={{ fontSize: "13px", color: isHL ? "#6B9E82" : "#8A9A8E", marginLeft: "8px" }}>
                 {tier.priceNote}
@@ -494,10 +483,7 @@ function TierCard({ tier, index, onCTAClick }) {
             </div>
           </div>
 
-          <ul style={{
-            listStyle: "none", padding: 0, margin: "0 0 0 0",
-            display: "flex", flexDirection: "column", gap: "10px",
-          }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
             {tier.features.map((f, i) => (
               <li key={i} style={{
                 fontSize: "13.5px", color: isHL ? "#D8F3DC" : "#3A4A3E",
@@ -509,7 +495,6 @@ function TierCard({ tier, index, onCTAClick }) {
             ))}
           </ul>
 
-          {/* Bonus perks */}
           {tier.bonuses && tier.bonuses.length > 0 && (
             <div style={{
               marginTop: "14px", paddingTop: "14px",
@@ -518,9 +503,7 @@ function TierCard({ tier, index, onCTAClick }) {
               <div style={{
                 fontSize: "11px", fontWeight: 700, color: isHL ? "#95D5B2" : "#2D6A4F",
                 marginBottom: "8px", letterSpacing: "0.05em",
-              }}>
-                🎁 멤버 전용 혜택
-              </div>
+              }}>🎁 멤버 전용 혜택</div>
               {tier.bonuses.map((b, i) => (
                 <div key={i} style={{
                   fontSize: "12.5px", color: isHL ? "#B7E4C7" : "#4A7C59",
@@ -535,15 +518,13 @@ function TierCard({ tier, index, onCTAClick }) {
           <div style={{ flex: 1 }} />
 
           <button
-            onClick={tier.soldOut ? undefined : handleCTA}
-            disabled={tier.soldOut}
+            onClick={handleCTA}
             style={{
               marginTop: "24px", width: "100%", padding: "14px 0", borderRadius: "12px",
-              border: tier.soldOut ? "1.5px solid #CCC" : isHL ? "none" : "1.5px solid #2D6A4F",
-              background: tier.soldOut ? "#E8E5DC" : isHL ? "linear-gradient(135deg, #40916C, #52B788)" : "transparent",
-              color: tier.soldOut ? "#999" : isHL ? "#fff" : "#2D6A4F",
-              fontSize: "15px", fontWeight: 700,
-              cursor: tier.soldOut ? "not-allowed" : "pointer",
+              border: isHL ? "none" : "1.5px solid #2D6A4F",
+              background: isHL ? "linear-gradient(135deg, #40916C, #52B788)" : "transparent",
+              color: isHL ? "#fff" : "#2D6A4F",
+              fontSize: "15px", fontWeight: 700, cursor: "pointer",
               transition: "all 0.25s ease", letterSpacing: "0.02em",
             }}
           >
@@ -630,7 +611,7 @@ export default function DalpaengiMembership() {
 
           <FadeIn delay={0.25}>
             <p style={{ fontSize: "14px", color: "#8A9A8E", marginBottom: "36px" }}>
-              이론이 아닌, 지금 돌아가고 있는 시스템을 공유합니다.
+              배우고 싶은 사람에게는 멤버십을, 맡기고 싶은 사람에게는 구축 대행을.
             </p>
           </FadeIn>
 
@@ -675,7 +656,7 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
-      {/* ══════ RUNNING SYSTEMS — 차별화 포인트 ══════ */}
+      {/* ══════ RUNNING SYSTEMS ══════ */}
       <section style={{ padding: "80px 24px", background: "#fff" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <FadeIn>
@@ -683,15 +664,10 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>
-              다른 AI 스터디와의 결정적 차이
-            </div>
+            }}>다른 AI 스터디와의 결정적 차이</div>
             <h2 style={{
-              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700,
-              marginBottom: "12px",
-            }}>
-              지금 실제로 돌아가고 있는 시스템
-            </h2>
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
+            }}>지금 실제로 돌아가고 있는 시스템</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "48px", lineHeight: 1.7 }}>
               이론이 아닙니다. 아래 시스템들이 지금 이 순간에도<br />
               120평 공방과 60평 펜션에서 <strong style={{ color: "#1B4332" }}>24시간 자동으로 작동</strong>하고 있습니다.
@@ -699,31 +675,21 @@ export default function DalpaengiMembership() {
           </FadeIn>
 
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "16px",
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px",
           }}>
             {RUNNING_SYSTEMS.map((sys, i) => (
               <FadeIn key={i} delay={i * 0.08}>
                 <div style={{
                   background: "#FAFAF7", borderRadius: "14px", padding: "20px",
-                  border: "1px solid #E8E5DC",
-                  display: "flex", alignItems: "flex-start", gap: "14px",
+                  border: "1px solid #E8E5DC", display: "flex", alignItems: "flex-start", gap: "14px",
                 }}>
                   <div style={{
-                    fontSize: "28px", flexShrink: 0,
-                    width: "48px", height: "48px", borderRadius: "12px",
-                    background: "rgba(45,106,79,0.06)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    {sys.icon}
-                  </div>
+                    fontSize: "28px", flexShrink: 0, width: "48px", height: "48px", borderRadius: "12px",
+                    background: "rgba(45,106,79,0.06)", display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>{sys.icon}</div>
                   <div>
-                    <div style={{ fontSize: "15px", fontWeight: 700, color: "#1B1B18", marginBottom: "4px" }}>
-                      {sys.name}
-                    </div>
-                    <div style={{ fontSize: "13px", color: "#6B7B6E", lineHeight: 1.5 }}>
-                      {sys.desc}
-                    </div>
+                    <div style={{ fontSize: "15px", fontWeight: 700, color: "#1B1B18", marginBottom: "4px" }}>{sys.name}</div>
+                    <div style={{ fontSize: "13px", color: "#6B7B6E", lineHeight: 1.5 }}>{sys.desc}</div>
                   </div>
                 </div>
               </FadeIn>
@@ -737,7 +703,7 @@ export default function DalpaengiMembership() {
               padding: "16px 24px", border: "1px dashed rgba(45,106,79,0.2)",
             }}>
               <p style={{ fontSize: "14px", color: "#2D6A4F", fontWeight: 600, margin: 0 }}>
-                이 모든 시스템을 직접 보고, 배우고, 만들 수 있습니다.
+                이 모든 시스템을 직접 보고, 배우고, 만들 수 있습니다. 또는 통째로 맡길 수도 있습니다.
               </p>
             </div>
           </FadeIn>
@@ -751,41 +717,75 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>
-              단계별 성장 여정
-            </h2>
+            }}>6개 수익원 × 단계별 성장 여정</h2>
             <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "48px" }}>
               무료 레터부터 시작해서, 나만의 속도로 올라갑니다
             </p>
+          </FadeIn>
+
+          <FadeIn delay={0.05}>
+            <div style={{
+              fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", display: "inline-block", marginBottom: "16px",
+            }}>메인 퍼널</div>
           </FadeIn>
 
           {FUNNEL_STEPS.map((step, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <div style={{
                 display: "flex", alignItems: "center", gap: "20px",
-                padding: "20px 0", borderBottom: i < 3 ? "1px solid #E8E5DC" : "none",
+                padding: "20px 0", borderBottom: i < FUNNEL_STEPS.length - 1 ? "1px solid #E8E5DC" : "none",
               }}>
                 <div style={{
                   width: "52px", height: "52px", borderRadius: "14px", background: step.color,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: "24px", flexShrink: 0,
-                }}>
-                  {step.emoji}
-                </div>
+                }}>{step.emoji}</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
                     <span style={{ fontSize: "17px", fontWeight: 700 }}>{step.label}</span>
                     <span style={{
                       fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
-                      background: "rgba(45,106,79,0.08)", padding: "2px 10px",
-                      borderRadius: "100px",
-                    }}>
-                      {step.price}
-                    </span>
+                      background: "rgba(45,106,79,0.08)", padding: "2px 10px", borderRadius: "100px",
+                    }}>{step.price}</span>
                   </div>
                   <div style={{ fontSize: "14px", color: "#6B7B6E", marginTop: "2px" }}>{step.sub}</div>
                 </div>
-                {i < 3 && <div style={{ fontSize: "18px", color: "#95D5B2", fontWeight: 700 }}>→</div>}
+                {i < FUNNEL_STEPS.length - 1 && <div style={{ fontSize: "18px", color: "#95D5B2", fontWeight: 700 }}>→</div>}
+              </div>
+            </FadeIn>
+          ))}
+
+          <FadeIn delay={0.6}>
+            <div style={{
+              fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", display: "inline-block", marginTop: "32px", marginBottom: "16px",
+            }}>사이드 퍼널</div>
+          </FadeIn>
+
+          {SIDE_FUNNELS.map((step, i) => (
+            <FadeIn key={`side-${i}`} delay={0.7 + i * 0.1}>
+              <div style={{
+                display: "flex", alignItems: "center", gap: "20px",
+                padding: "16px 0", borderBottom: i < SIDE_FUNNELS.length - 1 ? "1px solid #E8E5DC" : "none",
+              }}>
+                <div style={{
+                  width: "44px", height: "44px", borderRadius: "12px", background: "#40916C",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "20px", flexShrink: 0,
+                }}>{step.emoji}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: "16px", fontWeight: 700 }}>{step.label}</span>
+                    <span style={{
+                      fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+                      background: "rgba(45,106,79,0.08)", padding: "2px 10px", borderRadius: "100px",
+                    }}>{step.price}</span>
+                  </div>
+                  <div style={{ fontSize: "13px", color: "#6B7B6E", marginTop: "2px" }}>{step.sub}</div>
+                </div>
               </div>
             </FadeIn>
           ))}
@@ -800,17 +800,13 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>
-              오프라인 멤버십 핵심 커리큘럼
-            </div>
+            }}>프로 멤버십 · 부트캠프 핵심 커리큘럼</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>
-              현장에서 만들고, 가져간다
-            </h2>
+            }}>현장에서 만들고, 가져간다</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              매달 1회, 120평 CNC 공방에서 이론과 실습을 병행합니다.<br />
-              돌아갈 때는 완성된 결과물을 손에 들고 갑니다.
+              프로 멤버십 오프라인 워크샵과 8주 부트캠프에서 다루는 핵심 커리큘럼입니다.<br />
+              이론과 실습을 병행하며, 완성된 결과물을 가져갑니다.
               <br /><br />
               <span style={{ color: "#2D6A4F", fontWeight: 600 }}>▾ 각 항목을 클릭하면 상세 내용이 펼쳐집니다</span>
             </p>
@@ -834,11 +830,9 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "32px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>
-              나에게 맞는 멤버십 선택
-            </h2>
+            }}>나에게 맞는 멤버십 선택</h2>
             <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "52px" }}>
-              달팽이처럼 천천히, 하지만 확실하게
+              달팽이처럼 천천히, 하지만 확실하게 — 반복 매출이 안정적 기반을 만듭니다
             </p>
           </FadeIn>
 
@@ -853,35 +847,27 @@ export default function DalpaengiMembership() {
                     background: "#FAFAF7", borderRadius: "20px", padding: "32px 36px",
                     border: "1px solid #E8E5DC", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "28px", flexWrap: "wrap",
-                    transition: "box-shadow 0.3s ease",
-                    marginBottom: "20px",
+                    transition: "box-shadow 0.3s ease", marginBottom: "20px",
                   }}
                   onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 12px 40px rgba(27,67,50,0.1)"}
                   onMouseLeave={(e) => e.currentTarget.style.boxShadow = "none"}
                 >
                   <div style={{
-                    fontSize: "40px", flexShrink: 0,
-                    width: "72px", height: "72px", borderRadius: "18px",
+                    fontSize: "40px", flexShrink: 0, width: "72px", height: "72px", borderRadius: "18px",
                     background: "rgba(74,124,89,0.08)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                  }}>
-                    {letterTier.emoji}
-                  </div>
+                  }}>{letterTier.emoji}</div>
                   <div style={{ flex: 1, minWidth: "200px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px", flexWrap: "wrap" }}>
                       <span style={{
                         fontSize: "11px", fontWeight: 800, color: "#fff",
                         background: letterTier.badgeColor, padding: "3px 10px",
                         borderRadius: "6px", letterSpacing: "0.05em",
-                      }}>
-                        {letterTier.badge}
-                      </span>
+                      }}>{letterTier.badge}</span>
                       <h3 style={{
                         fontFamily: "'Noto Serif KR', serif",
                         fontSize: "22px", fontWeight: 700, color: "#1B1B18", margin: 0,
-                      }}>
-                        {letterTier.name}
-                      </h3>
+                      }}>{letterTier.name}</h3>
                     </div>
                     <p style={{ fontSize: "14px", color: "#6B7B6E", margin: "4px 0 10px", lineHeight: 1.5 }}>
                       {letterTier.subtitle}
@@ -892,9 +878,7 @@ export default function DalpaengiMembership() {
                           fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
                           background: "rgba(45,106,79,0.06)", padding: "5px 12px",
                           borderRadius: "8px", border: "1px solid rgba(45,106,79,0.1)",
-                        }}>
-                          ✓ {f}
-                        </span>
+                        }}>✓ {f}</span>
                       ))}
                     </div>
                   </div>
@@ -905,11 +889,8 @@ export default function DalpaengiMembership() {
                     <button style={{
                       marginTop: "8px", padding: "12px 32px", borderRadius: "10px",
                       background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-                      color: "#fff", fontSize: "14px", fontWeight: 700,
-                      border: "none", cursor: "pointer",
-                    }}>
-                      {letterTier.cta}
-                    </button>
+                      color: "#fff", fontSize: "14px", fontWeight: 700, border: "none", cursor: "pointer",
+                    }}>{letterTier.cta}</button>
                   </div>
                 </div>
               </FadeIn>
@@ -918,120 +899,284 @@ export default function DalpaengiMembership() {
 
           {/* Lv.2~4 — 3열 그리드 */}
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "20px", alignItems: "start",
           }}>
-            {TIERS.filter(t => !t.soldOut && t.id !== "letter").map((tier, i) => (
+            {TIERS.filter(t => t.id !== "letter").map((tier, i) => (
               <TierCard key={tier.id} tier={tier} index={i} onCTAClick={handleCTAClick} />
             ))}
           </div>
-
-          {/* Lv.5 커스텀 — 가로 풀 배너 */}
-          {TIERS.filter(t => t.soldOut).map((tier) => (
-            <FadeIn key={tier.id} delay={0.5}>
-              <div style={{
-                marginTop: "32px",
-                background: "linear-gradient(135deg, #0D1F17 0%, #1B4332 50%, #2D6A4F 100%)",
-                borderRadius: "20px", padding: "36px 40px",
-                display: "flex", alignItems: "center", gap: "32px",
-                flexWrap: "wrap", position: "relative", overflow: "hidden",
-              }}>
-                {/* SOLD OUT 리본 */}
-                <div style={{
-                  position: "absolute", top: "18px", right: "24px",
-                  background: "#D32F2F", color: "#fff",
-                  fontSize: "11px", fontWeight: 800, letterSpacing: "0.1em",
-                  padding: "6px 16px", borderRadius: "6px",
-                }}>
-                  SOLD OUT
-                </div>
-
-                {/* 아이콘 + 레벨 */}
-                <div style={{
-                  fontSize: "48px", flexShrink: 0,
-                  width: "80px", height: "80px", borderRadius: "20px",
-                  background: "rgba(183,228,199,0.1)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  {tier.emoji}
-                </div>
-
-                {/* 정보 */}
-                <div style={{ flex: 1, minWidth: "240px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "6px", flexWrap: "wrap" }}>
-                    <span style={{
-                      fontSize: "12px", fontWeight: 800, color: "#B7E4C7",
-                      background: "rgba(183,228,199,0.15)", padding: "4px 12px",
-                      borderRadius: "6px", letterSpacing: "0.05em",
-                    }}>
-                      {tier.level}
-                    </span>
-                    <h3 style={{
-                      fontFamily: "'Noto Serif KR', serif",
-                      fontSize: "24px", fontWeight: 700, color: "#E8E5DC", margin: 0,
-                    }}>
-                      {tier.name}
-                    </h3>
-                  </div>
-                  {tier.grade && (
-                    <p style={{ fontSize: "12px", color: "#B7E4C7", margin: "0 0 6px", opacity: 0.8 }}>
-                      등급: {tier.grade}
-                    </p>
-                  )}
-                  <p style={{ fontSize: "15px", color: "#95D5B2", margin: "0 0 12px", lineHeight: 1.6 }}>
-                    {tier.subtitle}
-                  </p>
-                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                    {tier.features.slice(0, 4).map((f, i) => (
-                      <span key={i} style={{
-                        fontSize: "12px", color: "#B7E4C7", fontWeight: 600,
-                        background: "rgba(183,228,199,0.08)", padding: "6px 12px",
-                        borderRadius: "8px", border: "1px solid rgba(183,228,199,0.15)",
-                      }}>
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 가격 */}
-                <div style={{ textAlign: "center", flexShrink: 0, minWidth: "140px" }}>
-                  <div style={{ fontSize: "32px", fontWeight: 800, color: "#B7E4C7", marginBottom: "4px" }}>
-                    {tier.price}
-                  </div>
-                  <div style={{ fontSize: "13px", color: "#6B9E82" }}>{tier.priceNote}</div>
-                  <button disabled style={{
-                    marginTop: "16px", padding: "12px 32px", borderRadius: "10px",
-                    background: "#E8E5DC", color: "#999", fontSize: "14px", fontWeight: 700,
-                    border: "none", cursor: "not-allowed", letterSpacing: "0.05em",
-                  }}>
-                    SOLD OUT
-                  </button>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
         </div>
       </section>
 
-      {/* ══════ MEMBER PERKS — "안 하면 손해" 혜택 ══════ */}
+      {/* ══════ 8주 부트캠프 ══════ */}
+      <section style={{ padding: "80px 24px", background: "#fff" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>프로젝트 매출 — 분기 1회</div>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
+            }}>{BOOTCAMP.emoji} {BOOTCAMP.name}</h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
+              {BOOTCAMP.subtitle}
+            </p>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              background: "#1B4332", color: "#B7E4C7", padding: "8px 16px",
+              borderRadius: "8px", fontSize: "13px", fontWeight: 700, marginBottom: "32px",
+            }}>
+              🔥 {BOOTCAMP.nextTerm}
+            </div>
+          </FadeIn>
+
+          <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
+            {/* 커리큘럼 */}
+            <div style={{ flex: "1 1 400px" }}>
+              <FadeIn delay={0.1}>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px", color: "#1B4332" }}>
+                  📋 8주 커리큘럼
+                </h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  {BOOTCAMP.curriculum.map((item, i) => (
+                    <div key={i} style={{
+                      display: "flex", gap: "12px", padding: "12px 16px",
+                      background: i % 2 === 0 ? "#FAFAF7" : "#fff",
+                      borderRadius: "10px", border: "1px solid #E8E5DC",
+                    }}>
+                      <span style={{
+                        fontSize: "11px", fontWeight: 800, color: "#2D6A4F",
+                        background: "rgba(45,106,79,0.08)", padding: "4px 8px",
+                        borderRadius: "6px", flexShrink: 0, alignSelf: "flex-start",
+                      }}>{item.week}</span>
+                      <div>
+                        <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18" }}>{item.title}</div>
+                        <div style={{ fontSize: "12px", color: "#6B7B6E", marginTop: "2px" }}>{item.task}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* 가격 + 혜택 */}
+            <div style={{ flex: "1 1 280px" }}>
+              <FadeIn delay={0.2}>
+                <div style={{
+                  background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                  borderRadius: "16px", padding: "28px", textAlign: "center", marginBottom: "20px",
+                }}>
+                  <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "8px", letterSpacing: "0.1em" }}>
+                    {BOOTCAMP.schedule}
+                  </div>
+                  <div style={{ fontSize: "36px", fontWeight: 800, color: "#fff", marginBottom: "4px" }}>
+                    {BOOTCAMP.price}
+                  </div>
+                  <div style={{ fontSize: "13px", color: "#95D5B2" }}>{BOOTCAMP.priceNote}</div>
+
+                  <button
+                    onClick={() => handleCTAClick("bootcamp")}
+                    style={{
+                      marginTop: "20px", width: "100%", padding: "14px",
+                      borderRadius: "12px", border: "none",
+                      background: "linear-gradient(135deg, #40916C, #52B788)",
+                      color: "#fff", fontSize: "15px", fontWeight: 700, cursor: "pointer",
+                    }}
+                  >🎓 부트캠프 신청하기</button>
+                </div>
+
+                <div style={{
+                  background: "#FAFAF7", borderRadius: "12px", padding: "20px",
+                  border: "1px solid #E8E5DC",
+                }}>
+                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#2D6A4F", marginBottom: "12px" }}>
+                    🎁 부트캠프 혜택
+                  </div>
+                  {BOOTCAMP.benefits.map((b, i) => (
+                    <div key={i} style={{
+                      fontSize: "13px", color: "#3A4A3E", display: "flex",
+                      alignItems: "flex-start", gap: "8px", lineHeight: 1.6,
+                    }}>
+                      <span style={{ color: "#4A7C59", flexShrink: 0 }}>✓</span> {b}
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 구축 대행 (DFY) ══════ */}
+      <section style={{ padding: "80px 24px", background: "linear-gradient(180deg, #F5F4EF 0%, #EBE9E1 100%)" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>프로젝트 매출 — 상시</div>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
+            }}>🔧 자동화 구축 대행 (DFY)</h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
+              "배우기보다 맡기고 싶다" — 자동화 인생 10년의 노하우로 셋팅해드립니다.<br />
+              멤버십 회원은 <strong style={{ color: "#1B4332" }}>15~20% 할인</strong>이 적용됩니다.
+            </p>
+            <p style={{ fontSize: "13px", color: "#8A9A8E", marginBottom: "40px" }}>
+              30분 무료 상담 → 요구사항 정의 → 구축 (2~4주) → 인수인계 교육 → 1개월 무상 AS
+            </p>
+          </FadeIn>
+
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "20px", alignItems: "start",
+          }}>
+            {DFY_PACKAGES.map((pkg, i) => (
+              <FadeIn key={i} delay={i * 0.12}>
+                <div style={{
+                  position: "relative",
+                  background: pkg.popular ? "linear-gradient(165deg, #1B4332, #2D6A4F, #40916C)" : "#FAFAF7",
+                  borderRadius: "20px", padding: pkg.popular ? "3px" : "0",
+                }}>
+                  <div style={{
+                    background: pkg.popular ? "linear-gradient(180deg, #0D1F17, #132E1F)" : "#FAFAF7",
+                    borderRadius: pkg.popular ? "18px" : "20px",
+                    padding: "28px 24px",
+                    border: pkg.popular ? "none" : "1px solid #E8E5DC",
+                    position: "relative",
+                  }}>
+                    {pkg.popular && (
+                      <div style={{
+                        position: "absolute", top: "16px", right: "16px",
+                        background: "#52B788", color: "#fff",
+                        fontSize: "10px", fontWeight: 700, padding: "4px 10px",
+                        borderRadius: "6px", letterSpacing: "0.05em",
+                      }}>인기</div>
+                    )}
+                    <div style={{ fontSize: "28px", marginBottom: "8px" }}>{pkg.emoji}</div>
+                    <h3 style={{
+                      fontFamily: "'Noto Serif KR', serif", fontSize: "20px", fontWeight: 700,
+                      color: pkg.popular ? "#E8E5DC" : "#1B1B18", margin: "0 0 4px",
+                    }}>{pkg.name}</h3>
+                    <p style={{
+                      fontSize: "12px", color: pkg.popular ? "#95D5B2" : "#8A9A8E",
+                      margin: "0 0 4px", fontWeight: 600,
+                    }}>타겟: {pkg.target}</p>
+                    <p style={{
+                      fontSize: "13px", color: pkg.popular ? "#B7E4C7" : "#6B7B6E",
+                      margin: "0 0 16px", lineHeight: 1.5,
+                    }}>{pkg.desc}</p>
+
+                    <div style={{
+                      fontSize: "30px", fontWeight: 800,
+                      color: pkg.popular ? "#B7E4C7" : "#1B4332", marginBottom: "16px",
+                    }}>{pkg.price}<span style={{ fontSize: "14px", fontWeight: 500, color: pkg.popular ? "#6B9E82" : "#8A9A8E" }}>/건</span></div>
+
+                    <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                      {pkg.includes.map((item, j) => (
+                        <li key={j} style={{
+                          fontSize: "13px", color: pkg.popular ? "#D8F3DC" : "#3A4A3E",
+                          display: "flex", alignItems: "center", gap: "8px",
+                        }}>
+                          <span style={{ color: pkg.popular ? "#95D5B2" : "#4A7C59" }}>✓</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button
+                      onClick={() => handleCTAClick("dfy")}
+                      style={{
+                        width: "100%", padding: "14px", borderRadius: "12px",
+                        border: pkg.popular ? "none" : "1.5px solid #2D6A4F",
+                        background: pkg.popular ? "linear-gradient(135deg, #40916C, #52B788)" : "transparent",
+                        color: pkg.popular ? "#fff" : "#2D6A4F",
+                        fontSize: "15px", fontWeight: 700, cursor: "pointer",
+                      }}
+                    >무료 상담 신청</button>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ 디지털 상품 + 기업 교육 ══════ */}
+      <section style={{ padding: "80px 24px", background: "#fff" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>상시 판매</div>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
+            }}>📦 디지털 상품 & 기업 교육</h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
+              멤버십 없이도 바로 활용할 수 있는 VOD 강의, 자동화 템플릿, 기업 워크샵
+            </p>
+          </FadeIn>
+
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px",
+          }}>
+            {DIGITAL_PRODUCTS.map((prod, i) => (
+              <FadeIn key={i} delay={i * 0.08}>
+                <div style={{
+                  background: "#FAFAF7", borderRadius: "14px", padding: "20px",
+                  border: "1px solid #E8E5DC", display: "flex", alignItems: "center", gap: "14px",
+                }}>
+                  <div style={{ fontSize: "28px", flexShrink: 0 }}>{prod.emoji}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18", marginBottom: "2px" }}>{prod.name}</div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{
+                        fontSize: "10px", fontWeight: 700, color: "#2D6A4F",
+                        background: "rgba(45,106,79,0.08)", padding: "2px 8px", borderRadius: "100px",
+                      }}>{prod.type}</span>
+                      <span style={{ fontSize: "15px", fontWeight: 800, color: "#1B4332" }}>{prod.price}</span>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.5}>
+            <div style={{ textAlign: "center", marginTop: "32px" }}>
+              <button
+                onClick={() => handleCTAClick("dfy")}
+                style={{
+                  padding: "14px 32px", borderRadius: "12px",
+                  border: "1.5px solid #2D6A4F", background: "transparent",
+                  color: "#2D6A4F", fontSize: "15px", fontWeight: 700, cursor: "pointer",
+                }}
+              >기업 교육 · 워크샵 문의</button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ══════ MEMBER PERKS ══════ */}
       <section style={{ padding: "80px 24px", background: "#1B4332" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <FadeIn>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "28px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px", color: "#E8E5DC",
-            }}>
-              안 하면 손해 — 멤버 전용 혜택
-            </h2>
+            }}>안 하면 손해 — 멤버 전용 혜택</h2>
             <p style={{ textAlign: "center", color: "#95D5B2", fontSize: "15px", marginBottom: "48px" }}>
               멤버십 요금 이상의 가치를 돌려받습니다
             </p>
           </FadeIn>
 
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "16px",
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px",
           }}>
             {MEMBER_PERKS.map((perk, i) => (
               <FadeIn key={i} delay={i * 0.08}>
@@ -1045,16 +1190,11 @@ export default function DalpaengiMembership() {
                       <div style={{ fontSize: "15px", fontWeight: 700, color: "#D8F3DC" }}>{perk.title}</div>
                       <span style={{
                         fontSize: "10px", fontWeight: 700, color: "#95D5B2",
-                        background: "rgba(149,213,178,0.15)", padding: "2px 8px",
-                        borderRadius: "100px",
-                      }}>
-                        {perk.tier}
-                      </span>
+                        background: "rgba(149,213,178,0.15)", padding: "2px 8px", borderRadius: "100px",
+                      }}>{perk.tier}</span>
                     </div>
                   </div>
-                  <p style={{ fontSize: "13px", color: "#95D5B2", margin: 0, lineHeight: 1.5 }}>
-                    {perk.desc}
-                  </p>
+                  <p style={{ fontSize: "13px", color: "#95D5B2", margin: 0, lineHeight: 1.5 }}>{perk.desc}</p>
                 </div>
               </FadeIn>
             ))}
@@ -1069,16 +1209,14 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "28px", fontWeight: 700,
               textAlign: "center", marginBottom: "40px",
-            }}>
-              한눈에 비교
-            </h2>
+            }}>한눈에 비교</h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", minWidth: "760px" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", minWidth: "700px" }}>
                 <thead>
                   <tr style={{ borderBottom: "2px solid #1B4332" }}>
-                    {["", "📬 Lv.1", "💻 Lv.2", "🔧 Lv.3", "🚀 Lv.4", "👑 Lv.5"].map((h, i) => (
+                    {["", "📬 Lv.1", "💻 Lv.2", "🔧 Lv.3", "🚀 Lv.4"].map((h, i) => (
                       <th key={i} style={{
                         padding: "12px 8px", textAlign: i === 0 ? "left" : "center",
                         fontWeight: 700, color: "#1B4332", fontSize: "13px",
@@ -1088,19 +1226,20 @@ export default function DalpaengiMembership() {
                 </thead>
                 <tbody>
                   {[
-                    ["가격", "무료", "₩9,900/월", "₩99,000/월", "₩990,000/월", "금액 협의"],
-                    ["빈도", "주 2회", "주 1회 2시간", "월 1회 원데이", "주 1회 8시간", "맞춤 일정"],
-                    ["형태", "뉴스레터", "온라인 라이브", "오프라인 실습", "오프라인 밀착", "풀 셋팅"],
-                    ["AI 트렌드 뉴스", "✓", "✓", "✓", "✓", "✓"],
-                    ["라이브 시연", "—", "✓", "✓", "✓", "✓"],
-                    ["이론+실습 결과물", "—", "—", "✓", "✓", "✓"],
-                    ["수익모델 설계", "—", "—", "—", "✓", "✓"],
-                    ["마케팅 시스템 구축", "—", "—", "—", "✓", "✓"],
-                    ["풀 시스템 셋팅", "—", "—", "—", "—", "✓"],
-                    ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용", "무료 이용"],
-                    ["수익 분배 파트너십", "—", "—", "—", "최대 40%", "✓"],
-                    ["정기결제 할인", "—", "적용", "적용", "적용", "협의"],
-                    ["정원", "무제한", "1,000명", "20명", "20명", "SOLD OUT"],
+                    ["가격", "무료", "₩29,900/월", "₩199,000/월", "₩990,000/월"],
+                    ["빈도", "주 2회", "주 1회 라이브", "월 1회 오프 + 월 2회 코칭", "주 1회 1:1 코칭"],
+                    ["형태", "뉴스레터", "온라인 라이브", "소그룹 코칭 + 오프라인", "1:1 밀착 코칭"],
+                    ["AI 트렌드 뉴스", "✓", "✓", "✓", "✓"],
+                    ["라이브 시연 + 녹화본", "—", "✓", "✓", "✓"],
+                    ["커뮤니티 + 템플릿", "—", "✓", "✓", "✓"],
+                    ["소그룹 코칭 (5명)", "—", "—", "✓", "✓"],
+                    ["오프라인 워크샵", "—", "—", "✓", "✓"],
+                    ["1:1 화상 코칭", "—", "—", "—", "✓"],
+                    ["전용 실시간 QA", "—", "—", "—", "✓"],
+                    ["구축 대행 할인", "—", "—", "15%", "20%"],
+                    ["펜션·공방 혜택", "—", "—", "할인 이용", "무료 이용"],
+                    ["수익 분배 파트너십", "—", "—", "—", "최대 40%"],
+                    ["정원", "무제한", "550명", "50명", "20명"],
                   ].map((row, ri) => (
                     <tr key={ri} style={{ borderBottom: "1px solid #E8E5DC", background: ri % 2 === 0 ? "#FAFAF7" : "#fff" }}>
                       {row.map((cell, ci) => (
@@ -1127,9 +1266,7 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "28px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>
-              자주 묻는 질문
-            </h2>
+            }}>자주 묻는 질문</h2>
             <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "40px" }}>
               궁금한 점이 있으시면 카카오톡으로 편하게 문의해주세요
             </p>
@@ -1150,9 +1287,7 @@ export default function DalpaengiMembership() {
             <div style={{ fontSize: "48px", marginBottom: "12px" }}>🐌</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "28px", fontWeight: 700, margin: "0 0 20px",
-            }}>
-              운영자 · 임솔 (Sol)
-            </h2>
+            }}>운영자 · 임솔 (Sol)</h2>
             <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#5A6A5E", maxWidth: "560px", margin: "0 auto 28px" }}>
               120평 CNC 공방과 60평 독채 펜션을 직접 운영하면서,<br />
               n8n · Supabase · Claude API · React를 활용해<br />
@@ -1162,23 +1297,27 @@ export default function DalpaengiMembership() {
               현재진행형 실험의 모든 것을 공유합니다.
             </p>
 
+            <p style={{
+              fontSize: "14px", color: "#2D6A4F", fontWeight: 600, fontStyle: "italic",
+              margin: "0 auto 28px", maxWidth: "480px", lineHeight: 1.7,
+            }}>
+              "시스템을 가지고 싶은 사람에게는 대행을,<br />
+              배우고 싶은 사람에게는 멤버십을."
+            </p>
+
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="tel:01085319531" style={{
                 display: "inline-flex", alignItems: "center", gap: "6px",
                 background: "#FAFAF7", padding: "10px 20px", borderRadius: "10px",
                 fontSize: "14px", fontWeight: 500, color: "#3A4A3E",
                 border: "1px solid #E8E5DC", textDecoration: "none",
-              }}>
-                📞 010-8531-9531
-              </a>
+              }}>📞 010-8531-9531</a>
               <a href="https://open.kakao.com/o/sool9241" target="_blank" rel="noopener noreferrer" style={{
                 display: "inline-flex", alignItems: "center", gap: "6px",
                 background: "#FAFAF7", padding: "10px 20px", borderRadius: "10px",
                 fontSize: "14px", fontWeight: 500, color: "#3A4A3E",
                 border: "1px solid #E8E5DC", textDecoration: "none",
-              }}>
-                💬 카카오톡 sool9241
-              </a>
+              }}>💬 카카오톡 sool9241</a>
             </div>
           </FadeIn>
         </div>
@@ -1196,22 +1335,28 @@ export default function DalpaengiMembership() {
             fontSize: "clamp(24px, 4vw, 34px)", fontWeight: 700,
             color: "#fff", marginBottom: "12px", lineHeight: 1.4,
           }}>
-            더디더라도 달팽이처럼 천천히,<br />
-            하지만 확실한 수익 구조를 만들어갑니다.
+            6개의 달팽이가 각자의 속도로 꾸준히 기어가면,<br />
+            합치면 10억이 됩니다.
           </h2>
           <p style={{ fontSize: "16px", color: "#B7E4C7", marginBottom: "36px", lineHeight: 1.7 }}>
             무료 달팽이레터로 먼저 시작해보세요.<br />
             매주 2회, 최신 AI 트렌드를 전해드립니다.
           </p>
-          <button onClick={() => setActiveModal("letter")} style={{
-            display: "inline-flex", alignItems: "center", gap: "8px",
-            padding: "18px 40px", background: "#fff", color: "#1B4332",
-            borderRadius: "14px", fontSize: "17px", fontWeight: 800,
-            border: "none", cursor: "pointer",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-          }}>
-            🐌 달팽이레터 무료 구독하기
-          </button>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+            <button onClick={() => setActiveModal("letter")} style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "18px 40px", background: "#fff", color: "#1B4332",
+              borderRadius: "14px", fontSize: "17px", fontWeight: 800,
+              border: "none", cursor: "pointer",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+            }}>🐌 달팽이레터 무료 구독하기</button>
+            <button onClick={() => handleCTAClick("dfy")} style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "18px 40px", background: "transparent", color: "#fff",
+              borderRadius: "14px", fontSize: "17px", fontWeight: 700,
+              border: "1.5px solid rgba(255,255,255,0.4)", cursor: "pointer",
+            }}>🔧 구축 대행 무료 상담</button>
+          </div>
         </FadeIn>
       </section>
 
@@ -1231,7 +1376,7 @@ export default function DalpaengiMembership() {
         onClose={() => setActiveModal(null)}
       />
       <MembershipApplyModal
-        isOpen={activeModal === "online" || activeModal === "offline" || activeModal === "partner"}
+        isOpen={["online", "pro", "partner", "bootcamp", "dfy"].includes(activeModal)}
         onClose={() => setActiveModal(null)}
         tierId={activeModal || "online"}
       />
