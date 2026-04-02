@@ -31,7 +31,8 @@ CREATE TABLE subscribers (
   referral_code TEXT,
   utm_source TEXT,
   utm_medium TEXT,
-  utm_campaign TEXT
+  utm_campaign TEXT,
+  interest_products TEXT
 );
 
 CREATE INDEX idx_subscribers_email ON subscribers(email);

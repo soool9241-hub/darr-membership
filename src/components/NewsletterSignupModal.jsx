@@ -4,18 +4,12 @@ import FormField from "./FormField";
 import { supabase, getUTMParams, getReferralCode } from "../lib/supabase";
 
 const WAITLIST_PRODUCTS = [
-  { id: "n8n_vod", name: "n8n 자동화 입문 (VOD)", emoji: "🎬" },
-  { id: "ai_vod", name: "소상공인 AI 실전 활용 (VOD)", emoji: "🎬" },
-  { id: "supabase_vod", name: "Supabase 예약 시스템 (VOD)", emoji: "🎬" },
-  { id: "marketing_vod", name: "마케팅 자동화 마스터 (VOD)", emoji: "🎬" },
-  { id: "agent_vod", name: "AI 에이전트 설계 실전 (VOD)", emoji: "🎬" },
-  { id: "sms_pack", name: "SMS 자동 발송 스타터 팩", emoji: "📦" },
-  { id: "booking_pack", name: "예약 관리 올인원 팩", emoji: "📦" },
-  { id: "sns_pack", name: "SNS 콘텐츠 자동화 팩", emoji: "📦" },
-  { id: "funnel_pack", name: "매출 2배 퍼널 템플릿", emoji: "📦" },
-  { id: "crm_pack", name: "고객 관리 CRM 올인원 팩", emoji: "📦" },
-  { id: "workshop", name: "AI 자동화 체험 워크샵 (기업)", emoji: "🏫" },
-  { id: "corp_edu", name: "업무 자동화 실전 교육 (기업)", emoji: "🏫" },
+  { id: "booking", name: "예약 자동화 시스템", emoji: "📅", price: "월 29,000원", status: "SOLD OUT" },
+  { id: "chatbot", name: "AI 고객 응대 챗봇", emoji: "💬", price: "월 39,000원", status: "SOLD OUT" },
+  { id: "dashboard", name: "매출 대시보드", emoji: "📊", price: "월 19,000원", status: "COMING SOON" },
+  { id: "review", name: "리뷰 자동 수집 시스템", emoji: "⭐", price: "월 19,000원", status: "COMING SOON" },
+  { id: "sms", name: "자동 문자/카톡 발송", emoji: "📩", price: "월 25,000원", status: "COMING SOON" },
+  { id: "estimate", name: "견적서 자동 생성", emoji: "📄", price: "월 29,000원", status: "COMING SOON" },
 ];
 
 export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = false }) {
@@ -51,7 +45,7 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
         const utm = getUTMParams();
         const referralCode = getReferralCode();
 
-        const interestProducts = waitlistMode && selectedProducts.length > 0
+        const interestProducts = selectedProducts.length > 0
           ? selectedProducts.map(id => WAITLIST_PRODUCTS.find(p => p.id === id)?.name).filter(Boolean).join(", ")
           : null;
         const { error } = await supabase.from("subscribers").insert({
@@ -59,7 +53,7 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
           name: form.name.trim() || null,
           phone: form.phone.trim() || null,
           referral_code: referralCode,
-          admin_notes: interestProducts ? `관심 상품: ${interestProducts}` : null,
+          interest_products: interestProducts,
           ...utm,
         });
 
@@ -120,10 +114,9 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
               : "무료로 주 2회, 최신 AI 자동화 트렌드를 받아보세요."}
           </p>
 
-          {waitlistMode && (
-            <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "20px" }}>
               <div style={{ fontSize: "13px", fontWeight: 600, color: "#3A4A3E", marginBottom: "10px" }}>
-                관심 상품 선택 <span style={{ fontSize: "11px", color: "#8A9A8E", fontWeight: 400 }}>(복수 선택 가능)</span>
+                관심 상품 선택 <span style={{ fontSize: "11px", color: "#8A9A8E", fontWeight: 400 }}>(선택 · 복수 가능)</span>
               </div>
               <div style={{ maxHeight: "240px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "6px" }}>
                 {WAITLIST_PRODUCTS.map((prod) => {
@@ -147,15 +140,21 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
                         style={{ accentColor: "#2D6A4F", width: "16px", height: "16px", flexShrink: 0 }}
                       />
                       <span style={{ fontSize: "14px" }}>{prod.emoji}</span>
-                      <span style={{ fontSize: "13px", fontWeight: checked ? 600 : 500, color: checked ? "#1B4332" : "#5A6A5E" }}>
-                        {prod.name}
-                      </span>
+                      <div style={{ flex: 1 }}>
+                        <span style={{ fontSize: "13px", fontWeight: checked ? 600 : 500, color: checked ? "#1B4332" : "#5A6A5E" }}>
+                          {prod.name}
+                        </span>
+                        <span style={{ fontSize: "11px", color: "#8A9A8E", marginLeft: "6px" }}>{prod.price}</span>
+                      </div>
+                      <span style={{
+                        fontSize: "9px", fontWeight: 700, padding: "2px 6px", borderRadius: "4px",
+                        color: "#fff", background: prod.status === "SOLD OUT" ? "#D32F2F" : "#E67E22",
+                      }}>{prod.status}</span>
                     </label>
                   );
                 })}
               </div>
             </div>
-          )}
 
           <FormField
             label="이메일"
@@ -200,7 +199,7 @@ export default function NewsletterSignupModal({ isOpen, onClose, waitlistMode = 
               transition: "all 0.2s",
             }}
           >
-            {loading ? "처리 중..." : waitlistMode ? "📋 대기자 등록 + 뉴스레터 구독" : "🐌 무료 구독하기"}
+            {loading ? "처리 중..." : "🐌 구독하기 + 관심 상품 등록"}
           </button>
         </form>
       )}

@@ -204,18 +204,48 @@ const FREE_RESOURCES = [
 ];
 
 const DIGITAL_PRODUCTS = [
-  { emoji: "🎬", name: "n8n 자동화 입문 (3시간)", price: "₩49,000", type: "VOD 강의", desc: "n8n 설치부터 실전 워크플로우 구축까지. 코딩 없이 자동화 시스템을 만드는 첫 걸음." },
-  { emoji: "🎬", name: "소상공인 AI 실전 활용 (5시간)", price: "₩79,000", type: "VOD 강의", desc: "ChatGPT·Claude를 내 사업에 바로 적용. 고객 응대, 콘텐츠, 마케팅 자동화 실전 사례." },
-  { emoji: "🎬", name: "Supabase로 예약 시스템 만들기 (4시간)", price: "₩69,000", type: "VOD 강의", desc: "무료 DB로 예약·고객관리 시스템 구축. 코드 템플릿 포함, 바로 복사해서 사용 가능." },
-  { emoji: "🎬", name: "마케팅 자동화 마스터 (6시간)", price: "₩89,000", type: "VOD 강의", desc: "SMS·이메일·리뷰 수집까지 마케팅 전 과정 자동화. Solapi + n8n 연동 실습." },
-  { emoji: "🎬", name: "AI 에이전트 설계 실전 (4시간)", price: "₩79,000", type: "VOD 강의", desc: "24시간 일하는 AI 비서 만들기. 고객 문의 자동 응대, 데이터 수집, 리포트 생성." },
-  { emoji: "📦", name: "SMS 자동 발송 스타터 팩", price: "₩29,000", type: "템플릿 팩", desc: "예약 확인·방문 안내·감사 문자 자동 발송 템플릿. Solapi + n8n 워크플로우 포함." },
-  { emoji: "📦", name: "예약 관리 올인원 팩", price: "₩49,000", type: "템플릿 팩", desc: "Supabase 예약 DB + 관리 화면 + 자동 알림까지. 복사해서 바로 사용." },
-  { emoji: "📦", name: "SNS 콘텐츠 자동화 팩", price: "₩39,000", type: "템플릿 팩", desc: "AI가 블로그·인스타 글을 자동 생성하고 예약 발행. n8n 워크플로우 포함." },
-  { emoji: "📦", name: "매출 2배 퍼널 템플릿", price: "₩39,000", type: "템플릿 팩", desc: "검증된 5단계 자동화 퍼널 구조. 구글 시트 + n8n 워크플로우로 바로 적용." },
-  { emoji: "📦", name: "고객 관리 CRM 올인원 팩", price: "₩49,000", type: "템플릿 팩", desc: "고객 DB + 세그먼트 분류 + 자동 리텐션 메시지. Supabase + n8n 풀 세트." },
-  { emoji: "🏫", name: "AI 자동화 체험 워크샵 (3시간)", price: "₩150만원~", type: "기업 교육", desc: "팀 전체가 AI 자동화를 체험하는 현장 워크샵. 실습 중심, 결과물 가져감." },
-  { emoji: "🏫", name: "업무 자동화 실전 교육 (6시간)", price: "₩200만원~", type: "기업 교육", desc: "우리 회사 업무에 맞는 자동화 시스템 설계·구축 교육. 맞춤 커리큘럼 제공." },
+  {
+    emoji: "📅", name: "예약 자동화 시스템", price: "월 29,000원", priceYear: "연 348,000원",
+    type: "SaaS", status: "soldout",
+    desc: "달팽이 아지트 펜션에서 7년간 실제 운영하며 검증한 예약 시스템을 그대로 제공합니다. 에어비앤비 5.0 평점을 유지할 수 있었던 비결 — 예약부터 퇴실까지 단 하나의 문자도 빠뜨리지 않는 자동 안내 시스템입니다. 설치 후 사장님이 할 일은 예약 확인 버튼 하나 누르는 것뿐입니다.",
+    tagline: "예약 접수부터 안내 문자까지 알아서",
+    target: "예약 문자 수동 발송에 하루 1시간 쓰시는 사장님",
+  },
+  {
+    emoji: "💬", name: "AI 고객 응대 챗봇", price: "월 39,000원", priceYear: "연 468,000원",
+    type: "SaaS", status: "soldout",
+    desc: "밤 11시에 들어오는 문의도 AI가 즉시 응대합니다. \"주차 가능한가요?\", \"반려동물 동반 되나요?\" 같은 반복 질문은 AI가 자동 답변하고, 복잡한 건 사장님 카톡으로 바로 전달합니다. 놓치는 문의 0건이 목표입니다.",
+    tagline: "24시간 자동 응대. 복잡한 건 사장님에게 전달",
+    target: "영업시간 지났는데 문의 놓치시는 사장님",
+  },
+  {
+    emoji: "📊", name: "매출 대시보드", price: "월 19,000원", priceYear: "연 228,000원",
+    type: "SaaS", status: "coming",
+    desc: "폰 하나로 사업 전체를 봅니다. 아침에 커피 마시면서 \"어제 매출 얼마지?\" 하고 열면 바로 보이고, 매주 월요일 아침에 지난주 요약이 카톡으로 옵니다. 전년 같은 달과 자동 비교해서 인사이트도 알려줍니다. 감이 아니라 숫자로 장사하세요.",
+    tagline: "폰으로 매출/예약/고객 현황 한눈에",
+    target: "이번 달 매출이 얼마인지 엑셀 뒤져야 아는 사장님",
+  },
+  {
+    emoji: "⭐", name: "리뷰 자동 수집 시스템", price: "월 19,000원", priceYear: "연 228,000원",
+    type: "SaaS", status: "coming",
+    desc: "에어비앤비 평점 5.0을 7년간 유지한 비결입니다. 퇴실 다음 날 자동으로 리뷰 요청이 나가고, 별점 4점 이상이면 네이버/구글 리뷰로 연결됩니다. 3점 이하면 외부 노출 전에 내부 피드백으로 전환해서 사장님이 먼저 대응할 수 있습니다.",
+    tagline: "좋은 리뷰는 네이버로, 나쁜 건 내부로",
+    target: "리뷰 부탁드려요 말하기 민망한 사장님",
+  },
+  {
+    emoji: "📩", name: "자동 문자/카톡 발송", price: "월 25,000원", priceYear: "연 300,000원 + 문자비 별도",
+    type: "SaaS", status: "coming",
+    desc: "65명에게 1분 만에 맞춤 문자를 보낸 실전 시스템입니다. 생일에 축하 문자, 30일 넘게 안 오신 분에게 리텐션 메시지가 자동 발송됩니다. 단골을 놓치지 마세요.",
+    tagline: "고객별 맞춤 문자가 시점에 맞춰 자동 발송",
+    target: "단골한테 연락하고 싶은데 너무 많은 사장님",
+  },
+  {
+    emoji: "📄", name: "견적서 자동 생성", price: "월 29,000원", priceYear: "연 348,000원",
+    type: "SaaS", status: "coming",
+    desc: "120평 CNC 공방에서 직접 쓰고 있는 견적 시스템입니다. 항목 선택하면 자동 계산, 로고 들어간 PDF 견적서 즉시 생성, 고객 카톡 자동 발송까지. 견적서 만드는 데 30분 걸리던 게 1분이 됩니다.",
+    tagline: "항목 선택하면 견적서 즉시 생성. PDF 발송까지 자동",
+    target: "견적서 하나 만드는 데 30분 걸리는 사장님",
+  },
 ];
 
 const CURRICULUM = [
@@ -483,6 +513,9 @@ function FAQItem({ item, index }) {
 
 function ProductCard({ prod, onWaitlist }) {
   const [open, setOpen] = useState(false);
+  const isSoldOut = prod.status === "soldout";
+  const statusLabel = isSoldOut ? "SOLD OUT" : "COMING SOON";
+  const statusBg = isSoldOut ? "#D32F2F" : "#E67E22";
   return (
     <div
       onClick={() => setOpen(!open)}
@@ -496,21 +529,22 @@ function ProductCard({ prod, onWaitlist }) {
     >
       <div style={{
         position: "absolute", top: "12px", right: "12px",
-        background: "#D32F2F", color: "#fff",
+        background: statusBg, color: "#fff",
         fontSize: "9px", fontWeight: 800, padding: "3px 8px",
         borderRadius: "4px", letterSpacing: "0.1em",
-      }}>SOLD OUT</div>
+      }}>{statusLabel}</div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-        <div style={{ fontSize: "28px", flexShrink: 0 }}>{prod.emoji}</div>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
+        <div style={{ fontSize: "28px", flexShrink: 0, marginTop: "2px" }}>{prod.emoji}</div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18", marginBottom: "2px", paddingRight: "60px" }}>{prod.name}</div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{
-              fontSize: "10px", fontWeight: 700, color: "#2D6A4F",
-              background: "rgba(45,106,79,0.08)", padding: "2px 8px", borderRadius: "100px",
-            }}>{prod.type}</span>
+          <div style={{ fontSize: "15px", fontWeight: 700, color: "#1B1B18", marginBottom: "4px", paddingRight: "80px" }}>{prod.name}</div>
+          <div style={{ fontSize: "12px", color: "#6B7B6E", marginBottom: "6px", lineHeight: 1.5 }}>{prod.tagline}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "15px", fontWeight: 800, color: "#1B4332" }}>{prod.price}</span>
+            <span style={{ fontSize: "11px", color: "#8A9A8E" }}>{prod.priceYear}</span>
+          </div>
+          <div style={{ fontSize: "11px", color: "#8A9A8E", marginTop: "4px" }}>
+            추천: {prod.target}
           </div>
         </div>
       </div>
@@ -540,7 +574,7 @@ function ProductCard({ prod, onWaitlist }) {
               e.currentTarget.style.color = "#2D6A4F";
             }}
           >
-            📋 대기자 명단 등록 → 런칭 시 가장 먼저 알림 드립니다
+            📋 {isSoldOut ? "대기자 명단 등록 → 런칭 시 가장 먼저 알림" : "런칭 시 가장 먼저 알림 받기"}
           </button>
         </div>
       )}
@@ -1404,7 +1438,7 @@ export default function DalpaengiMembership() {
               <span style={{ fontSize: "20px" }}>🚀</span>
               <div>
                 <div style={{ fontSize: "14px", fontWeight: 700, color: "#B7E4C7" }}>
-                  현재 전 상품 SOLD OUT — 대기자 명단 등록 중
+                  SOLD OUT · COMING SOON — 대기자 명단 등록 중
                 </div>
                 <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "2px" }}>
                   런칭 시 가장 먼저 알림 드립니다. 아래에서 관심 상품을 확인하세요.
