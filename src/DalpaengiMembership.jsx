@@ -1223,134 +1223,208 @@ export default function DalpaengiMembership() {
 
           {/* Before / After */}
           <FadeIn delay={0.1}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 1fr", gap: "0", marginBottom: "32px" }}>
-              <div style={{ background: "#FCEBEB", borderRadius: "12px", padding: "20px" }}>
-                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#791F1F", marginBottom: "10px" }}>8주 전 사장님</h4>
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "16px", marginBottom: "48px",
+            }}>
+              <div style={{
+                background: "#FCEBEB", borderRadius: "16px", padding: "28px",
+                border: "1px solid rgba(121,31,31,0.1)",
+              }}>
+                <div style={{
+                  fontSize: "11px", fontWeight: 700, color: "#D32F2F", letterSpacing: "0.1em",
+                  marginBottom: "16px", textTransform: "uppercase",
+                }}>BEFORE — 8주 전</div>
                 {BOOTCAMP.beforeAfter.before.map((t, i) => (
-                  <p key={i} style={{ fontSize: "12px", color: "#791F1F", lineHeight: 1.8 }}>"{t}"</p>
+                  <p key={i} style={{
+                    fontSize: "14px", color: "#791F1F", lineHeight: 2.2,
+                    borderBottom: i < BOOTCAMP.beforeAfter.before.length - 1 ? "1px solid rgba(121,31,31,0.08)" : "none",
+                    padding: "4px 0",
+                  }}>😩 "{t}"</p>
                 ))}
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", color: "#8A9A8E" }}>vs</div>
-              <div style={{ background: "#E1F5EE", borderRadius: "12px", padding: "20px" }}>
-                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#085041", marginBottom: "10px" }}>8주 후 사장님</h4>
+              <div style={{
+                background: "#E1F5EE", borderRadius: "16px", padding: "28px",
+                border: "1px solid rgba(8,80,65,0.1)",
+              }}>
+                <div style={{
+                  fontSize: "11px", fontWeight: 700, color: "#0F6E56", letterSpacing: "0.1em",
+                  marginBottom: "16px", textTransform: "uppercase",
+                }}>AFTER — 8주 후</div>
                 {BOOTCAMP.beforeAfter.after.map((t, i) => (
-                  <p key={i} style={{ fontSize: "12px", color: "#085041", lineHeight: 1.8 }}>"{t}"</p>
+                  <p key={i} style={{
+                    fontSize: "14px", color: "#085041", lineHeight: 2.2,
+                    borderBottom: i < BOOTCAMP.beforeAfter.after.length - 1 ? "1px solid rgba(8,80,65,0.08)" : "none",
+                    padding: "4px 0",
+                  }}>😎 "{t}"</p>
                 ))}
               </div>
             </div>
           </FadeIn>
 
           {/* 3단계 커리큘럼 */}
-          <FadeIn delay={0.2}>
-            <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px", color: "#1B4332" }}>
-              📋 8주 커리큘럼 — 3단계 구조
-            </h3>
-            {BOOTCAMP.phases.map((phase, pi) => (
-              <div key={pi} style={{ marginBottom: "16px" }}>
+          {BOOTCAMP.phases.map((phase, pi) => (
+            <FadeIn key={pi} delay={0.15 + pi * 0.1}>
+              <div style={{ marginBottom: "28px" }}>
                 <div style={{
-                  fontSize: "12px", fontWeight: 700, padding: "8px 16px",
-                  background: phase.bg, color: phase.color,
-                  borderRadius: "10px 10px 0 0",
-                }}>{phase.label} ({phase.period}): {phase.desc}</div>
-                <div style={{ border: "1px solid #E8E5DC", borderTop: "none", borderRadius: "0 0 10px 10px", overflow: "hidden" }}>
+                  display: "flex", alignItems: "center", gap: "12px",
+                  marginBottom: "16px",
+                }}>
+                  <div style={{
+                    background: phase.bg, color: phase.color,
+                    fontSize: "13px", fontWeight: 800, padding: "8px 16px",
+                    borderRadius: "100px", letterSpacing: "0.03em",
+                  }}>{phase.label}</div>
+                  <span style={{ fontSize: "13px", color: "#8A9A8E" }}>{phase.period} · {phase.desc}</span>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                   {phase.weeks.map((w, wi) => (
                     <div key={wi} style={{
-                      display: "flex", borderBottom: wi < phase.weeks.length - 1 ? "1px solid #E8E5DC" : "none",
+                      background: "#FAFAF7", borderRadius: "16px", padding: "24px",
+                      border: "1px solid #E8E5DC",
+                      display: "flex", gap: "20px", alignItems: "flex-start",
                     }}>
                       <div style={{
-                        width: "56px", display: "flex", flexDirection: "column",
+                        width: "52px", height: "52px", borderRadius: "14px",
+                        background: phase.bg, display: "flex", flexDirection: "column",
                         alignItems: "center", justifyContent: "center", flexShrink: 0,
-                        padding: "12px 8px", background: phase.bg,
                       }}>
-                        <span style={{ fontSize: "18px", fontWeight: 700, color: phase.color }}>{w.week}</span>
-                        <span style={{ fontSize: "10px", color: phase.color, opacity: 0.7 }}>week</span>
+                        <span style={{ fontSize: "20px", fontWeight: 800, color: phase.color, lineHeight: 1 }}>{w.week}</span>
+                        <span style={{ fontSize: "9px", color: phase.color, opacity: 0.6, marginTop: "2px" }}>WEEK</span>
                       </div>
-                      <div style={{ flex: 1, padding: "12px 16px", borderLeft: "1px solid #E8E5DC" }}>
-                        <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18", marginBottom: "2px" }}>{w.title}</div>
-                        <div style={{ fontSize: "12px", color: "#6B7B6E", lineHeight: 1.5 }}>{w.sub}</div>
+                      <div style={{ flex: 1 }}>
+                        <h4 style={{
+                          fontSize: "16px", fontWeight: 700, color: "#1B1B18",
+                          marginBottom: "6px", lineHeight: 1.4,
+                        }}>{w.title}</h4>
+                        <p style={{
+                          fontSize: "13px", color: "#6B7B6E", lineHeight: 1.7,
+                          margin: "0 0 10px",
+                        }}>{w.sub}</p>
                         <div style={{
-                          fontSize: "11px", marginTop: "6px", padding: "4px 10px",
-                          borderRadius: "6px", display: "inline-block",
-                          background: phase.bg, color: phase.color, fontWeight: 600,
-                        }}>결과물: {w.result}</div>
+                          fontSize: "12px", padding: "6px 14px",
+                          borderRadius: "8px", display: "inline-flex", alignItems: "center", gap: "6px",
+                          background: phase.bg, color: phase.color, fontWeight: 700,
+                        }}>📦 {w.result}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
-          </FadeIn>
+            </FadeIn>
+          ))}
 
           {/* 8주 후 결과물 3열 */}
-          <FadeIn delay={0.3}>
-            <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "32px 0 16px", color: "#1B4332" }}>
-              🎯 8주 후 갖게 되는 것
-            </h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "12px", marginBottom: "24px" }}>
-              {BOOTCAMP.results.map((col, i) => (
-                <div key={i} style={{
-                  background: "#FAFAF7", borderRadius: "12px", padding: "16px",
-                  border: "1px solid #E8E5DC",
-                }}>
-                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#0F6E56", marginBottom: "10px" }}>{col.title}</div>
-                  {col.items.map(([label, value], j) => (
-                    <div key={j} style={{
-                      display: "flex", justifyContent: "space-between", fontSize: "12px",
-                      padding: "4px 0", borderBottom: j < col.items.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
-                    }}>
-                      <span style={{ color: "#3A4A3E" }}>{label}</span>
-                      <span style={{ color: "#1D9E75", fontWeight: 600 }}>{value}</span>
-                    </div>
-                  ))}
-                </div>
-              ))}
+          <FadeIn delay={0.4}>
+            <div style={{
+              background: "linear-gradient(135deg, #0D1F17, #1B4332)",
+              borderRadius: "20px", padding: "36px 28px", marginTop: "20px", marginBottom: "28px",
+            }}>
+              <h3 style={{
+                fontSize: "20px", fontWeight: 700, color: "#E8E5DC",
+                textAlign: "center", marginBottom: "24px",
+              }}>🎯 8주 후 갖게 되는 것</h3>
+              <div style={{
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px",
+              }}>
+                {BOOTCAMP.results.map((col, i) => (
+                  <div key={i} style={{
+                    background: "rgba(255,255,255,0.06)", borderRadius: "14px", padding: "20px",
+                    border: "1px solid rgba(149,213,178,0.12)",
+                  }}>
+                    <div style={{
+                      fontSize: "14px", fontWeight: 700, color: "#95D5B2", marginBottom: "14px",
+                    }}>{col.title}</div>
+                    {col.items.map(([label, value], j) => (
+                      <div key={j} style={{
+                        display: "flex", justifyContent: "space-between", fontSize: "13px",
+                        padding: "6px 0",
+                        borderBottom: j < col.items.length - 1 ? "1px solid rgba(149,213,178,0.08)" : "none",
+                      }}>
+                        <span style={{ color: "#B7E4C7" }}>{label}</span>
+                        <span style={{ color: "#52B788", fontWeight: 700 }}>{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </FadeIn>
 
           {/* 이런 사장님께 추천 */}
-          <FadeIn delay={0.35}>
-            <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "32px 0 16px", color: "#1B4332" }}>
-              💡 이런 사장님께 추천합니다
-            </h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "10px", marginBottom: "32px" }}>
+          <FadeIn delay={0.45}>
+            <h3 style={{
+              fontSize: "20px", fontWeight: 700, marginBottom: "20px", color: "#1B4332", textAlign: "center",
+            }}>💡 이런 사장님께 추천합니다</h3>
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "12px", marginBottom: "40px",
+            }}>
               {BOOTCAMP.recommend.map((r, i) => (
                 <div key={i} style={{
-                  background: "#F5F4EF", borderRadius: "10px", padding: "12px 16px",
+                  background: "#FAFAF7", borderRadius: "14px", padding: "18px 20px",
+                  border: "1px solid #E8E5DC",
                 }}>
-                  <div style={{ fontSize: "13px", fontWeight: 700, color: "#1B1B18", marginBottom: "4px" }}>"{r.q}"</div>
-                  <div style={{ fontSize: "12px", color: "#6B7B6E" }}>{r.a}</div>
+                  <div style={{
+                    fontSize: "15px", fontWeight: 700, color: "#1B1B18", marginBottom: "6px",
+                  }}>"{r.q}"</div>
+                  <div style={{
+                    fontSize: "13px", color: "#6B7B6E", lineHeight: 1.6,
+                    paddingLeft: "8px", borderLeft: "3px solid #52B788",
+                  }}>{r.a}</div>
                 </div>
               ))}
             </div>
           </FadeIn>
 
           {/* 가격 + 혜택 + CTA */}
-          <FadeIn delay={0.4}>
+          <FadeIn delay={0.5}>
             <div style={{
               background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
-              borderRadius: "16px", padding: "32px", textAlign: "center",
+              borderRadius: "20px", padding: "40px 32px", textAlign: "center",
             }}>
-              <div style={{ fontSize: "12px", color: "#95D5B2", marginBottom: "8px", letterSpacing: "0.1em" }}>
+              <div style={{
+                fontSize: "13px", color: "#95D5B2", marginBottom: "12px",
+                letterSpacing: "0.05em", lineHeight: 1.6,
+              }}>
                 {BOOTCAMP.priceNote}
               </div>
-              <div style={{ fontSize: "40px", fontWeight: 800, color: "#fff", marginBottom: "8px" }}>
+              <div style={{
+                fontSize: "48px", fontWeight: 800, color: "#fff", marginBottom: "16px",
+                letterSpacing: "-0.02em",
+              }}>
                 {BOOTCAMP.price}
               </div>
-              <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginBottom: "20px" }}>
+              <div style={{
+                display: "flex", gap: "10px", justifyContent: "center",
+                flexWrap: "wrap", marginBottom: "28px",
+              }}>
                 {BOOTCAMP.benefits.map((b, i) => (
                   <span key={i} style={{
-                    fontSize: "11px", color: "#B7E4C7", background: "rgba(183,228,199,0.12)",
-                    padding: "4px 12px", borderRadius: "100px",
+                    fontSize: "12px", color: "#B7E4C7",
+                    background: "rgba(183,228,199,0.12)",
+                    padding: "6px 16px", borderRadius: "100px",
+                    border: "1px solid rgba(183,228,199,0.15)",
                   }}>✓ {b}</span>
                 ))}
               </div>
               <button
                 onClick={() => handleCTAClick("bootcamp")}
                 style={{
-                  padding: "16px 48px", borderRadius: "12px", border: "none",
+                  padding: "18px 56px", borderRadius: "14px", border: "none",
                   background: "linear-gradient(135deg, #40916C, #52B788)",
-                  color: "#fff", fontSize: "16px", fontWeight: 700, cursor: "pointer",
+                  color: "#fff", fontSize: "17px", fontWeight: 700, cursor: "pointer",
                   boxShadow: "0 8px 32px rgba(64,145,108,0.3)",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 12px 40px rgba(64,145,108,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(64,145,108,0.3)";
                 }}
               >🎓 퍼널구축 아카데미 신청하기</button>
             </div>
