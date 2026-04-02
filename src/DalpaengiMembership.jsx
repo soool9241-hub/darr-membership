@@ -105,7 +105,7 @@ const TIERS = [
 
 const BOOTCAMP = {
   emoji: "🎓",
-  name: "퍼널구축 아카데미",
+  name: "퍼널구축 아카데미 — 집중 스터디반",
   subtitle: "8주 만에 내 사업의 자동화 퍼널을 완성합니다.\n기술이 아니라 \"매출이 나는 구조\"를 만드는 과정.",
   longDesc: "n8n도, Supabase도, 코딩도 몰라도 됩니다.\n\"내 가게에 손님이 알아서 오고, 문자가 알아서 나가고, 리뷰가 알아서 쌓이는 구조\"\n그걸 8주 만에 직접 만듭니다.",
   price: "₩990,000",
@@ -1200,7 +1200,7 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>퍼널구축 아카데미</div>
+            }}>퍼널구축 아카데미 — 집중 스터디반</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
             }}>{BOOTCAMP.emoji} 8주 만에 내 사업의 자동화 퍼널을 완성합니다</h2>
@@ -1426,7 +1426,7 @@ export default function DalpaengiMembership() {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "0 8px 32px rgba(64,145,108,0.3)";
                 }}
-              >🎓 퍼널구축 아카데미 신청하기</button>
+              >🎓 퍼널구축 아카데미 — 집중 스터디반 신청하기</button>
             </div>
           </FadeIn>
         </div>
