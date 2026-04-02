@@ -284,12 +284,12 @@ const CURRICULUM = [
 ];
 
 const PROOF_ITEMS = [
-  { number: "7년", label: "호스팅 경력" },
-  { number: "5.0", label: "에어비앤비 평점" },
+  { number: "60평", label: "펜션 운영" },
   { number: "120평", label: "CNC 공방 운영" },
-  { number: "304+", label: "누적 예약 건수" },
-  { number: "10개", label: "AI 에이전트 운영 중" },
-  { number: "24시간", label: "자동화 시스템 가동" },
+  { number: "24시간", label: "자동화 시스템 구축" },
+  { number: "100개", label: "AI 에이전트 운영 중" },
+  { number: "바이브코딩", label: "워크샵 진행" },
+  { number: "1,000+", label: "누적 시제품 제작" },
 ];
 
 const FUNNEL_STEPS = [
