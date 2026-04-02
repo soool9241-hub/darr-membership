@@ -204,18 +204,18 @@ const FREE_RESOURCES = [
 ];
 
 const DIGITAL_PRODUCTS = [
-  { emoji: "🎬", name: "n8n 자동화 입문 (3시간)", price: "₩49,000", type: "VOD 강의" },
-  { emoji: "🎬", name: "소상공인 AI 실전 활용 (5시간)", price: "₩79,000", type: "VOD 강의" },
-  { emoji: "🎬", name: "Supabase로 예약 시스템 만들기 (4시간)", price: "₩69,000", type: "VOD 강의" },
-  { emoji: "🎬", name: "마케팅 자동화 마스터 (6시간)", price: "₩89,000", type: "VOD 강의" },
-  { emoji: "🎬", name: "AI 에이전트 설계 실전 (4시간)", price: "₩79,000", type: "VOD 강의" },
-  { emoji: "📦", name: "SMS 자동 발송 스타터 팩", price: "₩29,000", type: "템플릿 팩" },
-  { emoji: "📦", name: "예약 관리 올인원 팩", price: "₩49,000", type: "템플릿 팩" },
-  { emoji: "📦", name: "SNS 콘텐츠 자동화 팩", price: "₩39,000", type: "템플릿 팩" },
-  { emoji: "📦", name: "매출 2배 퍼널 템플릿", price: "₩39,000", type: "템플릿 팩" },
-  { emoji: "📦", name: "고객 관리 CRM 올인원 팩", price: "₩49,000", type: "템플릿 팩" },
-  { emoji: "🏫", name: "AI 자동화 체험 워크샵 (3시간)", price: "₩150만원~", type: "기업 교육" },
-  { emoji: "🏫", name: "업무 자동화 실전 교육 (6시간)", price: "₩200만원~", type: "기업 교육" },
+  { emoji: "🎬", name: "n8n 자동화 입문 (3시간)", price: "₩49,000", type: "VOD 강의", desc: "n8n 설치부터 실전 워크플로우 구축까지. 코딩 없이 자동화 시스템을 만드는 첫 걸음." },
+  { emoji: "🎬", name: "소상공인 AI 실전 활용 (5시간)", price: "₩79,000", type: "VOD 강의", desc: "ChatGPT·Claude를 내 사업에 바로 적용. 고객 응대, 콘텐츠, 마케팅 자동화 실전 사례." },
+  { emoji: "🎬", name: "Supabase로 예약 시스템 만들기 (4시간)", price: "₩69,000", type: "VOD 강의", desc: "무료 DB로 예약·고객관리 시스템 구축. 코드 템플릿 포함, 바로 복사해서 사용 가능." },
+  { emoji: "🎬", name: "마케팅 자동화 마스터 (6시간)", price: "₩89,000", type: "VOD 강의", desc: "SMS·이메일·리뷰 수집까지 마케팅 전 과정 자동화. Solapi + n8n 연동 실습." },
+  { emoji: "🎬", name: "AI 에이전트 설계 실전 (4시간)", price: "₩79,000", type: "VOD 강의", desc: "24시간 일하는 AI 비서 만들기. 고객 문의 자동 응대, 데이터 수집, 리포트 생성." },
+  { emoji: "📦", name: "SMS 자동 발송 스타터 팩", price: "₩29,000", type: "템플릿 팩", desc: "예약 확인·방문 안내·감사 문자 자동 발송 템플릿. Solapi + n8n 워크플로우 포함." },
+  { emoji: "📦", name: "예약 관리 올인원 팩", price: "₩49,000", type: "템플릿 팩", desc: "Supabase 예약 DB + 관리 화면 + 자동 알림까지. 복사해서 바로 사용." },
+  { emoji: "📦", name: "SNS 콘텐츠 자동화 팩", price: "₩39,000", type: "템플릿 팩", desc: "AI가 블로그·인스타 글을 자동 생성하고 예약 발행. n8n 워크플로우 포함." },
+  { emoji: "📦", name: "매출 2배 퍼널 템플릿", price: "₩39,000", type: "템플릿 팩", desc: "검증된 5단계 자동화 퍼널 구조. 구글 시트 + n8n 워크플로우로 바로 적용." },
+  { emoji: "📦", name: "고객 관리 CRM 올인원 팩", price: "₩49,000", type: "템플릿 팩", desc: "고객 DB + 세그먼트 분류 + 자동 리텐션 메시지. Supabase + n8n 풀 세트." },
+  { emoji: "🏫", name: "AI 자동화 체험 워크샵 (3시간)", price: "₩150만원~", type: "기업 교육", desc: "팀 전체가 AI 자동화를 체험하는 현장 워크샵. 실습 중심, 결과물 가져감." },
+  { emoji: "🏫", name: "업무 자동화 실전 교육 (6시간)", price: "₩200만원~", type: "기업 교육", desc: "우리 회사 업무에 맞는 자동화 시스템 설계·구축 교육. 맞춤 커리큘럼 제공." },
 ];
 
 const CURRICULUM = [
@@ -478,6 +478,60 @@ function FAQItem({ item, index }) {
         </div>
       </div>
     </FadeIn>
+  );
+}
+
+function ProductCard({ prod }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      onClick={() => setOpen(!open)}
+      style={{
+        background: "#FAFAF7", borderRadius: "14px", padding: "20px",
+        border: "1px solid #E8E5DC", cursor: "pointer",
+        transition: "box-shadow 0.3s ease", position: "relative",
+      }}
+      onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 8px 24px rgba(27,67,50,0.1)"}
+      onMouseLeave={(e) => e.currentTarget.style.boxShadow = "none"}
+    >
+      <div style={{
+        position: "absolute", top: "12px", right: "12px",
+        background: "#D32F2F", color: "#fff",
+        fontSize: "9px", fontWeight: 800, padding: "3px 8px",
+        borderRadius: "4px", letterSpacing: "0.1em",
+      }}>SOLD OUT</div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+        <div style={{ fontSize: "28px", flexShrink: 0 }}>{prod.emoji}</div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18", marginBottom: "2px", paddingRight: "60px" }}>{prod.name}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{
+              fontSize: "10px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "2px 8px", borderRadius: "100px",
+            }}>{prod.type}</span>
+            <span style={{ fontSize: "15px", fontWeight: 800, color: "#1B4332" }}>{prod.price}</span>
+          </div>
+        </div>
+      </div>
+
+      {open && (
+        <div style={{
+          marginTop: "14px", paddingTop: "14px",
+          borderTop: "1px solid #E8E5DC",
+        }}>
+          <p style={{ fontSize: "13px", color: "#5A6A5E", lineHeight: 1.7, margin: "0 0 12px" }}>
+            {prod.desc}
+          </p>
+          <div style={{
+            background: "rgba(45,106,79,0.06)", borderRadius: "8px",
+            padding: "10px 14px", fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
+          }}>
+            📋 대기자 명단 등록 → 런칭 시 가장 먼저 알림 드립니다
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -1310,7 +1364,7 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
-      {/* ══════ 디지털 상품 + 기업 교육 ══════ */}
+      {/* ══════ 바로 구매 서비스 ══════ */}
       <section style={{ padding: "80px 24px", background: "#fff" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <FadeIn>
@@ -1322,10 +1376,25 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
             }}>📦 바로 구매 서비스</h2>
-            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              멤버십 구독 없이도 바로 활용할 수 있습니다.<br />
-              VOD 강의로 체계적으로 배우고, 자동화 템플릿으로 내 사업에 즉시 적용하세요.
+            <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "12px", lineHeight: 1.7 }}>
+              수요 없는 공급은 최소화하려고요!<br />
+              수요 있는 공급자가 되길 바래봅니다!
             </p>
+            <div style={{
+              background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+              borderRadius: "12px", padding: "16px 20px", marginBottom: "40px",
+              display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap",
+            }}>
+              <span style={{ fontSize: "20px" }}>🚀</span>
+              <div>
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#B7E4C7" }}>
+                  현재 전 상품 SOLD OUT — 대기자 명단 등록 중
+                </div>
+                <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "2px" }}>
+                  런칭 시 가장 먼저 알림 드립니다. 아래에서 관심 상품을 확인하세요.
+                </div>
+              </div>
+            </div>
           </FadeIn>
 
           <div style={{
@@ -1333,22 +1402,7 @@ export default function DalpaengiMembership() {
           }}>
             {DIGITAL_PRODUCTS.map((prod, i) => (
               <FadeIn key={i} delay={i * 0.08}>
-                <div style={{
-                  background: "#FAFAF7", borderRadius: "14px", padding: "20px",
-                  border: "1px solid #E8E5DC", display: "flex", alignItems: "center", gap: "14px",
-                }}>
-                  <div style={{ fontSize: "28px", flexShrink: 0 }}>{prod.emoji}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B1B18", marginBottom: "2px" }}>{prod.name}</div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{
-                        fontSize: "10px", fontWeight: 700, color: "#2D6A4F",
-                        background: "rgba(45,106,79,0.08)", padding: "2px 8px", borderRadius: "100px",
-                      }}>{prod.type}</span>
-                      <span style={{ fontSize: "15px", fontWeight: 800, color: "#1B4332" }}>{prod.price}</span>
-                    </div>
-                  </div>
-                </div>
+                <ProductCard prod={prod} />
               </FadeIn>
             ))}
           </div>
@@ -1356,13 +1410,15 @@ export default function DalpaengiMembership() {
           <FadeIn delay={0.5}>
             <div style={{ textAlign: "center", marginTop: "32px" }}>
               <button
-                onClick={() => handleCTAClick("dfy")}
+                onClick={() => handleCTAClick("letter")}
                 style={{
-                  padding: "14px 32px", borderRadius: "12px",
-                  border: "1.5px solid #2D6A4F", background: "transparent",
-                  color: "#2D6A4F", fontSize: "15px", fontWeight: 700, cursor: "pointer",
+                  padding: "16px 40px", borderRadius: "14px",
+                  background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+                  color: "#fff", fontSize: "15px", fontWeight: 700,
+                  border: "none", cursor: "pointer",
+                  boxShadow: "0 8px 32px rgba(27,67,50,0.2)",
                 }}
-              >기업 교육 · 워크샵 문의</button>
+              >🐌 대기자 명단 등록하기 (뉴스레터 구독)</button>
             </div>
           </FadeIn>
         </div>
