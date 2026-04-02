@@ -649,7 +649,7 @@ export default function DalpaengiMembership() {
 
           <FadeIn delay={0.25}>
             <p style={{ fontSize: "14px", color: "#8A9A8E", marginBottom: "36px" }}>
-              무료 자료부터 시작하세요. 다음 단계는 시스템이 안내합니다.
+              가장 느린 달팽이의 지속 가능한 수익 구조를 함께 만들어가는 멤버십
             </p>
           </FadeIn>
 
