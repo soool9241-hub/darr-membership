@@ -189,7 +189,7 @@ const CURRICULUM = [
     num: "01",
     icon: "🖥️",
     title: "팔리는 랜딩페이지 구축",
-    tag: "바이브 코딩",
+    tag: "바이브 코딩 · 6시간",
     desc: "코딩을 몰라도 AI와 함께 바이브 코딩으로 전환율 높은 랜딩페이지를 직접 만들고 배포합니다.",
     details: ["React + Vercel 배포", "전환율 높은 구조 설계", "AI 코파일럿 활용 실습"],
   },
@@ -197,7 +197,7 @@ const CURRICULUM = [
     num: "02",
     icon: "🤖",
     title: "나 대신 일하는 모객 시스템 구축",
-    tag: "AI 시스템 · 광고",
+    tag: "AI 시스템 · 광고 · 6시간",
     desc: "AI 시스템과 광고 채널을 연결해 24시간 자동으로 고객을 모으고 전환시키는 시스템을 구축합니다.",
     details: ["AI 에이전트 & n8n 자동화", "네이버 광고 · 유튜브 광고", "인스타그램 · 페이스북 광고"],
   },
@@ -205,7 +205,7 @@ const CURRICULUM = [
     num: "03",
     icon: "📊",
     title: "운영관리 AI 효율화",
-    tag: "관리자 페이지 · 데이터",
+    tag: "관리자 페이지 · 데이터 · 6시간",
     desc: "관리자 페이지를 고도화하고, 데이터 기반으로 운영을 자동화하는 시스템을 만듭니다.",
     details: ["관리자 페이지 고도화", "데이터 기반 의사결정", "운영 자동화 파이프라인"],
   },
@@ -213,7 +213,7 @@ const CURRICULUM = [
     num: "04",
     icon: "🤝",
     title: "나 대신 팔아줄 마케터 100명 만드는 노하우",
-    tag: "파트너십 시스템",
+    tag: "파트너십 시스템 · 6시간",
     desc: "혼자 팔지 않아도 매출이 오르는 구조. 파트너십 시스템을 직접 만들어갑니다.",
     details: ["파트너 모집 & 관리 시스템", "수익 분배 자동화", "확장 가능한 영업 구조"],
   },
@@ -851,6 +851,8 @@ export default function DalpaengiMembership() {
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
               프로 멤버십과 8주 부트캠프에서 배우고 직접 만드는 핵심 주제입니다.<br />
               이론과 실습을 병행하며, 돌아갈 때는 완성된 결과물을 손에 들고 갑니다.
+              <br /><br />
+              <span style={{ color: "#1B4332", fontWeight: 700, fontSize: "14px" }}>⏱️ 과정별 6시간 · 이론 + 실습 병행 · 당일 결과물 완성</span>
               <br /><br />
               <span style={{ color: "#2D6A4F", fontWeight: 600 }}>▾ 각 항목을 클릭하면 상세 내용이 펼쳐집니다</span>
             </p>
