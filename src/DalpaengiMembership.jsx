@@ -481,7 +481,7 @@ function FAQItem({ item, index }) {
   );
 }
 
-function ProductCard({ prod }) {
+function ProductCard({ prod, onWaitlist }) {
   const [open, setOpen] = useState(false);
   return (
     <div
@@ -523,12 +523,25 @@ function ProductCard({ prod }) {
           <p style={{ fontSize: "13px", color: "#5A6A5E", lineHeight: 1.7, margin: "0 0 12px" }}>
             {prod.desc}
           </p>
-          <div style={{
-            background: "rgba(45,106,79,0.06)", borderRadius: "8px",
-            padding: "10px 14px", fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
-          }}>
+          <button
+            onClick={(e) => { e.stopPropagation(); onWaitlist(); }}
+            style={{
+              width: "100%", padding: "10px 14px", borderRadius: "8px",
+              background: "rgba(45,106,79,0.06)", border: "1px solid rgba(45,106,79,0.15)",
+              fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
+              cursor: "pointer", transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(135deg, #1B4332, #2D6A4F)";
+              e.currentTarget.style.color = "#fff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(45,106,79,0.06)";
+              e.currentTarget.style.color = "#2D6A4F";
+            }}
+          >
             📋 대기자 명단 등록 → 런칭 시 가장 먼저 알림 드립니다
-          </div>
+          </button>
         </div>
       )}
     </div>
@@ -1405,7 +1418,7 @@ export default function DalpaengiMembership() {
           }}>
             {DIGITAL_PRODUCTS.map((prod, i) => (
               <FadeIn key={i} delay={i * 0.08}>
-                <ProductCard prod={prod} />
+                <ProductCard prod={prod} onWaitlist={() => setActiveModal("waitlist")} />
               </FadeIn>
             ))}
           </div>
