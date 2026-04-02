@@ -229,16 +229,36 @@ const PROOF_ITEMS = [
 ];
 
 const FUNNEL_STEPS = [
-  { emoji: "📬", label: "무료로 시작하기", sub: '주 2회 AI 트렌드 뉴스레터를 받아보세요', price: "무료", color: "#95D5B2" },
-  { emoji: "💻", label: "눈으로 확인하기", sub: '라이브 시연 + 커뮤니티 + 템플릿으로 가능성을 확인하세요', price: "₩29,900/월", color: "#52B788" },
-  { emoji: "🔧", label: "직접 만들어보기", sub: '소그룹 코칭과 오프라인 실습으로 내 결과물을 완성하세요', price: "₩199,000/월", color: "#2D6A4F" },
-  { emoji: "🚀", label: "수익 시스템 구축", sub: '1:1 밀착 코칭으로 나만의 자동화 수익 구조를 완성하세요', price: "₩990,000/월", color: "#1B4332" },
-];
-
-const EXTRA_OPTIONS = [
-  { emoji: "🎓", label: "8주 집중 과정", sub: "단기간에 자동화 시스템을 처음부터 끝까지 만들고 싶다면", price: "₩990,000" },
-  { emoji: "🔧", label: "통째로 맡기기", sub: "배우기보다 완성된 시스템을 바로 받고 싶다면", price: "300~800만원" },
-  { emoji: "📦", label: "혼자 시작하기", sub: "VOD 강의와 자동화 템플릿으로 내 속도대로 시작하고 싶다면", price: "₩29,000~" },
+  {
+    step: "STEP 1", emoji: "📬", label: "무료 자료 받기",
+    sub: "뉴스레터 구독 시 자동화 체크리스트 · 무료 강의 · 퍼널 템플릿을 바로 보내드립니다",
+    price: "무료", color: "#95D5B2",
+    detail: "이미 5,000+명의 사장님이 받아보고 있습니다",
+  },
+  {
+    step: "STEP 2", emoji: "📦", label: "가볍게 시작하기",
+    sub: "VOD 강의나 자동화 템플릿으로 내 사업에 바로 적용해보세요",
+    price: "₩29,000~", color: "#74C69D",
+    detail: "7일 자동 가이드가 활용법을 안내해드립니다",
+  },
+  {
+    step: "STEP 3", emoji: "💻", label: "함께 성장하기",
+    sub: "주간 라이브 · 커뮤니티 · 템플릿과 함께 꾸준히 실력을 쌓아가세요",
+    price: "₩29,900/월", color: "#52B788",
+    detail: "800명이 매주 함께 배우고 있습니다 · 첫 달 50% 할인",
+  },
+  {
+    step: "STEP 4", emoji: "🔧", label: "직접 만들어보기",
+    sub: "소그룹 코칭과 오프라인 실습으로 내 결과물을 완성하세요",
+    price: "₩199,000/월", color: "#2D6A4F",
+    detail: "5명 단위 밀착 코칭 · 월 1회 현장 워크샵",
+  },
+  {
+    step: "STEP 5", emoji: "🚀", label: "수익 시스템 완성",
+    sub: "1:1 코칭으로 자동화 수익 구조를 구축하거나, 통째로 맡기세요",
+    price: "₩990,000/월~", color: "#1B4332",
+    detail: "파트너 멤버십 또는 구축 대행 중 선택",
+  },
 ];
 
 const RUNNING_SYSTEMS = [
@@ -629,7 +649,7 @@ export default function DalpaengiMembership() {
 
           <FadeIn delay={0.25}>
             <p style={{ fontSize: "14px", color: "#8A9A8E", marginBottom: "36px" }}>
-              직접 배우고 싶다면 멤버십을, 맡기고 싶다면 구축 대행을 선택하세요.
+              무료 자료부터 시작하세요. 다음 단계는 시스템이 안내합니다.
             </p>
           </FadeIn>
 
@@ -728,85 +748,91 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
-      {/* ══════ FUNNEL JOURNEY ══════ */}
+      {/* ══════ 5-STEP FUNNEL ══════ */}
       <section style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>5단계 자동화 성장 시스템</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>나에게 맞는 시작점 찾기</h2>
-            <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "48px" }}>
-              무료 레터부터 시작해서, 나만의 속도로 올라갑니다
+            }}>무료에서 시작해서, 시스템이 안내합니다</h2>
+            <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "48px", lineHeight: 1.7 }}>
+              부담 없이 무료 자료부터 받아보세요.<br />
+              다음 단계는 시스템이 자연스럽게 안내해드립니다.
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.05}>
-            <div style={{
-              fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
-              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
-              borderRadius: "100px", display: "inline-block", marginBottom: "16px",
-            }}>단계별 성장 경로</div>
-          </FadeIn>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+            {FUNNEL_STEPS.map((step, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div style={{ position: "relative" }}>
+                  {/* 연결선 */}
+                  {i < FUNNEL_STEPS.length - 1 && (
+                    <div style={{
+                      position: "absolute", left: "31px", top: "80px", bottom: "-10px",
+                      width: "2px", background: "linear-gradient(180deg, " + step.color + ", " + FUNNEL_STEPS[i + 1].color + ")",
+                      zIndex: 0,
+                    }} />
+                  )}
 
-          {FUNNEL_STEPS.map((step, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <div style={{
-                display: "flex", alignItems: "center", gap: "20px",
-                padding: "20px 0", borderBottom: i < FUNNEL_STEPS.length - 1 ? "1px solid #E8E5DC" : "none",
-              }}>
-                <div style={{
-                  width: "52px", height: "52px", borderRadius: "14px", background: step.color,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "24px", flexShrink: 0,
-                }}>{step.emoji}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                    <span style={{ fontSize: "17px", fontWeight: 700 }}>{step.label}</span>
-                    <span style={{
-                      fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
-                      background: "rgba(45,106,79,0.08)", padding: "2px 10px", borderRadius: "100px",
-                    }}>{step.price}</span>
+                  <div style={{
+                    display: "flex", gap: "20px", padding: "20px 0",
+                    position: "relative", zIndex: 1,
+                  }}>
+                    {/* 스텝 번호 + 아이콘 */}
+                    <div style={{ flexShrink: 0, textAlign: "center" }}>
+                      <div style={{
+                        width: "64px", height: "64px", borderRadius: "16px", background: step.color,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "28px", boxShadow: "0 4px 16px rgba(27,67,50,0.15)",
+                      }}>{step.emoji}</div>
+                      <div style={{
+                        fontSize: "10px", fontWeight: 800, color: step.color,
+                        marginTop: "6px", letterSpacing: "0.05em",
+                      }}>{step.step}</div>
+                    </div>
+
+                    {/* 내용 */}
+                    <div style={{ flex: 1, paddingTop: "4px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "4px" }}>
+                        <span style={{ fontSize: "18px", fontWeight: 700, color: "#1B1B18" }}>{step.label}</span>
+                        <span style={{
+                          fontSize: "12px", fontWeight: 700, color: "#fff", background: step.color,
+                          padding: "3px 12px", borderRadius: "100px",
+                        }}>{step.price}</span>
+                      </div>
+                      <p style={{ fontSize: "14px", color: "#5A6A5E", margin: "0 0 6px", lineHeight: 1.6 }}>{step.sub}</p>
+                      <span style={{
+                        fontSize: "12px", color: "#2D6A4F", fontWeight: 600,
+                        background: "rgba(45,106,79,0.06)", padding: "4px 12px",
+                        borderRadius: "6px", display: "inline-block",
+                      }}>{step.detail}</span>
+                    </div>
                   </div>
-                  <div style={{ fontSize: "14px", color: "#6B7B6E", marginTop: "2px" }}>{step.sub}</div>
                 </div>
-                {i < FUNNEL_STEPS.length - 1 && <div style={{ fontSize: "18px", color: "#95D5B2", fontWeight: 700 }}>→</div>}
-              </div>
-            </FadeIn>
-          ))}
+              </FadeIn>
+            ))}
+          </div>
 
           <FadeIn delay={0.6}>
             <div style={{
-              fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
-              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
-              borderRadius: "100px", display: "inline-block", marginTop: "32px", marginBottom: "16px",
-            }}>이런 분들에게도 딱 맞는 선택지가 있어요</div>
+              marginTop: "32px", textAlign: "center",
+              background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
+              borderRadius: "16px", padding: "28px 24px",
+            }}>
+              <p style={{ fontSize: "15px", color: "#B7E4C7", margin: "0 0 4px", lineHeight: 1.7 }}>
+                어떤 단계���서 시작하든, 시스템이 ��음 단계를 자연스럽게 안내합니다.
+              </p>
+              <p style={{ fontSize: "13px", color: "#6B9E82", margin: 0 }}>
+                대부분의 분들은 무료 자료 → 템플릿 구매 → 멤버십 순으로 시작���고 있습니다.
+              </p>
+            </div>
           </FadeIn>
-
-          {EXTRA_OPTIONS.map((step, i) => (
-            <FadeIn key={`extra-${i}`} delay={0.7 + i * 0.1}>
-              <div style={{
-                display: "flex", alignItems: "center", gap: "20px",
-                padding: "16px 0", borderBottom: i < EXTRA_OPTIONS.length - 1 ? "1px solid #E8E5DC" : "none",
-              }}>
-                <div style={{
-                  width: "44px", height: "44px", borderRadius: "12px", background: "#40916C",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "20px", flexShrink: 0,
-                }}>{step.emoji}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                    <span style={{ fontSize: "16px", fontWeight: 700 }}>{step.label}</span>
-                    <span style={{
-                      fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
-                      background: "rgba(45,106,79,0.08)", padding: "2px 10px", borderRadius: "100px",
-                    }}>{step.price}</span>
-                  </div>
-                  <div style={{ fontSize: "13px", color: "#6B7B6E", marginTop: "2px" }}>{step.sub}</div>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
         </div>
       </section>
 
@@ -846,12 +872,12 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>지금 바로 무료로 받아보세요</div>
+            }}>STEP 1 — 무료로 시작하기</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>무료 자동화 자료 3종</h2>
+            }}>사장님, 이것만 자동화하면 하루 3시간 벌어요</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              달팽이레터를 구독하시면 아래 자료를 무료로 보내드립니다.
+              이메일 하나면 충분합니다. 구독 즉시 아래 자료 3종을 무료로 보내드립니다.
             </p>
           </FadeIn>
 
@@ -914,9 +940,12 @@ export default function DalpaengiMembership() {
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "32px", fontWeight: 700,
               textAlign: "center", marginBottom: "12px",
-            }}>나에게 맞는 멤버십 선택</h2>
-            <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "52px" }}>
-              달팽이처럼 천천히, 하지만 확실하게
+            }}>STEP 3~5 — 함께 성장하기</h2>
+            <p style={{ textAlign: "center", color: "#6B7B6E", fontSize: "15px", marginBottom: "16px" }}>
+              혼자보다 함께일 때 더 빠릅니다. 나에게 맞는 멤버십을 선택하세요.
+            </p>
+            <p style={{ textAlign: "center", fontSize: "13px", color: "#8A9A8E", marginBottom: "52px" }}>
+              800명이 함께하고 있습니다 · 달팽이처럼 천천히, 하지만 확실하게
             </p>
           </FadeIn>
 
@@ -1001,7 +1030,7 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>단기간에 끝내고 싶다면</div>
+            }}>빠른 트랙 — 8주 집중 과정</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
             }}>{BOOTCAMP.emoji} 8주 만에 내 자동화 시스템 완성</h2>
@@ -1102,7 +1131,7 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>배울 시간이 없다면</div>
+            }}>STEP 5 — 통째로 맡기기</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
             }}>🔧 자동화 시스템, 통째로 만들어드립니다</h2>
@@ -1234,12 +1263,12 @@ export default function DalpaengiMembership() {
               display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
               background: "rgba(45,106,79,0.08)", padding: "6px 14px",
               borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
-            }}>내 속도대로 시작하기</div>
+            }}>STEP 2 — 가볍게 시작하기</div>
             <h2 style={{
               fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
-            }}>📦 바로 활용할 수 있는 자동화 도구</h2>
+            }}>📦 내 사업에 바로 적용할 수 있는 자동화 도구</h2>
             <p style={{ color: "#6B7B6E", fontSize: "15px", marginBottom: "40px", lineHeight: 1.7 }}>
-              멤버십 없이도 시작할 수 있습니다. VOD 강의로 배우고, 템플릿으로 바로 적용하세요.
+              무료 자료가 도움이 되셨다면, 여기서 한 단계 더. VOD 강의로 체계적으로 배우고, 템플릿으로 바로 적용하세요.
             </p>
           </FadeIn>
 
