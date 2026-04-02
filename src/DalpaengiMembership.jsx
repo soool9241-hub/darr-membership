@@ -1413,15 +1413,26 @@ export default function DalpaengiMembership() {
           <FadeIn delay={0.5}>
             <div style={{ textAlign: "center", marginTop: "32px" }}>
               <button
-                onClick={() => handleCTAClick("letter")}
+                onClick={() => setActiveModal("waitlist")}
                 style={{
                   padding: "16px 40px", borderRadius: "14px",
                   background: "linear-gradient(135deg, #1B4332, #2D6A4F)",
                   color: "#fff", fontSize: "15px", fontWeight: 700,
                   border: "none", cursor: "pointer",
                   boxShadow: "0 8px 32px rgba(27,67,50,0.2)",
+                  transition: "all 0.3s ease",
                 }}
-              >🐌 대기자 명단 등록하기 (뉴스레터 구독)</button>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "linear-gradient(135deg, #0D1F17, #1B4332)";
+                  e.currentTarget.style.boxShadow = "0 12px 40px rgba(27,67,50,0.35)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "linear-gradient(135deg, #1B4332, #2D6A4F)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(27,67,50,0.2)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >📋 대기자 명단 등록하기</button>
             </div>
           </FadeIn>
         </div>
@@ -1639,6 +1650,11 @@ export default function DalpaengiMembership() {
       <NewsletterSignupModal
         isOpen={activeModal === "letter"}
         onClose={() => setActiveModal(null)}
+      />
+      <NewsletterSignupModal
+        isOpen={activeModal === "waitlist"}
+        onClose={() => setActiveModal(null)}
+        waitlistMode
       />
       <MembershipApplyModal
         isOpen={["online", "pro", "partner", "bootcamp", "dfy"].includes(activeModal)}
