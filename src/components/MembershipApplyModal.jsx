@@ -29,12 +29,12 @@ const TIER_CONFIG = {
     successMsg: "신청이 접수되었습니다!",
   },
   partner: {
-    title: "🚀 파트너 멤버십 문의",
-    grade: "달팽이 가족",
-    desc: "1:1 코칭으로 자동화 수익 시스템을 완전히 구축합니다",
+    title: "🎓 퍼널구축 아카데미 신청",
+    grade: "집중 스터디반",
+    desc: "4주 만에 내 사업의 자동화 퍼널을 완성합니다",
     price: 990000,
-    priceLabel: "월 정기결제 · 20명 한정",
-    successMsg: "문의가 접수되었습니다!",
+    priceLabel: "1인 · 30명 한정 · 대기자 접수 중",
+    successMsg: "대기자 등록이 완료되었습니다! 개강 확정 시 안내드리겠습니다.",
   },
   bootcamp: {
     title: "🎓 집중 스터디반 신청",
