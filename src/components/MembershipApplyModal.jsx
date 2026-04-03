@@ -37,12 +37,12 @@ const TIER_CONFIG = {
     successMsg: "문의가 접수되었습니다!",
   },
   bootcamp: {
-    title: "🎓 8주 부트캠프 신청",
+    title: "🎓 집중 스터디반 신청",
     grade: null,
-    desc: "8주 동안 내 사업에 맞는 자동화 시스템을 처음부터 끝까지 만듭니다",
+    desc: "4주 만에 내 사업에 맞는 자동화 퍼널을 처음부터 끝까지 완성합니다",
     price: 990000,
-    priceLabel: "1인 · 30명 한정 · 연 4기",
-    successMsg: "신청이 접수되었습니다!",
+    priceLabel: "1인 · 30명 한정 · 대기자 접수 중",
+    successMsg: "대기자 등록이 완료되었습니다! 개강 확정 시 안내드리겠습니다.",
   },
   dfy: {
     title: "🔧 구축 대행 무료 상담",
@@ -154,7 +154,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
             phone: form.phone.trim(),
             total_price: totalPrice,
             admin_notes: tierId === "bootcamp"
-              ? "8주 부트캠프 신청"
+              ? "집중 스터디반 대기자 신청"
               : isPro
                 ? `프로 멤버십 신청 | 선택 과목: ${courseNames} | ${selectedCourses.length}과목 × ₩199,000 = ₩${formatPrice(totalPrice)}`
                 : null,
@@ -386,7 +386,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
               )}
               {tierId === "bootcamp" && (
                 <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
-                  온라인 주 2회 · 8주 과정 · 30명 한정
+                  주 1회 5시간 (강의 3h + 실습 2h) · 4주 과정 · 총 20시간
                 </div>
               )}
             </div>
@@ -571,7 +571,7 @@ export default function MembershipApplyModal({ isOpen, onClose, tierId }) {
                     ? `₩${formatPrice(totalPrice)} 프로 멤버십 신청 (${selectedCourses.length}과목)`
                     : "과목을 선택해주세요"
                   : tierId === "bootcamp"
-                    ? `₩${formatPrice(config.price)} 부트캠프 신청하기`
+                    ? `₩${formatPrice(config.price)} 집중 스터디반 대기자 신청`
                     : `₩${formatPrice(config.price)}/월 정기결제 신청`
             }
           </button>
