@@ -28,14 +28,6 @@ const TIER_CONFIG = {
     ],
     successMsg: "신청이 접수되었습니다!",
   },
-  "mini-workshop": {
-    title: "🔨 미니 바이브코딩 워크샵 신청",
-    grade: "달팽이 탐험가",
-    desc: "3시간 만에 내 손으로 랜딩페이지 1개를 만들어 가져갑니다 (정원 10명)",
-    price: 100000,
-    priceLabel: "회당 · 3시간 · 온라인 줌",
-    successMsg: "신청이 접수되었습니다! 다음 회차 일정을 안내드리겠습니다.",
-  },
   partner: {
     title: "🎓 퍼널구축 아카데미 신청",
     grade: "달팽이 가족",
