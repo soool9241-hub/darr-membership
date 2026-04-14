@@ -9,7 +9,7 @@ const TIER_CONFIG = {
     grade: "달팽이 친구",
     desc: "주간 라이브 + 커뮤니티 + 템플릿으로 AI 자동화를 익힙니다",
     price: 30000,
-    priceLabel: "월 정기결제",
+    priceLabel: "월 ₩30,000 · 매달 개별 결제 (정기결제 아님)",
     firstMonthDiscount: false,
     successMsg: "신청이 접수되었습니다!",
   },
@@ -162,16 +162,16 @@ export default function MembershipApplyModal({ isOpen, onClose, onSwitchTier, ti
             : isPro
               ? `원데이 세미나 신청 | 선택 과목: ${courseNames} | ${selectedCourses.length}과목 × ₩300,000 = ₩${formatPrice(totalPrice)}`
               : null;
-          const extraInfo = form.occupation.trim() || form.motivation.trim()
-            ? ` | 하시는 일: ${form.occupation.trim()} | 신청 동기: ${form.motivation.trim()}`
-            : "";
+          const resolvedTierId = tierId === "bootcamp" ? "partner" : tierId;
           const insertData = {
-            tier_id: tierId === "bootcamp" ? "offline" : tierId === "pro" ? "offline" : tierId,
+            tier_id: resolvedTierId,
             name: form.name.trim(),
             email: form.email.trim().toLowerCase(),
             phone: form.phone.trim(),
             total_price: totalPrice,
-            admin_notes: (baseNote || "") + extraInfo || null,
+            occupation: form.occupation.trim() || null,
+            motivation: form.motivation.trim() || null,
+            admin_notes: baseNote || null,
           };
           const { error } = await supabase.from("membership_applications").insert(insertData);
           if (error) throw error;
@@ -625,7 +625,7 @@ export default function MembershipApplyModal({ isOpen, onClose, onSwitchTier, ti
                     : "과목을 선택해주세요"
                   : tierId === "bootcamp" || tierId === "partner"
                     ? `₩${formatPrice(config.price)} 퍼널구축 아카데미 대기자 신청`
-                    : `₩${formatPrice(config.price)}/월 정기결제 신청`
+                    : `₩${formatPrice(config.price)}/월 멤버십 신청`
             }
           </button>
         </form>
