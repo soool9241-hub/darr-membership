@@ -56,6 +56,7 @@ const TIERS = [
     level: "Lv.2.5",
     emoji: "🔨",
     name: "미니 바이브코딩 워크샵",
+    category: "경험상품",
     grade: "달팽이 탐험가",
     subtitle: "3시간 만에 내 손으로 랜딩페이지 1개를 만들어 가져갑니다",
     price: "₩100,000",
@@ -81,6 +82,7 @@ const TIERS = [
     level: "Lv.3",
     emoji: "🎤",
     name: "온라인 원데이 세미나",
+    category: "시스템구축 체험상품",
     grade: "달팽이 주민",
     subtitle: "하루 6시간, 원하는 주제를 골라 온라인으로 끝냅니다",
     price: "₩300,000",
@@ -404,14 +406,14 @@ const FUNNEL_STEPS = [
     detail: "매주 라이브로 함께 성장",
   },
   {
-    step: "STEP 2.5", emoji: "🔨", label: "미니 바이브코딩 워크샵",
+    step: "STEP 2.5", emoji: "🔨", label: "미니 바이브코딩 워크샵 (경험상품)",
     keyword: "3시간 · 온라인 · 10명 · 랜딩페이지 1개",
     sub: "3시간 만에 내 손으로 랜딩페이지를 만들고 인터넷에 띄웁니다",
     price: "₩100,000 / 회", color: "#52B788",
     detail: "오늘 만들어 오늘 배포 — 정원 10명",
   },
   {
-    step: "STEP 3", emoji: "🎤", label: "온라인 원데이 세미나",
+    step: "STEP 3", emoji: "🎤", label: "온라인 원데이 세미나 (시스템구축 체험상품)",
     keyword: "온라인 줌 · 하루 6시간 · 과목 선택 · 결과물 완성",
     sub: "원하는 주제를 골라 하루 만에 이론 + 실습으로 끝냅니다",
     price: "₩300,000/과목", color: "#52B788",
@@ -720,6 +722,16 @@ function TierCard({ tier, index, onCTAClick }) {
           }}>{tier.badge}</div>
 
           <div style={{ fontSize: "36px", marginBottom: "12px" }}>{tier.emoji}</div>
+
+          {tier.category && (
+            <span style={{
+              display: "inline-block", fontSize: "10px", fontWeight: 700,
+              color: isHL ? "#0D1F17" : "#fff",
+              background: isHL ? "#B7E4C7" : tier.badgeColor,
+              padding: "3px 10px", borderRadius: "100px",
+              letterSpacing: "0.05em", marginBottom: "8px",
+            }}>{tier.category}</span>
+          )}
 
           <h3 style={{
             fontFamily: "'Noto Serif KR', serif", fontSize: "22px", fontWeight: 700,
