@@ -10,7 +10,7 @@ const TIER_CONFIG = {
     desc: "주간 라이브 + 커뮤니티 + 템플릿으로 AI 자동화를 익힙니다",
     price: 30000,
     priceLabel: "월 정기결제",
-    firstMonthDiscount: true,
+    firstMonthDiscount: false,
     successMsg: "신청이 접수되��습니다!",
   },
   pro: {
@@ -27,6 +27,14 @@ const TIER_CONFIG = {
       { id: "partner", name: "마케터 100명 만드는 노하우", icon: "🤝", tag: "파트너십 시스템 · 6시간", desc: "파트너십 시스템을 직접 설계하고 구축" },
     ],
     successMsg: "신청이 접수되었습니다!",
+  },
+  "mini-workshop": {
+    title: "🔨 미니 바이브코딩 워크샵 신청",
+    grade: "달팽이 탐험가",
+    desc: "3시간 만에 내 손으로 랜딩페이지 1개를 만들어 가져갑니다 (정원 10명)",
+    price: 100000,
+    priceLabel: "회당 · 3시간 · 온라인 줌",
+    successMsg: "신청이 접수되었습니다! 다음 회차 일정을 안내드리겠습니다.",
   },
   partner: {
     title: "🎓 퍼널구축 아카데미 신청",

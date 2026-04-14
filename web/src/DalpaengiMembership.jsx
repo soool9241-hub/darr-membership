@@ -34,7 +34,7 @@ const TIERS = [
     grade: "달팽이 친구",
     subtitle: "주간 라이브 + 커뮤니티 + 템플릿으로 AI 자동화를 익힙니다",
     price: "₩30,000",
-    priceNote: "월 / 레터 구독자 첫 달 50% → ₩14,950",
+    priceNote: "월 / 매주 라이브 + 커뮤니티 + 템플릿",
     badge: "Lv.2",
     badgeColor: "#2D6A4F",
     schedule: "주 1회 라이브 + 월 1회 Q&A",
@@ -49,6 +49,31 @@ const TIERS = [
     ],
     bonuses: ["첫 30일 집중 온보딩 커리큘럼"],
     cta: "온라인 멤버십 시작",
+    highlight: false,
+  },
+  {
+    id: "mini-workshop",
+    level: "Lv.2.5",
+    emoji: "🔨",
+    name: "미니 바이브코딩 워크샵",
+    grade: "달팽이 탐험가",
+    subtitle: "3시간 만에 내 손으로 랜딩페이지 1개를 만들어 가져갑니다",
+    price: "₩100,000",
+    priceNote: "3시간 / 온라인 줌 / 정원 10명",
+    badge: "Lv.2.5",
+    badgeColor: "#52B788",
+    schedule: "월 1~2회 · 평일 저녁 또는 주말 · 온라인 줌 3시간",
+    goal: "오늘 만들어 오늘 배포 — 내 URL이 있는 랜딩페이지 1개",
+    features: [
+      "온라인 줌 라이브 3시간 (1:1 화면 공유 가능)",
+      "정원 10명 (소규모 밀착 진행)",
+      "결과물: 내 URL을 가진 랜딩페이지 1개 (Vercel 배포)",
+      "코딩 ZERO — 클릭 + 복붙으로 끝",
+      "녹화본 30일 제공",
+      "원데이 세미나 / 아카데미 전환 시 수강료 차감 (할인폭 미정)",
+    ],
+    bonuses: ["워크샵 후 7일간 카톡 Q&A", "수강생 전용 템플릿 팩 (미정)"],
+    cta: "미니 워크샵 신청",
     highlight: false,
   },
   {
@@ -97,7 +122,7 @@ const TIERS = [
       "줌 녹화본 평생 소장",
       "온라인 멤버십 3개월 무료 포함",
     ],
-    bonuses: ["펜션 20% 할인", "CNC 공방 무료 이용", "졸업 후 원데이 세미나 전환 우대", "퍼널구축 티칭프로 자격 부여"],
+    bonuses: ["펜션 20% 할인", "CNC 공방 무료 이용", "졸업 후 원데이 세미나 전환 우대", "코칭프로 자격 + 수익쉐어 강사 참여"],
     cta: "퍼널구축 아카데미 신청",
     highlight: false,
   },
@@ -177,7 +202,7 @@ const BOOTCAMP = {
     { text: "원데이 세미나 전환 우대", sub: "졸업생 우선 안내 + 특별 할인" },
     { text: "펜션 20% 할인", sub: "달팽이 아지트 펜션 이용 시" },
     { text: "CNC 공방 무료 이용", sub: "120평 공방 시설 자유 이용" },
-    { text: "퍼널구축 티칭프로 자격 부여", sub: "수료 시 향후 퍼널구축 워크샵 강사 자격 획득" },
+    { text: "코칭프로 자격 + 수익쉐어 강사 참여", sub: "수료 후 다음 기수 보조 멘토로 참여 (수익쉐어 비율 미정)" },
   ],
   discounts: [
     { label: "정가", price: "990,000원" },
@@ -369,14 +394,21 @@ const FUNNEL_STEPS = [
     keyword: "뉴스레터 · 무료 강의 · 자동화 체크리스트",
     sub: "구독만 하면 자동화 체크리스트, 퍼널 템플릿, 무료 강의가 바로 옵니다",
     price: "무료", color: "#95D5B2",
-    detail: "5,000+ 사장님이 이미 시작했습니다",
+    detail: "AI 자동화 트렌드를 매주 두 번, 메일함으로",
   },
   {
     step: "STEP 2", emoji: "💻", label: "온라인 멤버십",
     keyword: "주간 라이브 · 커뮤니티 · 실시간 Q&A",
     sub: "혼자 하면 막히는 것, 매주 라이브에서 바로 해결합니다",
     price: "₩30,000/월", color: "#74C69D",
-    detail: "800명이 함께 배우는 중 · 첫 달 50% 할인",
+    detail: "매주 라이브로 함께 성장",
+  },
+  {
+    step: "STEP 2.5", emoji: "🔨", label: "미니 바이브코딩 워크샵",
+    keyword: "3시간 · 온라인 · 10명 · 랜딩페이지 1개",
+    sub: "3시간 만에 내 손으로 랜딩페이지를 만들고 인터넷에 띄웁니다",
+    price: "₩100,000 / 회", color: "#52B788",
+    detail: "오늘 만들어 오늘 배포 — 정원 10명",
   },
   {
     step: "STEP 3", emoji: "🎤", label: "온라인 원데이 세미나",
@@ -1162,7 +1194,7 @@ export default function DalpaengiMembership() {
               혼자보다 함께일 때 더 빠릅니다. 나에게 맞는 멤버십을 선택하세요.
             </p>
             <p style={{ textAlign: "center", fontSize: "13px", color: "#8A9A8E", marginBottom: "52px" }}>
-              800명이 함께하고 있습니다 · 달팽이처럼 천천히, 하지만 확실하게
+              달팽이처럼 천천히, 하지만 확실하게 — 함께 성장하는 멤버들
             </p>
           </FadeIn>
 
@@ -1830,6 +1862,97 @@ export default function DalpaengiMembership() {
         </div>
       </section>
 
+      {/* ══════ 코칭프로 RETENTION ══════ */}
+      <section style={{ padding: "80px 24px", background: "linear-gradient(180deg, #F5F4EF 0%, #EBE9E1 100%)" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <FadeIn>
+            <div style={{
+              display: "inline-block", fontSize: "12px", fontWeight: 700, color: "#2D6A4F",
+              background: "rgba(45,106,79,0.08)", padding: "6px 14px",
+              borderRadius: "100px", marginBottom: "16px", letterSpacing: "0.05em",
+            }}>아카데미 졸업 이후 — 코칭프로 트랙</div>
+            <h2 style={{
+              fontFamily: "'Noto Serif KR', serif", fontSize: "30px", fontWeight: 700, marginBottom: "12px",
+            }}>🤝 졸업이 끝이 아닙니다 — 함께 가르치며 함께 법니다</h2>
+            <p style={{ color: "#6B7B6E", fontSize: "15px", lineHeight: 1.7, marginBottom: "32px" }}>
+              아카데미를 수료하면 다음 기수에 <strong style={{ color: "#1B4332" }}>코칭프로(보조 멘토)</strong>로 참여할 수 있습니다.<br />
+              본인의 사업을 자동화한 뒤, 그 경험을 다음 기수에게 전하면서 <strong style={{ color: "#1B4332" }}>수익을 함께 나눕니다</strong>.
+            </p>
+          </FadeIn>
+
+          {/* 성장 경로 */}
+          <FadeIn delay={0.1}>
+            <div style={{
+              background: "#fff", borderRadius: "20px", padding: "28px 24px",
+              border: "1px solid #E8E5DC", marginBottom: "24px",
+            }}>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "#2D6A4F", marginBottom: "16px", letterSpacing: "0.05em" }}>
+                성장 경로
+              </div>
+              <div style={{
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+                gap: "12px", alignItems: "stretch",
+              }}>
+                {[
+                  { emoji: "🎓", label: "수강생", sub: "4주 아카데미 수료" },
+                  { emoji: "🤝", label: "코칭프로", sub: "다음 기수 보조 멘토 (수익쉐어 미정)" },
+                  { emoji: "🎤", label: "리드 멘토", sub: "특정 주차 메인 강의 담당" },
+                  { emoji: "🚀", label: "독립 워크샵 운영", sub: "본인 브랜드로 워크샵 개설" },
+                ].map((p, i) => (
+                  <div key={i} style={{
+                    background: "#FAFAF7", borderRadius: "14px", padding: "18px 14px",
+                    textAlign: "center", border: "1px solid #E8E5DC",
+                  }}>
+                    <div style={{ fontSize: "28px", marginBottom: "8px" }}>{p.emoji}</div>
+                    <div style={{ fontSize: "14px", fontWeight: 700, color: "#1B4332", marginBottom: "4px" }}>
+                      {p.label}
+                    </div>
+                    <div style={{ fontSize: "12px", color: "#6B7B6E", lineHeight: 1.5 }}>
+                      {p.sub}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* 코칭프로 혜택 */}
+          <FadeIn delay={0.2}>
+            <div style={{
+              background: "#fff", borderRadius: "20px", padding: "28px 24px",
+              border: "1px solid #E8E5DC",
+            }}>
+              <div style={{ fontSize: "13px", fontWeight: 700, color: "#2D6A4F", marginBottom: "16px", letterSpacing: "0.05em" }}>
+                코칭프로가 받는 것
+              </div>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "grid", gap: "10px" }}>
+                {[
+                  "다음 기수 수익쉐어 (비율 미정)",
+                  "본인 사업의 자동화 시스템 지속 업데이트 지원",
+                  "달팽이 브랜드 자료/템플릿 활용 권한 (범위 미정)",
+                  "리드 멘토 트랙 진입 자격",
+                  "졸업생 전용 운영 채널 입장",
+                ].map((b, i) => (
+                  <li key={i} style={{
+                    fontSize: "14px", color: "#3A4A3E", lineHeight: 1.6,
+                    paddingLeft: "22px", position: "relative",
+                  }}>
+                    <span style={{ position: "absolute", left: 0, color: "#2D6A4F", fontWeight: 700 }}>✓</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <p style={{
+                fontSize: "12px", color: "#8A9A8E", marginTop: "16px", fontStyle: "italic",
+                paddingTop: "14px", borderTop: "1px dashed #E8E5DC",
+              }}>
+                * 수익쉐어 비율 · 자격 기준 · 활용 범위 등 세부 조건은 1기 졸업 시점에 확정됩니다.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ══════ COMPARISON TABLE ══════ */}
       <section style={{ padding: "80px 24px", background: "#fff" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -1844,7 +1967,7 @@ export default function DalpaengiMembership() {
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px", minWidth: "700px" }}>
                 <thead>
                   <tr style={{ borderBottom: "2px solid #1B4332" }}>
-                    {["", "📬 Lv.1", "💻 Lv.2", "🔧 Lv.3", "🎓 Lv.4"].map((h, i) => (
+                    {["", "📬 Lv.1", "💻 Lv.2", "🔨 Lv.2.5", "🎤 Lv.3", "🎓 Lv.4"].map((h, i) => (
                       <th key={i} style={{
                         padding: "12px 8px", textAlign: i === 0 ? "left" : "center",
                         fontWeight: 700, color: "#1B4332", fontSize: "13px",
@@ -1854,21 +1977,22 @@ export default function DalpaengiMembership() {
                 </thead>
                 <tbody>
                   {[
-                    ["가격", "무료", "₩30,000/월", "₩300,000/과목", "₩990,000 (4주)"],
-                    ["빈도", "주 2회", "주 1회 라이브", "하루 6시간 집중", "주 1회 5시간 × 4주"],
-                    ["형태", "뉴스레터", "온라인 라이브", "온라인 원데이 세미나", "스터디 3h + 실습 2h"],
-                    ["AI 트렌드 뉴스", "✓", "✓", "✓", "✓"],
-                    ["라이브 시연 + 녹화본", "—", "✓", "✓", "✓ (평생 소장)"],
-                    ["커뮤니티 + 템플릿", "—", "✓", "✓", "✓"],
-                    ["이론 + 실습 구조", "—", "—", "✓ (3h+3h)", "✓ (3h+2h)"],
-                    ["녹화본 평생 소장", "—", "—", "✓", "✓"],
-                    ["자동화 시스템 직접 구축", "—", "—", "—", "✓ (6개)"],
-                    ["온라인 멤버십 포함", "—", "—", "—", "✓ (3개월)"],
-                    ["구축 대행 할인", "—", "—", "15%", "15%"],
-                    ["펜션·공방 혜택", "—", "—", "할인 이용", "펜션 20% + 공방 무료"],
-                    ["졸업 후 원데이 세미나 우대", "—", "—", "—", "✓"],
-                    ["티칭프로 자격 부여", "—", "—", "—", "✓"],
-                    ["정원", "무제한", "800명", "50명", "30명"],
+                    ["가격", "무료", "₩30,000/월", "₩100,000/회", "₩300,000/과목", "₩990,000 (4주)"],
+                    ["빈도", "주 2회", "주 1회 라이브", "월 1~2회 · 3시간", "하루 6시간 집중", "주 1회 5시간 × 4주"],
+                    ["형태", "뉴스레터", "온라인 라이브", "온라인 미니 워크샵", "온라인 원데이 세미나", "스터디 3h + 실습 2h"],
+                    ["AI 트렌드 뉴스", "✓", "✓", "✓", "✓", "✓"],
+                    ["라이브 시연 + 녹화본", "—", "✓", "✓ (30일)", "✓", "✓ (평생 소장)"],
+                    ["커뮤니티 + 템플릿", "—", "✓", "—", "✓", "✓"],
+                    ["내 결과물 가져가기", "—", "—", "✓ (랜딩페이지 1개)", "✓ (과목별)", "✓ (자동화 6개)"],
+                    ["이론 + 실습 구조", "—", "—", "실습 중심", "✓ (3h+3h)", "✓ (3h+2h)"],
+                    ["녹화본 평생 소장", "—", "—", "—", "✓", "✓"],
+                    ["자동화 시스템 직접 구축", "—", "—", "—", "—", "✓ (6개)"],
+                    ["온라인 멤버십 포함", "—", "—", "—", "—", "✓ (3개월)"],
+                    ["구축 대행 할인", "—", "—", "—", "15%", "15%"],
+                    ["펜션·공방 혜택", "—", "—", "—", "할인 이용", "펜션 20% + 공방 무료"],
+                    ["졸업 후 상위 단계 전환 우대", "—", "—", "수강료 차감 (미정)", "—", "✓"],
+                    ["코칭프로 자격 + 수익쉐어 강사 참여", "—", "—", "—", "—", "✓"],
+                    ["정원", "무제한", "—", "10명", "50명", "30명"],
                   ].map((row, ri) => (
                     <tr key={ri} style={{ borderBottom: "1px solid #E8E5DC", background: ri % 2 === 0 ? "#FAFAF7" : "#fff" }}>
                       {row.map((cell, ci) => (
@@ -2011,7 +2135,7 @@ export default function DalpaengiMembership() {
         waitlistMode
       />
       <MembershipApplyModal
-        isOpen={["online", "pro", "partner", "bootcamp", "dfy"].includes(activeModal)}
+        isOpen={["online", "mini-workshop", "pro", "partner", "bootcamp", "dfy"].includes(activeModal)}
         onClose={() => setActiveModal(null)}
         onSwitchTier={(tier) => setActiveModal(tier)}
         tierId={activeModal || "online"}

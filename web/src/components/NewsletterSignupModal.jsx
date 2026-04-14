@@ -160,7 +160,7 @@ export default function NewsletterSignupModal({ isOpen, onClose, onSwitchTier, w
                 ✓ 6개 시스템 전부<br />
                 ✓ 평생 소유 · 추가비용 0<br />
                 ✓ 내 사업 맞춤 커스텀<br />
-                ✓ 티칭프로 자격 부여
+                ✓ 코칭프로 자격 + 수익쉐어
               </div>
             </div>
           </div>
