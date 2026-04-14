@@ -22,9 +22,9 @@ const TIER_CONFIG = {
     priceLabel: "과목당 · 6시간 · 이론+실습",
     courses: [
       { id: "landing", name: "팔리는 랜딩페이지 구축", icon: "🖥️", tag: "바이브 코딩 · 6시간", desc: "AI와 함께 전환율 높은 랜딩페이지를 직접 만들고 배포" },
-      { id: "marketing", name: "나 대신 일하는 모객 시스템", icon: "🤖", tag: "AI 시스템 · 광고 · 6시간", desc: "24시간 자동으로 고객을 모으고 전환시키는 시스템 구축" },
-      { id: "operation", name: "운영관리 AI 효율화", icon: "📊", tag: "관리자 페이지 · 데이터 · 6시간", desc: "데이터 기반으로 운영을 자동화하는 시스템 구축" },
-      { id: "partner", name: "마케터 100명 만드는 노하우", icon: "🤝", tag: "파트너십 시스템 · 6시간", desc: "파트너십 시스템을 직접 설계하고 구축" },
+      { id: "marketing", name: "나 대신 일하는 모객 시스템", icon: "🤖", tag: "AI 시스템 · 광고 · 6시간", desc: "24시간 자동으로 고객을 모으고 전환시키는 시스템 구축", soldOut: true },
+      { id: "operation", name: "운영관리 AI 효율화", icon: "📊", tag: "관리자 페이지 · 데이터 · 6시간", desc: "데이터 기반으로 운영을 자동화하는 시스템 구축", soldOut: true },
+      { id: "partner", name: "마케터 100명 만드는 노하우", icon: "🤝", tag: "파트너십 시스템 · 6시간", desc: "파트너십 시스템을 직접 설계하고 구축", soldOut: true },
     ],
     successMsg: "신청이 접수되었습니다!",
   },
@@ -320,31 +320,51 @@ export default function MembershipApplyModal({ isOpen, onClose, onSwitchTier, ti
               </div>
               {config.courses.map((course) => {
                 const checked = selectedCourses.includes(course.id);
+                const isSoldOut = course.soldOut;
                 return (
                   <label
                     key={course.id}
-                    onClick={() => toggleCourse(course.id)}
+                    onClick={() => !isSoldOut && toggleCourse(course.id)}
                     style={{
                       display: "flex", alignItems: "center", gap: "12px",
                       padding: "14px 16px", marginBottom: "8px",
-                      borderRadius: "12px", cursor: "pointer",
+                      borderRadius: "12px",
+                      cursor: isSoldOut ? "not-allowed" : "pointer",
                       border: checked ? "2px solid #2D6A4F" : "1.5px solid #E8E5DC",
-                      background: checked ? "#F0FAF4" : "#FAFAF7",
+                      background: isSoldOut ? "#F2F2EE" : (checked ? "#F0FAF4" : "#FAFAF7"),
+                      opacity: isSoldOut ? 0.6 : 1,
                       transition: "all 0.2s",
                     }}
                   >
                     <input
                       type="checkbox"
                       checked={checked}
+                      disabled={isSoldOut}
                       onChange={() => {}}
                       style={{ accentColor: "#2D6A4F", width: "18px", height: "18px", flexShrink: 0 }}
                     />
-                    <span style={{ fontSize: "20px" }}>{course.icon}</span>
+                    <span style={{ fontSize: "20px", filter: isSoldOut ? "grayscale(1)" : "none" }}>{course.icon}</span>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: "14px", fontWeight: checked ? 700 : 600, color: checked ? "#1B4332" : "#3A4A3E" }}>
-                        {course.name}
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+                        <div style={{
+                          fontSize: "14px",
+                          fontWeight: checked ? 700 : 600,
+                          color: isSoldOut ? "#8A9A8E" : (checked ? "#1B4332" : "#3A4A3E"),
+                          textDecoration: isSoldOut ? "line-through" : "none",
+                        }}>
+                          {course.name}
+                        </div>
+                        {isSoldOut && (
+                          <span style={{
+                            fontSize: "10px", fontWeight: 800, color: "#fff",
+                            background: "#8A9A8E", padding: "2px 8px",
+                            borderRadius: "100px", letterSpacing: "0.05em",
+                          }}>SOLD OUT</span>
+                        )}
                       </div>
-                      <div style={{ fontSize: "11px", color: "#8A9A8E", marginTop: "2px" }}>{course.desc}</div>
+                      <div style={{ fontSize: "11px", color: "#8A9A8E", marginTop: "2px" }}>
+                        {isSoldOut ? "오픈 예정 — 대기자는 아래 문의로 남겨주세요" : course.desc}
+                      </div>
                     </div>
                   </label>
                 );
