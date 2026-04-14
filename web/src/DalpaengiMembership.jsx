@@ -1073,10 +1073,10 @@ export default function DalpaengiMembership() {
               borderRadius: "16px", padding: "28px 24px",
             }}>
               <p style={{ fontSize: "15px", color: "#B7E4C7", margin: "0 0 4px", lineHeight: 1.7 }}>
-                어떤 단계���서 시작하든, 시스템이 ��음 단계를 자연스럽게 안내합니다.
+                어떤 단계에서 시작하든, 시스템이 다음 단계를 자연스럽게 안내합니다.
               </p>
               <p style={{ fontSize: "13px", color: "#6B9E82", margin: 0 }}>
-                대부분의 분들은 무료 자료 → 템플릿 구매 → 멤버십 순으로 시작���고 있습니다.
+                대부분의 분들은 무료 자료 → 템플릿 구매 → 멤버십 순으로 시작하고 있습니다.
               </p>
             </div>
           </FadeIn>

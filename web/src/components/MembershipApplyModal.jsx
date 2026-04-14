@@ -11,7 +11,7 @@ const TIER_CONFIG = {
     price: 30000,
     priceLabel: "월 정기결제",
     firstMonthDiscount: false,
-    successMsg: "신청이 접수되��습니다!",
+    successMsg: "신청이 접수되었습니다!",
   },
   pro: {
     title: "🎤 온라인 원데이 세미나 신청",
@@ -427,12 +427,12 @@ export default function MembershipApplyModal({ isOpen, onClose, onSwitchTier, ti
               </div>
               {config.firstMonthDiscount && (
                 <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
-                  레터 구���자 첫 달 50% → ₩{formatPrice(Math.round(config.price / 2))}
+                  레터 구독자 첫 달 50% → ₩{formatPrice(Math.round(config.price / 2))}
                 </div>
               )}
               {(tierId === "bootcamp" || tierId === "partner") && (
                 <div style={{ fontSize: "12px", color: "#95D5B2", marginTop: "8px" }}>
-                  주 1회 5시간 (스터디 3h + 실습 2h) · 4주 과정 �� 총 20시간
+                  주 1회 5시간 (스터디 3h + 실습 2h) · 4주 과정 · 총 20시간
                 </div>
               )}
             </div>
